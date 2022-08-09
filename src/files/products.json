@@ -1,0 +1,24 @@
+[
+	{
+		"name": "Café origen paisaje cultural cafetero juan valdez",
+		"description": "Esta es la descripcion nueva",
+		"thumbnail": "https://global-uploads.webflow.com/5f96ebdeb7e4b038d8dc6679/609981b804a841f7509512f3_cafe-origen-paisaje-cultural-cafetero-juan-valdez.png",
+		"price": 122.22,
+		"stock": 52,
+		"enable": true,
+		"id": 1,
+		"code": "lr5xh",
+		"time_stamp": "1.660.072.598.277"
+	},
+	{
+		"name": "Café 2",
+		"description": "descripcion prueba",
+		"thumbnail": "",
+		"price": 1.22,
+		"stock": 58,
+		"enable": true,
+		"id": 2,
+		"code": {},
+		"time_stamp": "1.660.074.884.258"
+	}
+]
