@@ -29,22 +29,31 @@ class CartManager {
     //add or rest a product to cart
     //require cartID, productID and quantity
     addProductCart = async (cid, pid, quantity) => {
-        if(productService.getProductById(pid) === null){
+        let product = await productService.getProductById(pid)
+        if(product === null){
             throw new Error("Cart manager error:{addProductCart} the product doesn't exist")
         }else{
             try {
                 let cart = await this.getCartById(cid)
-                if(cart.some(e =>e.id === pid)){
+                if(cart.products.some(e =>e.id === pid)){
                     for (const item of cart.products){
                         if(item.id === pid){
-                            item.quantity += quantity
+                            let condition = (item.quantity += quantity)
+                            if(condition < 1){
+                                item.quantity = 1
+                            }else{
+                                item.quantity = condition
+                            }
                         }
                     }
                 }else{
-                    cart.push({id:pid, quantity})
+                    if(quantity < 1){
+                        throw new Error("Cart manager error:{addProductCart} invalid quantity")
+                    }else{
+                        cart.products.push({id:pid, quantity})
+                    }
                 }
                 await this.updateCarts(cart)
-
             } catch (error) {
                 console.log("Cart manager error:{addProductCart} could be cart doesn't exist yet")
                 console.log(error)
@@ -56,8 +65,10 @@ class CartManager {
     // require cartID and productID
     deleteProductCart = async (cid, pid) => {
         let cart = await this.getCartById(cid)
+
         let newCartProduts = []
-        if(cart.some(e =>e.id === pid)){
+
+        if(cart.products.some(e =>e.id === pid)){
             for (const item of cart.products){
                 if(item.id === pid){
                     continue
@@ -151,10 +162,12 @@ class CartManager {
         }
     }
     
-    //return a object with all whole products objects of card 
+    //return an object with all products' properties of the cart
     getProductCart = async (cid)=>{
+        console.log(cid)
+
         try {
-            let cart = await this.deleteCardById(cid)
+            let cart = await this.getCartById(cid)
             let copyList = []
             for(const item of cart.products){
                 copyList.push(
