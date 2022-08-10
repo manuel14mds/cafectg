@@ -30,6 +30,7 @@ class ProductManager {
             if (products.length === 0) {
                 product.id = 1
                 product.code = (Math.random() + 1).toString(36).substring(7) //create a random code
+                product.enable = true
                 product.time_stamp = Date.now().toLocaleString()
                 products.push(product)
                 await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'))
@@ -38,6 +39,7 @@ class ProductManager {
                 product.id = products[products.length - 1].id + 1
                 product.code = this.codeGenerator(products)
                 product.time_stamp = Date.now().toLocaleString()
+                product.enable = true
                 products.push(product)
                 await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'))
                 return product.id
@@ -104,17 +106,13 @@ class ProductManager {
 
     updateProduct = async (id, newData) => {
         try {
-
             let product = await this.getProductById(id) //original product
             let keysProduct = Object.keys(product)
-            for(const key of keysProduct){
-                if(product[key] != newData[key]){
-
+            for (const key of keysProduct) {
+                if (product[key] != newData[key]) {
                     product[key] = newData[key]
                 }
             }
-
-
             let productsArray = await this.getAll()
             let newproducts = []
             for (const item of productsArray) {
@@ -124,14 +122,7 @@ class ProductManager {
                 }
                 newproducts.push(item)
             }
-
             await fs.promises.writeFile(this.path, JSON.stringify(newproducts, null, '\t'))
-
-
-
-
-
-
         } catch (error) {
             console.log('product manager error, updateProduct()')
             console.log(error)

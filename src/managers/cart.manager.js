@@ -87,8 +87,10 @@ class CartManager {
         let cart={}
         if (array_carts.length === 0) {
             cart.id = 1
+            product.time_stamp = Date.now().toLocaleString()
         }else{
             cart.id= array_carts[array_carts.length - 1].id + 1
+            product.time_stamp = Date.now().toLocaleString()
         }
         cart.products = []
         array_carts.push(cart)
