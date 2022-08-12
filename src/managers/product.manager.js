@@ -51,7 +51,7 @@ class ProductManager {
     }
 
     //generate a new product code
-    codeGenerator = async (products) => {
+    codeGenerator = (products) => {
         let new_code = ''
         do {
             new_code = (Math.random() + 1).toString(36).substring(7)

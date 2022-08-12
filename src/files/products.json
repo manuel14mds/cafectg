@@ -3,7 +3,7 @@
 		"name": "Café origen paisaje cultural cafetero juan valdez",
 		"description": "Esta es la descripcion nueva",
 		"thumbnail": "https://global-uploads.webflow.com/5f96ebdeb7e4b038d8dc6679/609981b804a841f7509512f3_cafe-origen-paisaje-cultural-cafetero-juan-valdez.png",
-		"price": 122.22,
+		"price": 122.21,
 		"stock": 52,
 		"enable": true,
 		"id": 1,
@@ -20,5 +20,49 @@
 		"id": 2,
 		"code": {},
 		"time_stamp": "1.660.074.884.258"
+	},
+	{
+		"name": "Café 3",
+		"description": "descripcion prueba numero 3",
+		"thumbnail": "",
+		"price": 15.22,
+		"stock": 28,
+		"enable": true,
+		"id": 3,
+		"code": {},
+		"time_stamp": "1.660.269.140.546"
+	},
+	{
+		"name": "Café 5",
+		"description": "descripcion prueba numero 5",
+		"thumbnail": "",
+		"price": 25.22,
+		"stock": 20,
+		"id": 5,
+		"code": {},
+		"time_stamp": "1.660.269.982.032",
+		"enable": true
+	},
+	{
+		"name": "Café 7",
+		"description": "descripcion prueba numero 5",
+		"thumbnail": "",
+		"price": 25.22,
+		"stock": 20,
+		"id": 7,
+		"code": "tlrqs",
+		"time_stamp": "1.660.270.069.057",
+		"enable": true
+	},
+	{
+		"name": "Café 8",
+		"description": "descripcion prueba numero 5",
+		"thumbnail": "",
+		"price": 25.22,
+		"stock": 20,
+		"id": 8,
+		"code": "alnoj",
+		"time_stamp": "1.660.270.087.306",
+		"enable": true
 	}
 ]
