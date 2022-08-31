@@ -1,12 +1,13 @@
 import { Router } from "express"
-import ProductManager from '../managers/product.manager.js'
+//import ProductManager from '../managers/product.manager.js'
+import services from '../dao/index.js'
 import userAdmin from '../app.js'
 
 const router = Router()
-const productService = new ProductManager()
 
 router.get('/', async(req,res)=>{
-    let products = await productService.getAll()
+    //let products = await productService.getAll()
+    let products = await services.ProductService.getAll()
     res.send({products})
 })
 
@@ -75,7 +76,8 @@ async function validatePid(req,res,next){
     } catch (error) {
         return res.status(400).send({status:'error', error:'Invalid id'})
     }
-    req.params.product = await productService.getProductById(req.params.pid)
+    
+    req.params.product = await services.ProductService.getById(req.params.pid)
     if(req.params.product === null) return res.status(404).send({status:'error', error:'Product not found'})
     next()
 }
