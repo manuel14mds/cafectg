@@ -55,14 +55,14 @@
 		"enable": true
 	},
 	{
-		"name": "Café 8",
-		"description": "descripcion prueba numero 5",
-		"thumbnail": "",
-		"price": 25.22,
-		"stock": 20,
+		"name": "Café juan valdez",
+		"description": "Esta es la descripcion nueva del id 8",
+		"thumbnail": "https://global-uploads.webflow.com/5f96ebdeb7e4b038d8dc6679/609981b804a841f7509512f3_cafe-origen-paisaje-cultural-cafetero-juan-valdez.png",
+		"price": 122,
+		"stock": 42,
 		"id": 8,
-		"code": "alnoj",
-		"time_stamp": "1.660.270.087.306",
+		"code": "lr5xh",
+		"time_stamp": "1.660.072.598.277",
 		"enable": true
 	}
 ]

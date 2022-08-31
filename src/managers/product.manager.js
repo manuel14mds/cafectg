@@ -110,6 +110,7 @@ class ProductManager {
             let keysProduct = Object.keys(product)
             for (const key of keysProduct) {
                 if (product[key] != newData[key]) {
+                    if (product['id']) continue
                     product[key] = newData[key]
                 }
             }
