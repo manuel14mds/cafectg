@@ -1,12 +1,10 @@
 import { Router } from "express"
-//import ProductManager from '../managers/product.manager.js'
 import services from '../dao/index.js'
 import userAdmin from '../app.js'
 
 const router = Router()
 
 router.get('/', async(req,res)=>{
-    //let products = await productService.getAll()
     let products = await services.ProductService.getAll()
     res.send({products})
 })
@@ -24,7 +22,9 @@ router.put('/:pid', validatePid, async (req,res)=>{
             return res.status(400).send({status:'error', error:"blank spaces are NOT allowed"})
         }else{
             try {
-                await productService.updateProduct(req.params.pid, req.body)
+                req.body.id=parseInt(req.params.pid)
+                console.log(req.body)
+                await services.ProductService.update(req.body)
                 res.send({status:'success',message:'successfully saved'})
             } catch (error) {
                 return res.status(500).send({status:'error', error:"it couldn't update the product"})
@@ -38,18 +38,13 @@ router.post('/',async (req,res)=>{
         return res.send({error:-1, descripction: "route '/products' method 'POST' no authorized"})
     }else{
         const {name, price, stock} = req.body
-        //faltan las validaciones de los campos
-        if(!name||!price||!stock){
-            return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
-        }else{
-            try {
-                await productService.addProduct(req.body)
-                
-            } catch (error) {
-                return res.status(500).send({status:'error', error:"it couldn't save the product"})
-            }
-            res.send({status:'success',message:'successfully saved' })
+        if(!name||!price||!stock||(typeof price != 'number')) return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
+        try {
+            await services.ProductService.addProduct(req.body)
+        } catch (error) {
+            return res.status(500).send({status:'error', error:"it couldn't save the product"})
         }
+        res.send({status:'success',message:'successfully saved' })
     }
 })
 
@@ -58,7 +53,7 @@ router.delete('/:pid', validatePid, async(req,res)=>{
         return res.send({error:-1, descripction: "route '/products/:pid' method 'DELETE' no authorized"})
     }else{
         try {
-            await productService.deleteProductById(req.params.pid)
+            await services.ProductService.deleteById(req.params.pid)
         } catch (error) {
             return res.status(500).send({status:'error', error:"it couldn't delete the product"})
         }
@@ -78,7 +73,7 @@ async function validatePid(req,res,next){
     }
     
     req.params.product = await services.ProductService.getById(req.params.pid)
-    if(req.params.product === null) return res.status(404).send({status:'error', error:'Product not found'})
+    if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
     next()
 }
 

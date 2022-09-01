@@ -1,4 +1,5 @@
 export default class MemoryContainer {
+
     constructor() {
         this.data = []
     }
@@ -18,13 +19,14 @@ export default class MemoryContainer {
     }
 
     deleteById = (id) => {
-        let newData = this.data.map((element) => element.id != id)
+        let newData = this.data.filter((element) => element.id != id)
         this.data = newData
     }
 
     update = (object) => {
-        let index = this.data.indexOf((element) => element.id === object.id)
+        let index = this.data.findIndex((element) => element.id === object.id)
         this.data[index] = object
+        return true
     }
 
     deleteAll = ()=>{

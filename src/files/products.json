@@ -11,58 +11,25 @@
 		"time_stamp": "1.660.072.598.277"
 	},
 	{
-		"name": "Café 2",
+		"name": "Café 3",
 		"description": "descripcion prueba",
 		"thumbnail": "",
-		"price": 1.22,
-		"stock": 58,
-		"enable": true,
-		"id": 2,
-		"code": {},
-		"time_stamp": "1.660.074.884.258"
-	},
-	{
-		"name": "Café 3",
-		"description": "descripcion prueba numero 3",
-		"thumbnail": "",
-		"price": 15.22,
-		"stock": 28,
-		"enable": true,
+		"price": 25.22,
+		"stock": 20,
 		"id": 3,
-		"code": {},
-		"time_stamp": "1.660.269.140.546"
-	},
-	{
-		"name": "Café 5",
-		"description": "descripcion prueba numero 5",
-		"thumbnail": "",
-		"price": 25.22,
-		"stock": 20,
-		"id": 5,
-		"code": {},
-		"time_stamp": "1.660.269.982.032",
+		"code": "tsu79",
+		"time_stamp": "1.662.004.971.825",
 		"enable": true
 	},
 	{
-		"name": "Café 7",
-		"description": "descripcion prueba numero 5",
+		"name": "Café 4",
+		"description": "descripcion prueba",
 		"thumbnail": "",
 		"price": 25.22,
 		"stock": 20,
-		"id": 7,
-		"code": "tlrqs",
-		"time_stamp": "1.660.270.069.057",
-		"enable": true
-	},
-	{
-		"name": "Café juan valdez",
-		"description": "Esta es la descripcion nueva del id 8",
-		"thumbnail": "https://global-uploads.webflow.com/5f96ebdeb7e4b038d8dc6679/609981b804a841f7509512f3_cafe-origen-paisaje-cultural-cafetero-juan-valdez.png",
-		"price": 122,
-		"stock": 42,
-		"id": 8,
-		"code": "lr5xh",
-		"time_stamp": "1.660.072.598.277",
+		"id": 4,
+		"code": "p6chlg",
+		"time_stamp": "1.662.004.992.494",
 		"enable": true
 	}
 ]

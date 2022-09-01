@@ -1,5 +1,5 @@
 
-const persistence = 'MEMORY'
+const persistence = 'FILESYSTEM'
 let UserService
 let ProductService
 let CartService
@@ -12,6 +12,14 @@ switch (persistence) {
         UserService = new MemoryUser()
         ProductService = new MemoryProduct()
         CartService = new MemoryCarts()
+        break
+    case 'FILESYSTEM':
+        const {default:FileSUser} = await import('./fileSystemDAO/Users.js')
+        const {default:FileSProduct} = await import('./fileSystemDAO/Products.js') 
+        const {default:FileSCarts} = await import('./fileSystemDAO/Carts.js') 
+        UserService = new FileSUser()
+        ProductService = new FileSProduct()
+        CartService = new FileSCarts()
         break
 }
 
