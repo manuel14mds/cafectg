@@ -45,6 +45,7 @@ router.get('/:cid/products', validateCid, async (req,res)=>{
         return res.status(500).send({status:'error', error:"Products couldn't be listed"})
     }
 })
+
 //add products to cart
 router.post('/:cid/products', validateCid, async (req,res)=>{
     const {id, quantity} = req.body

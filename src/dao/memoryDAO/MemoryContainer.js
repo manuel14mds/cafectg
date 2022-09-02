@@ -14,7 +14,7 @@ export default class MemoryContainer {
     }
 
     getById = (id) => {
-        let result = this.data.find((element) => element.id === id)
+        let result = this.data.find((element) => element.id == id)
         return result
     }
 
@@ -24,7 +24,7 @@ export default class MemoryContainer {
     }
 
     update = (object) => {
-        let index = this.data.findIndex((element) => element.id === object.id)
+        let index = this.data.findIndex((element) => element.id == object.id)
         this.data[index] = object
         return true
     }

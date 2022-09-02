@@ -56,9 +56,9 @@ export default class Carts extends MemoryContainer{
                 }
                 newCartProduts.push(item)
             }
+            cart.products = newCartProduts
+            this.update(cart)
         }
-        cart.products = newCartProduts
-        this.update(cart)
     }
 
     // return an object with all products' properties of the cart

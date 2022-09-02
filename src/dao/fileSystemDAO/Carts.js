@@ -20,6 +20,7 @@ export default class Carts extends FileSystemContainer{
         return cart.id
     }
 
+    //add a product into cart
     addProductToCart = async (cid, pid, qty) => {
         let cart = await this.getById(cid)
         if(cart.products.some(e => e.id === pid)){
@@ -57,29 +58,8 @@ export default class Carts extends FileSystemContainer{
                 }
                 newCartProduts.push(item)
             }
-        }
-        cart.products = newCartProduts
-        this.update(cart)
-    }
-
-    // return an object with all products' properties of the cart
-    getProductsCart = async (cid)=>{
-        try {
-            let cart = this.getById(cid)
-            let copyList = []
-            for(const item of cart.products){
-                console.log('cart product:', productService.getById(item.id))
-                copyList.push(
-                    {
-                    product: productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                    quantity:item.quantity
-                    }
-                )
-            }
-            return copyList
-        } catch (error) {
-            console.log('Cart manager: {getProductCart}')
-            console.log(error)
+            cart.products = newCartProduts
+            this.update(cart)
         }
     }
 }

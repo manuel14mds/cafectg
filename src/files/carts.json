@@ -12,11 +12,15 @@
 	{
 		"id": 3,
 		"time_stamp": "1.660.270.790.700",
-		"products": []
-	},
-	{
-		"id": 4,
-		"time_stamp": "1.662.005.964.851",
-		"products": []
+		"products": [
+			{
+				"id": 3,
+				"quantity": 5
+			},
+			{
+				"id": 1,
+				"quantity": 15
+			}
+		]
 	}
 ]

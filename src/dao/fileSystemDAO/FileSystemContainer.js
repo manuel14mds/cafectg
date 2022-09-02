@@ -25,7 +25,7 @@ export default class MemoryContainer {
 
     getById = async (id) => {
         let list = await this.getAll()
-        let result = list.find((element) => element.id === id)
+        let result = list.find((element) => element.id == id)
         return result
     }
 
@@ -37,7 +37,7 @@ export default class MemoryContainer {
 
     update = async (object) => {
         let list = await this.getAll()
-        let index = list.findIndex((element) => element.id === object.id)
+        let index = list.findIndex((element) => element.id == object.id)
         list[index] = object
         await fs.promises.writeFile(this.path, JSON.stringify(list, null, '\t'))
         return true
