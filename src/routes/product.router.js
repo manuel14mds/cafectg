@@ -22,7 +22,7 @@ router.put('/:pid', validatePid, async (req,res)=>{
             return res.status(400).send({status:'error', error:"blank spaces are NOT allowed"})
         }else{
             try {
-                req.body.id=parseInt(req.params.pid)
+                req.body.id=req.params.pid
                 console.log(req.body)
                 await services.ProductService.update(req.body)
                 res.send({status:'success',message:'successfully saved'})
@@ -66,12 +66,6 @@ router.get('/*:params',(req,res)=>{
 })
 
 async function validatePid(req,res,next){
-    try {
-        req.params.pid = parseInt(req.params.pid)
-    } catch (error) {
-        return res.status(400).send({status:'error', error:'Invalid id'})
-    }
-    
     req.params.product = await services.ProductService.getById(req.params.pid)
     if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
     next()

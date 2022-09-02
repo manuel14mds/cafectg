@@ -1,12 +1,21 @@
 import express from 'express'
+import mongoose from 'mongoose'
+
 import __dirname from './utils.js'
 import productRouter from './routes/product.router.js'
 import cartRouter from './routes/cart.router.js'
-
 const app = express()
 
 const PORT = process.env.PORT||8080
 const server = app.listen(PORT, ()=> console.log(`listening on ${PORT}port`))
+
+mongoose.connect('mongodb+srv://manu:123@clusterprueba.fp95ssd.mongodb.net/cafeCartagena?retryWrites=true&w=majority', err=>{
+    if(err){
+        console.log(err)
+    }else{
+        console.log('connected to Atlas Mongo')
+    }
+})
 
 let userAdmin = true
 

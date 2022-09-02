@@ -1,5 +1,5 @@
 
-const persistence = 'FILESYSTEM'
+const persistence = 'MONGODB'
 let UserService
 let ProductService
 let CartService
@@ -20,6 +20,14 @@ switch (persistence) {
         UserService = new FileSUser()
         ProductService = new FileSProduct()
         CartService = new FileSCarts()
+        break
+    case 'MONGODB':
+        const {default:MongoUser} = await import('./mongoDAO/Users.js')
+        const {default:MongoProduct} = await import('./mongoDAO/Products.js') 
+        const {default:MongoCarts} = await import('./mongoDAO/Carts.js') 
+        UserService = new MongoUser()
+        ProductService = new MongoProduct()
+        CartService = new MongoCarts()
         break
 }
 

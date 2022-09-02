@@ -26,18 +26,20 @@ router.delete('/:cid', validateCid, async(req,res)=>{
         }
     }
 })
+
 //ListEntireProductsCart
 router.get('/:cid/products', validateCid, async (req,res)=>{
     try {
         let report = []
         let cart = await services.CartService.getById(req.params.cid)
-        cart.products.forEach((element)=> {
-            report.push(
-                { 
-                    product: services.ProductService.getById(element.id),
-                    quantity:element.quantity
-                })
-        })
+        let productList = {}
+        for(let element of cart.products){
+            productList = {
+                product: await services.ProductService.getById(element.id),
+                quantity:element.quantity
+            }
+            report.push(productList)
+        }
         res.send(report)
     } catch (error) {
         return res.status(500).send({status:'error', error:"Products couldn't be listed"})
@@ -50,7 +52,7 @@ router.post('/:cid/products', validateCid, async (req,res)=>{
         return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
     }else{
         try {
-            await services.CartService.addProductToCart(req.params.cid, parseInt(id), parseInt(quantity))
+            await services.CartService.addProductToCart(req.params.cid, id, parseInt(quantity))
             res.send({status:'success',message:'successfully saved into the cart'})
         } catch (error) {
             return res.status(500).send({status:'error', error:"it couldn't upload the product into the cart"})
@@ -72,11 +74,6 @@ router.get('/*:params',(req,res)=>{
 })
 
 async function validatePid(req,res,next){
-    try {
-        req.params.pid = parseInt(req.params.pid)
-    } catch (error) {
-        return res.status(400).send({status:'error', error:'Invalid product id'})
-    }
     req.params.product = await services.ProductService.getById(req.params.pid)
     if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
     next()
@@ -84,11 +81,10 @@ async function validatePid(req,res,next){
 
 async function validateCid(req,res,next){
     try {
-        req.params.cid = parseInt(req.params.cid)
+        req.params.cart = await services.CartService.getById(req.params.cid)
     } catch (error) {
-        return res.status(400).send({status:'error', error:'Invalid cart id'})
+        return res.status(300).send({status:'error', error:'Invalid id'})
     }
-    req.params.cart = await services.CartService.getById(req.params.cid)
     if(!req.params.cart) return res.status(404).send({status:'error', error:'Cart not found'})
     next()
 }
