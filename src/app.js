@@ -2,14 +2,17 @@ import express from 'express'
 import mongoose from 'mongoose'
 
 import __dirname from './utils.js'
+import config from '../config/config.js'
+
 import productRouter from './routes/product.router.js'
 import cartRouter from './routes/cart.router.js'
 const app = express()
+const PORT = config.app.PORT
+const MONGO_URL = config.app.MONGO_URL
+//const PORT = process.env.PORT||8080
+const server = app.listen(PORT, ()=> console.log(`listening on ${PORT} port`))
 
-const PORT = process.env.PORT||8080
-const server = app.listen(PORT, ()=> console.log(`listening on ${PORT}port`))
-
-mongoose.connect('mongodb+srv://manu:123@clusterprueba.fp95ssd.mongodb.net/cafeCartagena?retryWrites=true&w=majority', err=>{
+mongoose.connect(MONGO_URL, err=>{
     if(err){
         console.log(err)
     }else{

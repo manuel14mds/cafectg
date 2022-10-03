@@ -3,19 +3,21 @@ import mongoose from "mongoose";
 const collection = 'users'
 
 const usersSchema = mongoose.Schema({
-    first_name:String,
+    first_name:{
+        type:String,
+        required:true
+    },
     last_name:{
         type:String,
         required:true
     },
     role:{
         type:String,
-        default:'student'
+        default:'user'
     },
     age:Number,
     active:{
         type:Boolean,
-        required:true,
         default:true
     },
     email:{
