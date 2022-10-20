@@ -1,8 +1,17 @@
 import { Router } from "express"
+import pino from "pino"
+
 import services from '../dao/index.js'
+import __dirname from "../utils.js"
 import userAdmin from '../app.js'
 
 const router = Router()
+const streams = [
+    {level:'info', stream:process.stdout},
+    {level:'warn', stream:pino.destination(__dirname+'/logFiles/warn.log')},
+    {level:'error', stream:pino.destination(__dirname+'/logFiles/error.log')},
+]
+const logger = pino({},pino.multistream(streams))
 
 router.get('/', async(req,res)=>{
     let products = await services.ProductService.getAll()
@@ -27,6 +36,7 @@ router.put('/:pid', validatePid, async (req,res)=>{
                 await services.ProductService.update(req.body)
                 res.send({status:'success',message:'successfully saved'})
             } catch (error) {
+                logger.error(`Couldn't update the product | Method: ${req.method} | URL: ${req.originalUrl}`)
                 return res.status(500).send({status:'error', error:"it couldn't update the product"})
             }
         }
@@ -42,6 +52,7 @@ router.post('/',async (req,res)=>{
         try {
             await services.ProductService.addProduct(req.body)
         } catch (error) {
+            logger.error(`Couldn't save the product | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't save the product"})
         }
         res.send({status:'success',message:'successfully saved' })
@@ -55,6 +66,7 @@ router.delete('/:pid', validatePid, async(req,res)=>{
         try {
             await services.ProductService.deleteById(req.params.pid)
         } catch (error) {
+            logger.error(`Couldn't delete the product | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't delete the product"})
         }
         res.send({status:'success',message:'successfully deleted' })
@@ -62,6 +74,7 @@ router.delete('/:pid', validatePid, async(req,res)=>{
 })
 
 router.get('/*:params',(req,res)=>{
+    logger.warn(`route not implemented -> ${req.originalUrl}`)
     res.send({ error : -2, descripcion: `route '/api/products/${req.params[0]}' method 'GET' no implemented`})
 })
 

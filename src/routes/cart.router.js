@@ -1,8 +1,17 @@
 import {  Router } from "express"
 import services from '../dao/index.js'
 import userAdmin from '../app.js'
+import pino from "pino"
+import __dirname from "../utils.js"
 
 const router = Router()
+const streams = [
+    {level:'info', stream:process.stdout},
+    {level:'warn', stream:pino.destination(__dirname+'/logFiles/warn.log')},
+    {level:'error', stream:pino.destination(__dirname+'/logFiles/error.log')},
+]
+const logger = pino({},pino.multistream(streams))
+
 //getAll
 router.get('/', async(req,res)=>{
     let cart = await services.CartService.getAll()
@@ -22,6 +31,7 @@ router.delete('/:cid', validateCid, async(req,res)=>{
             await services.CartService.deleteById(req.params.cid)
             res.send({status:'success',message:'successfully deleted'})
         } catch (error) {
+            logger.error(`cart couldn't been deleted | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"cart couldn't been deleted"})
         }
     }
@@ -42,6 +52,7 @@ router.get('/:cid/products', validateCid, async (req,res)=>{
         }
         res.send(report)
     } catch (error) {
+        logger.error(`Products couldn't be listed | Method: ${req.method} | URL: ${req.originalUrl}`)
         return res.status(500).send({status:'error', error:"Products couldn't be listed"})
     }
 })
@@ -56,6 +67,7 @@ router.post('/:cid/products', validateCid, async (req,res)=>{
             await services.CartService.addProductToCart(req.params.cid, id, parseInt(quantity))
             res.send({status:'success',message:'successfully saved into the cart'})
         } catch (error) {
+            logger.error(`Couldn't upload the product into the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't upload the product into the cart"})
         }
     }
@@ -66,11 +78,13 @@ router.delete('/:cid/products/:pid', validateCid, validatePid, async (req,res)=>
         await services.CartService.deleteProductFromCart(req.params.cid, req.params.pid)
         res.send({status:'success',message:'successfully deleted from cart'})
     } catch (error) {
+        logger.error(`Couldn't delete the product from the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
         return res.status(500).send({status:'error', error:"it couldn't delete the product from the cart"})
     }
 })
 
 router.get('/*:params',(req,res)=>{
+    logger.warn(`route not implemented -> ${req.originalUrl}`)
     res.send({ error : -2, descripcion: `route '/api/carts/${req.params[0]}' method 'GET' no implemented`})
 })
 
