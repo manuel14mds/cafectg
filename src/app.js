@@ -2,13 +2,17 @@ import express from 'express'
 import handlebars from 'express-handlebars'
 import mongoose from 'mongoose'
 import pino from 'pino'
+import cookieParser from 'cookie-parser'
+import passport from 'passport'
 
+import initializePassport from './config/passport.config.js'
 import __dirname from './utils.js'
-import config from '../config/config.js'
+import config from './config/config.js'
 
 import viewsRouter from './routes/views.router.js'
 import productRouter from './routes/product.router.js'
 import cartRouter from './routes/cart.router.js'
+import sessionsRouter from './routes/sessions.router.js'
 
 const streams = [
     {level:'info', stream:process.stdout},
@@ -23,10 +27,15 @@ app.set('view engine', 'handlebars')
 
 app.use(express.json())
 app.use(express.static(__dirname+'/public'))
+app.use(cookieParser())
+
+initializePassport()
+app.use(passport.initialize())
 
 app.use('/',viewsRouter)
 app.use('/api/products',reqInfo,productRouter)
 app.use('/api/carts',reqInfo,cartRouter)
+app.use('/api/sessions', sessionsRouter)
 
 
 app.get('/*:params',(req,res)=>{

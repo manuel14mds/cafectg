@@ -6,8 +6,7 @@ export default class Carts extends MongoContainer{
         this.modelService = cartModelService
     }
     create = async () => {
-        let cart={}
-        let result = await this.save(cart)
+        let result = await this.save({})
         return result
     }
 
