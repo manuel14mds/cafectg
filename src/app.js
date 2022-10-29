@@ -8,27 +8,26 @@ import config from '../config/config.js'
 import productRouter from './routes/product.router.js'
 import cartRouter from './routes/cart.router.js'
 
-const app = express()
-const PORT = config.app.PORT
-const MONGO_URL = config.app.MONGO_URL
-//const PORT = process.env.PORT||8080
-const server = app.listen(PORT, ()=> console.log(`listening on ${PORT} port`))
-
-mongoose.connect(MONGO_URL, err=>{
-    if(err){
-        console.log(err)
-    }else{
-        console.log('connected to Atlas Mongo')
-    }
-})
-
-let userAdmin = true
-
 const streams = [
     {level:'info', stream:process.stdout},
     {level:'warn', stream:pino.destination(__dirname+'/logFiles/warn.log')},
 ]
 const logger = pino({},pino.multistream(streams))
+
+const app = express()
+const PORT = process.env.PORT || 8080
+const MONGO_URL = `mongodb+srv://${config.mongo.USER}:${config.mongo.PSW}@clusterprueba.fp95ssd.mongodb.net/${config.mongo.DB}?retryWrites=true&w=majority`
+const server = app.listen(PORT, ()=> console.log(`listening on ${PORT} port`))
+//const connection = mongoose.connect(`mongodb+srv://${config.mongo.USER}:${config.mongo.PSW}@clusterprueba.fp95ssd.mongodb.net/${config.mongo.DB}?retryWrites=true&w=majority`)
+
+mongoose.connect(MONGO_URL, err=>{
+    err?console.log(MONGO_URL,err):console.log('connected to Atlas Mongo')
+    //if(err){
+    //    console.log(err)
+    //}else{
+    //    console.log('connected to Atlas Mongo')
+    //}
+})
 
 app.use(express.json())
 app.use(express.static(__dirname+'/public'))
@@ -48,4 +47,7 @@ function reqInfo(req,res,next){
     next()
 }
 
+
+
+let userAdmin = true
 export default userAdmin

@@ -1,21 +1,33 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-const collection = 'users'
+const collection = 'Users'
 
 const usersSchema = mongoose.Schema({
-    first_name:{
+    name:{
         type:String,
         required:true
     },
     last_name:{
         type:String,
-        required:true
+        default:''
     },
     role:{
         type:String,
+        enum:['user','admin'],
         default:'user'
     },
-    age:Number,
+    age:{
+        type:Number,
+        default:-1
+    },
+    address:{
+        type:String,
+        default:''
+    },
+    phone:{
+        type:String,
+        default:''
+    },
     active:{
         type:Boolean,
         default:true
@@ -23,7 +35,12 @@ const usersSchema = mongoose.Schema({
     email:{
         type:String,
         required:true
-    }
+    },
+    password:{
+        type:String,
+        require:true
+    },
+
 },{timestamps:true})
 
 const usersModelService = mongoose.model(collection,usersSchema)
