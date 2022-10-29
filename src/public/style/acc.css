@@ -1,0 +1,49 @@
+.accContainer{
+    background-color: antiquewhite;
+    max-width: 770px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.accContainer .accImageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.accContainer .accImageContainer .accImage{
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.accContainer .accInfoContainer{
+    padding: 5px;
+    display: grid;
+    place-items: center;
+}
+
+.accContainer .accInfoContainer .accInfo{
+    width: 100%;
+}
+.accContainer .accInfoContainer .accInfo .btnEdit{
+    background-color: var(--color-one);
+}
+.accContainer .accInfoContainer .btnLogout{
+    margin: 10px;
+    width: 100%;
+    background-color: var(--color-two);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .accContainer .accInfoContainer .accInfo{
+        max-width: 500px;
+    }
+    .accContainer .accInfoContainer .btnLogout{
+        width: 500px;
+        font-size: 1.2rem;
+    }
+}

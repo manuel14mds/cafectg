@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="./style/loginRegister.css">
+<main>
+    <div class="formContainer">
+        <div class="loginFrom">
+            <h1>LOGIN</h1>
+            <form id="loginForm">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" pattern="[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}"
+                    required><br>
+
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" pattern="[a-zA-Z0-9]{8,}" required>
+                <label class="form-text">Must be at least 8 characters</label><br><br>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <hr>
+            <div class="loginWith">
+                <label class="form-text">Login with </label>
+                <button id="googleBtn" type="button" class="btn btn-outline-secondary"><i
+                        class="fa-brands fa-google"></i></button>
+                <button id="gitHubBtn" type="button" class="btn btn-outline-secondary"><i
+                        class="fa-brands fa-github"></i></button>
+            </div>
+            <hr>
+            <div class="loginForm_register">
+                <label class="form-text">Aren't you registered?</label><br>
+                <a href="/register" type="button" class="btn btn-outline-secondary">sign up</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+<script src="./scripts/login.js"></script>

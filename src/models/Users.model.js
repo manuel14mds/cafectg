@@ -40,6 +40,12 @@ const usersSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    cartId:String,
+    wishlistId:String,
+    purchases:{
+        Array:['MSC','AEX','DIN','VIS']
+    },
+    cards:Array,
 
 },{timestamps:true})
 

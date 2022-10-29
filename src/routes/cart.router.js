@@ -89,8 +89,13 @@ router.get('/*:params',(req,res)=>{
 })
 
 async function validatePid(req,res,next){
-    req.params.product = await services.ProductService.getById(req.params.pid)
-    if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
+    try {
+        req.params.product = await services.ProductService.getById(req.params.pid)
+        if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
+    } catch (error) {
+        console.log('error en validatePid cart.router.js', error)
+        return res.status(404).send({status:'error', error:'Product not found'})
+    }
     next()
 }
 

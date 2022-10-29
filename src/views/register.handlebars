@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="./style/loginRegister.css">
+<main>
+    <div class="formContainer">
+        <div class="registerFrom">
+            <h1>REGISTER</h1>
+            <form id="registerForm">
+                <label class="form-label">First name</label>
+                <input type="name" name="name" class="form-control" pattern="[A-Za-z]{3,}" required><br>
+
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" pattern="[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}"
+                    required><br>
+
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" pattern="[a-zA-Z0-9]{8,}" required>
+                <label class="form-text">Must be at least 8 characters</label><br><br>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
+            <hr>
+            <div class="registerWith">
+                <label class="form-text">Sign in with </label>
+                <button id="googleBtn" type="button" class="btn btn-outline-secondary"><i
+                        class="fa-brands fa-google"></i></button>
+                <button id="gitHubBtn" type="button" class="btn btn-outline-secondary"><i
+                        class="fa-brands fa-github"></i></button>
+            </div>
+            <hr>
+            <div class="registerForm_login">
+                <label class="form-text"> You have already registered?</label><br>
+                <a href="/" id="loginBtn" type="button" class="btn btn-outline-secondary">login</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+<script src="./scripts/register.js"></script>

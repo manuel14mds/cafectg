@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;400;600;800&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    --color-one: #DCD7C9;
+    --color-two: #A27B5C;
+    --color-three: #3F4E4F;
+    --color-four: #2C3639;
+    --color-five: #4FA095;
+
+    /* thin-100, regular-400, medium-600, bold-800 */
+    --font: 'Noto Sans Mono', monospace;
+}
+/* +++++++++++++ HEADER inicio +++++++++++++*/
+.navBarContainer{
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #F8F9FA;
+}
+.navBarContainer .navbar{
+    width: 75vw;
+}
+.dropdown-item{
+    text-align: center;
+}
+.navBarContainer .navbar .container .collapse .navbar-nav .dropdown .dropdown-menu .li .a{
+    text-align: center;
+}
+.navBarContainer .navBar_btns{
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+    position: fixed;
+    right: 0px;
+    top: 15px;
+}
+.navBarContainer .navBar_btns .userBtn{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}
+.navBarContainer .navBar_btns .userBtn .userTag{
+    margin-left: 5px;
+    margin-bottom: 0px;
+    display: none;
+}
+/* +++++++++++++ HEADER final +++++++++++++*/
+body{
+    font-family: var(--font);
+    font-weight: 100;
+}
+
+@media (min-width: 600px) {
+    /* +++++++++++++ HEADER inicio +++++++++++++*/
+    .navBarContainer .navBar_btns .userBtn .userTag{
+        display: unset;
+    }
+    /* +++++++++++++ HEADER final +++++++++++++*/
+    
+}

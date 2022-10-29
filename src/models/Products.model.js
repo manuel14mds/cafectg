@@ -21,7 +21,9 @@ const productsSchema = mongoose.Schema({
     enable:{
         type:Boolean,
         default:true
-    }
+    },
+    brand:String,
+    country:String
 },{timestamps:true})
 
 const productModelService = mongoose.model(collection,productsSchema)

@@ -1,0 +1,67 @@
+.btn-primary{
+    background-color: var(--color-two) !important;
+    border-color: transparent;
+}
+
+/* LOGIN */
+
+.formContainer .loginFrom {
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    max-width: 550px;
+    background-color: var(--color-one);
+    font-size: larger;
+}
+.formContainer .loginFrom h1{
+    color: var(--color-four);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.formContainer .loginFrom .loginWith{
+    text-align: center;
+}
+.formContainer .loginFrom .loginForm_register{
+    display: grid;
+    place-items: center;
+}
+
+
+/* REGISTER */
+.formContainer .registerFrom {
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    max-width: 550px;
+    background-color: var(--color-one);
+    font-size: larger;
+}
+.formContainer .registerFrom h1{
+    color: var(--color-four);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.formContainer .registerFrom .registerWith{
+    text-align: center;
+}
+.formContainer .registerFrom .registerForm_login{
+    display: grid;
+    place-items: center;
+}
+
+@media (min-width: 600px) {
+    .formContainer {
+        display: grid;
+        place-items: center;
+    }
+    .formContainer .loginFrom {
+        min-width: 550px;
+        padding: 30px;
+    }
+    .formContainer .registerFrom {
+        min-width: 550px;
+        padding: 30px;
+    }
+}

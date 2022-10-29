@@ -1,0 +1,109 @@
+{
+    "product":[
+        {
+            "name":"Liofilizado Clásico Doypack",
+            "price":100,
+            "stock":100,
+            "brand":"Juan Valdez",
+            "country":"Colombia",
+            "description":"Juan Valdez Liofilizado Clásico Doypack Colombia"
+        },
+        {
+            "name":"Liofilizado Vanicanela",
+            "price":1,
+            "stock":110,
+            "brand":"Juan Valdez",
+            "country":"Colombia",
+            "description":"Juan Valdez Liofilizado Vanicanela Colombia"
+        },
+        {
+            "name":"Café Volcan",
+            "price":120,
+            "stock":100,
+            "brand":"Juan Valdez",
+            "country":"Colombia",
+            "description":"Juan Valdez Café Volcank Colombia"
+        },
+        {
+            "name":"Crema Instantanea",
+            "price":100,
+            "stock":100,
+            "brand":"Café oma",
+            "country":"Colombia",
+            "description":"Café oma Crema Instantanea Colombia"
+        },
+        {
+            "name":"Excelso",
+            "price":99,
+            "stock":100,
+            "brand":"Café oma",
+            "country":"Colombia",
+            "description":"Café oma Excelso Colombia"
+        },
+        {
+            "name":"Descafeinado",
+            "price":130,
+            "stock":100,
+            "brand":"Café oma",
+            "country":"Colombia",
+            "description":"Café oma Descafeinado Colombia"
+        },
+        {
+            "name":"Origen Comarca",
+            "price":1,
+            "stock":100,
+            "brand":"Café DURÁN",
+            "country":"Panamá",
+            "description":"Café DURÁN Origen Comarca Panamá"
+        },
+        {
+            "name":"Granos Tipo Exportación",
+            "price":1,
+            "stock":100,
+            "brand":"Café DURÁN",
+            "country":"Panamá",
+            "description":"Café DURÁN Granos Tipo Exportación Panamá"
+        },
+        {
+            "name":"Geisha",
+            "price":1,
+            "stock":100,
+            "brand":"Café DURÁN",
+            "country":"Panamá",
+            "description":"Café DURÁN Geisha Panamá"
+        },
+        {
+            "name":"mezcla de la casa",
+            "price":600,
+            "stock":100,
+            "brand":"Café Entre Valles",
+            "country":"Guatemala",
+            "description":"Typica y Caturra Mezcla de Tuestes Altura:  1350 msnm"
+        },
+        {
+            "name":"Mezcla Gourmet",
+            "price":1,
+            "stock":700,
+            "brand":"Café Entre Valles",
+            "country":"Guatemala",
+            "description":"Typica y Caturra Mezcla de Tuestes Altura:  1350 msnm"
+        },
+        {
+            "name":"Mezcla Gourmet Defac",
+            "price":800,
+            "stock":100,
+            "brand":"Café Entre Valles",
+            "country":"",
+            "description":"Typica y Caturra Mezcla de Tuestes Altura:  1350 msnm"
+        },
+        {
+            "name":"",
+            "price":1,
+            "stock":100,
+            "brand":"",
+            "country":"",
+            "description":""
+        }
+
+    ]
+}
