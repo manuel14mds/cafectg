@@ -35,4 +35,17 @@ router.post('/register', passport.authenticate('register', {session:false}), asy
     res.status(200).send('result')
 })
 
+router.get('/google',passport.authenticate('google',{session:false,scope:['email','profile']}),async(req,res)=>{})
+
+router.get('/googlecallback',passport.authenticate('google',{session:false}),(req,res)=>{
+    const loginUser = {
+        role:req.user.role,
+        name:req.user.name,
+        email:req.user.email
+    }
+    const token =jwt.sign(loginUser,config.jwt.SECRET,{expiresIn:300});
+    console.log(token);
+    res.cookie(config.jwt.COOKIE,token,{maxAge:300000,httpOnly:true}).send({status:"logged in"})
+})
+
 export default router

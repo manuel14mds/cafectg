@@ -17,7 +17,10 @@
                 "MONGO_PSW":"123",
                 "MONGO_DB":"cafeCartagena",
                 "JWT_SECRET":"SecreTpRuebAun0",
-                "JWT_COOKIE":"c0oKieseCret"
+                "JWT_COOKIE":"c0oKieseCret",
+                "GOOGLE_CID":"953157321949-frf3r7frgm56p9dt6ub0bqhb9ckg2p21.apps.googleusercontent.com",
+                "GOOGLE_CSECRET":"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",
+                "DOMAIN":"http://localhost:8080"
             }
         }
     ]

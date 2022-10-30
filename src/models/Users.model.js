@@ -24,6 +24,7 @@ const usersSchema = mongoose.Schema({
         type:String,
         default:''
     },
+    picture:String,
     phone:{
         type:String,
         default:''

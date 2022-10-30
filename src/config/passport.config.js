@@ -2,7 +2,7 @@ import passport from 'passport'
 import local from 'passport-local'
 import services from '../dao/index.js'
 import { createHash, isValidPassword } from '../utils.js'
-//import GoogleStrategy from 'passport-google-oauth20';
+import GoogleStrategy from 'passport-google-oauth20';
 import config from './config.js';
 
 const LocalStrategy = local.Strategy
@@ -40,26 +40,28 @@ const initializePassport = () =>{
         }
     }))
 
-    /* passport.use('google', new GoogleStrategy({
+    passport.use('google', new GoogleStrategy({
         clientID:config.google.CLIENT_ID,
         clientSecret:config.google.CLIENT_SECRET,
         callbackURL:`${config.app.DOMAIN}/api/sessions/googlecallback`
     },async(accessToken,refreshToken,profile,done)=>{
+
         const {email,name} = profile._json;
-        let user = await usersModelService.findOne({email});
+        let user = await services.UserService.getByEmail(email)
         if(!user){
             const newUser = {
                 email,
-                name,
+                name: name.given_name,
+                last_name: name.family_name,
                 password:''
             }
-            let result = await usersModel.create(newUser);
+            let result = await services.UserService.save(newUser)
             return done(null,result);
         }else{
             return done(null,user);
         }
         done(null,false);
-    })) */
+    }))
 
     passport.serializeUser((user,done)=>{
         done(null,user._id)
