@@ -46,13 +46,13 @@ const initializePassport = () =>{
         callbackURL:`${config.app.DOMAIN}/api/sessions/googlecallback`
     },async(accessToken,refreshToken,profile,done)=>{
 
-        const {email,name} = profile._json;
+        const {email,given_name,family_name } = profile._json;
         let user = await services.UserService.getByEmail(email)
         if(!user){
             const newUser = {
                 email,
-                name: name.given_name,
-                last_name: name.family_name,
+                name: given_name,
+                last_name: family_name,
                 password:''
             }
             let result = await services.UserService.save(newUser)
