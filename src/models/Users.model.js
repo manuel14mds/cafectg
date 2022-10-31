@@ -43,10 +43,8 @@ const usersSchema = mongoose.Schema({
     },
     cartId:String,
     wishlistId:String,
-    purchases:{
-        Array:['MSC','AEX','DIN','VIS']
-    },
-    cards:Array,
+    purchases:Array,
+    cards:['MSC','AEX','DIN','VIS'],
 
 },{timestamps:true})
 
