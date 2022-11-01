@@ -22,6 +22,7 @@ const productsSchema = mongoose.Schema({
         type:Boolean,
         default:true
     },
+    promote:Boolean,
     brand:String,
     country:String
 },{timestamps:true})

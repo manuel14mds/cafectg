@@ -15,11 +15,21 @@ const logger = pino({},pino.multistream(streams))
 
 router.get('/', async(req,res)=>{
     let products = await services.ProductService.getAll()
+    console.log(products)
     res.send({products})
 })
 
 router.get('/:pid', validatePid, async(req,res)=>{
     res.send(req.params.product)
+})
+
+router.get('/category', async(req,res)=>{
+    let products = await services.ProductService.getAll()
+    let data =[]
+    products.forEach(element => {
+        data.push(element._doc)
+    });
+    res.render('category', {data})
 })
 
 router.put('/:pid', validatePid, async (req,res)=>{

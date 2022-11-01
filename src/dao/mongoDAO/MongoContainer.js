@@ -1,10 +1,11 @@
 
+
 export default class MongoContainer {
     constructor() {
     }
 
     getAll = async () => {
-        let data =  await this.modelService.find()
+        let data =  await this.modelService.find().lean()
         return data
     }
 

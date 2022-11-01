@@ -1,0 +1,77 @@
+.card{
+    background-color: #2C3639;
+    border-radius: 10px;
+    width: 150px;
+    height: 270px;
+    overflow: hidden;
+}
+.card .card_imageContainer{
+    height: 150px;
+    background-color: aqua;
+}
+.card .card_infoContainer{
+    height: 120px;
+    padding: 8px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--color-four);
+    color: var(--color-one);
+}
+.card .card_infoContainer .card_itemName{
+    max-height: 45px;
+    padding: 2px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-right: auto;
+    overflow-y: scroll;
+    text-align: left;
+}
+.card .card_infoContainer .card_itemPrice{
+    margin-right: auto;
+    padding:2px 2px 0px 6px;
+    text-align: left;
+    font-size: 0.6rem;
+}
+.card .card_infoContainer .card_itemPrice samp{
+    color: var(--color-five);
+}
+.card .card_infoContainer .card_btnContainer{
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: auto;
+}
+.card .card_infoContainer .card_btnContainer .btn{
+    font-size: 0.7rem;
+    color: var(--color-one);
+    border-color: transparent;
+}
+
+
+@media (min-width: 600px) {
+    .card{
+        width: 195px;
+        height: 351px;
+    }
+    .card .card_imageContainer{
+        height: 195px;
+    }
+    .card .card_infoContainer{
+        height: 156px;
+        padding: 10px 6px;
+    }
+    .card .card_infoContainer .card_itemName{
+        max-height: 55px;
+        font-size: 0.9rem;
+    }
+    .card .card_infoContainer .card_itemPrice{
+        margin-top: 5px;
+        font-size: 0.8rem;
+    }
+    .card .card_infoContainer .card_btnContainer .btn{
+        font-size: 0.9rem;
+    }
+}
