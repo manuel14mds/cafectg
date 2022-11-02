@@ -17,6 +17,7 @@ router.post('/login', passport.authenticate('login', {session:false}), async(req
     }
     const token = jwt.sign(loginUser, config.jwt.SECRET, {expiresIn:300})
     res.cookie(config.jwt.COOKIE,token,{maxAge:300000,httpOnly:true}).send({status:'logged in'})
+    
 })
 router.get('/current', async(req,res)=>{
     try {
@@ -47,5 +48,6 @@ router.get('/googlecallback',passport.authenticate('google',{session:false}),(re
     console.log(token);
     res.cookie(config.jwt.COOKIE,token,{maxAge:300000,httpOnly:true}).send({status:"logged in"})
 })
+
 
 export default router

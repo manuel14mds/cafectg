@@ -9,13 +9,18 @@
         </div>
         <div class="accInfoContainer">
             <div class="accInfo">
-                <p> <samp>First Name:</samp> Manuel</p>
-                <p><samp>Last Name:</samp> Florez</p>
-                <p><samp>Age:</samp> 27</p>
-                <p><samp>Address:</samp> Colombia, Cartagena, B/grande</p>
-                <p><samp>Phone:</samp> +573006565654</p>
+                {{#if user}}
+                <p> <samp>First Name:</samp> {{user.name}}</p>
+                <p><samp>Last Name:</samp> {{user.last_name}}</p>
+                <p><samp>Age:</samp> {{user.age}}</p>
+                <p><samp>Address:</samp> {{user.address}}</p>
+                <p><samp>Phone:</samp> {{user.phone}}</p>
+                <p><samp>Email:</samp> {{user.email}}</p>
                 <button class="btn btnEdit" type="button" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">edit</button>
+                {{else}}
+                    <h1>false</h1>
+                {{/if}}
             </div>
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -36,10 +41,12 @@
                     </div>
                 </div>
             </div>
-
-            <button class="btnLogout">logout <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-            <a href="/login" class="btnLogout btn">login <i class="fa-solid fa-user"></i></i></button>
-            <a href="/register" class="btnLogout btn">register <i class="fa-solid fa-user-plus"></i></i></i></button>
+            {{#if user}}
+                <button class="btnLogout">logout <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            {{else}}
+                <a href="/login" class="btnLogout btn">login <i class="fa-solid fa-user"></i></i></button>
+                <a href="/register" class="btnLogout btn">register <i class="fa-solid fa-user-plus"></i></i></i></button>
+            {{/if}}
         </div>
 
     </div>

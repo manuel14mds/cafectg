@@ -31,6 +31,6 @@ export default class MongoContainer {
     }
 
     deleteAll = async ()=>{
-        await this.modelService.deleteAll()
+        await this.modelService.deleteMany()
     }
 }

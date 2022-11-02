@@ -19,9 +19,6 @@ router.get('/', async(req,res)=>{
     res.send({products})
 })
 
-router.get('/:pid', validatePid, async(req,res)=>{
-    res.send(req.params.product)
-})
 
 router.get('/category', async(req,res)=>{
     let products = await services.ProductService.getAll()
@@ -51,6 +48,19 @@ router.put('/:pid', validatePid, async (req,res)=>{
             }
         }
     }
+})
+router.post('/bulk',async (req,res)=>{
+    let products = req.body
+    try {
+        for (let item of products) {
+            console.log(item)
+            await services.ProductService.addProduct(item)
+        }
+        res.send('products added')
+    } catch (error) {
+        res.status(500).send({error:error, message:'couldnt save products'})
+    }
+
 })
 
 router.post('/',async (req,res)=>{

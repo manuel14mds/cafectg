@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import services from '../dao/index.js'
+import config from '../config/config.js'
+import jwt from 'jsonwebtoken'
 
 const router = Router()
 
@@ -13,16 +15,21 @@ router.get('/register', (req,res)=>{
     res.render('register')
 })
 router.get('/account', (req,res)=>{
-    //if(!req.session.user) return res.send("Logeate")
-    res.render('account')
+    const token = req.cookies[config.jwt.COOKIE]
+    if(!token) return res.render('account', {user:false})
+    const user = jwt.verify(token, config.jwt.SECRET)
+    console.log(user)
+    res.render('account',{user})
 })
 router.get('/category', async(req,res)=>{
-    if(req.query.category === 'all'){
+    const ctg = req.query.category
+    if(ctg === 'all'){
         let products = await services.ProductService.getAll()
         console.log(products)
         res.render('category',{products})
     }else{
-        res.render('category',{})
+        let products = await services.ProductService.findByCategory(ctg)
+        res.render('category',{products})
     }
 })
 
