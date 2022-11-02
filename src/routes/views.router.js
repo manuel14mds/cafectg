@@ -6,7 +6,10 @@ import jwt from 'jsonwebtoken'
 const router = Router()
 
 router.get('/', (req,res)=>{
-    res.render('index')
+    const token = req.cookies[config.jwt.COOKIE]
+    if(!token) return res.render('index', {user:false})
+    const user = jwt.verify(token, config.jwt.SECRET)
+    res.render('index', {user})
 })
 router.get('/login', (req,res)=>{
     res.render('login')
@@ -18,7 +21,6 @@ router.get('/account', (req,res)=>{
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.render('account', {user:false})
     const user = jwt.verify(token, config.jwt.SECRET)
-    console.log(user)
     res.render('account',{user})
 })
 router.get('/category', async(req,res)=>{

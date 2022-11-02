@@ -42,7 +42,7 @@
                 </div>
             </div>
             {{#if user}}
-                <button class="btnLogout">logout <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                <a href="/api/sessions/logout" class="btnLogout btn">logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             {{else}}
                 <a href="/login" class="btnLogout btn">login <i class="fa-solid fa-user"></i></i></button>
                 <a href="/register" class="btnLogout btn">register <i class="fa-solid fa-user-plus"></i></i></i></button>
@@ -51,3 +51,4 @@
 
     </div>
 </main>
+<script src="./scripts/account.js"></script>
