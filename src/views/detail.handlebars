@@ -1,0 +1,35 @@
+
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/detail.css">
+
+<div class="detailContainer">
+    <div class="detailProduct">
+        <div class="productTitleContainer">
+            <h1 class="productTitle">{{product.name}}</h1>
+        </div>
+        <div class="imageInfoContainer">
+            <div class="productImageConatiner">
+                <div class="productImage"></div>
+            </div>
+            <div class="productInfoContainer">
+                <div class="info">
+                    <h2>Product Detail</h2>
+                    <h4>{{product.name}}</h4>
+                    <h6>{{product.price}} USD</h6>
+
+                    <p><samp>Stock:</samp> {{product.stock}}</p>
+                    <p><samp>Brand:</samp>{{product.brand}}</p>
+                    <p><samp>Country:</samp> {{product.country}}</p>
+                    <div>
+                        <button type="button" class="btn btn-primary">add to car</button>
+                    </div>
+                    <div class='overView'>
+                        <h4>overview</h4>
+                        <p>{{product.description}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+.detailContainer{
+    display: grid;
+    place-items: center;
+    width: 100vw
+}
+.detailContainer .detailProduct{
+    background-color: var(--color-two);
+    width: 100%;
+}
+.detailContainer .detailProduct .productTitleContainer{
+    background-color: var(--color-three);
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 5px;
+}
+.detailContainer .detailProduct .productTitleContainer .productTitle{
+    font-weight: 800;
+    text-transform: uppercase;
+    color: white;
+}
+.detailContainer .detailProduct .imageInfoContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.detailContainer .detailProduct .imageInfoContainer .productImageConatiner{
+    background-color: var(--color-one);
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 5px;
+}
+.detailContainer .detailProduct .imageInfoContainer .productImageConatiner .productImage{
+    background-color: aliceblue;
+    width: 250px;
+    height: 250px;
+}
+.detailContainer .detailProduct .imageInfoContainer .productInfoContainer{
+    background-color: var(--color-three);
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.detailContainer .detailProduct .imageInfoContainer .productInfoContainer .info .overView{
+    height: 90px;
+    overflow-x: scroll;
+}
+
+@media (min-width: 600px) {
+    .detailContainer .detailProduct{
+        max-width: 1000px;
+        padding: 40px;
+        border-radius: 10px;
+    }
+    .detailContainer .detailProduct .productTitleContainer{
+        margin-bottom: 10px;
+    }
+    .detailContainer .detailProduct .imageInfoContainer{
+        height: 500px;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .detailContainer .detailProduct .imageInfoContainer .productImageConatiner{
+        height: 500px;
+    }
+    .detailContainer .detailProduct .imageInfoContainer .productImageConatiner .productImage{
+        width: 350px;
+        height: 350px;
+    }
+    .detailContainer .detailProduct .imageInfoContainer .productInfoContainer{
+        height: 500px;
+
+    }
+}
