@@ -24,7 +24,6 @@ export default class Products extends MongoContainer{
     //Add a new product
     addProduct = async (product) => {
         product.code = await this.codeGenerator()
-        console.log('codegenerator', product.code)
         let result = await this.save(product)
         return result
     }

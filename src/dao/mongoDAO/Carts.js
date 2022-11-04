@@ -10,7 +10,7 @@ export default class Carts extends MongoContainer{
         return result
     }
 
-    addProductToCart = async (cid, pid, qty) => {
+    /* addProductToCart = async (cid, pid, qty) => {
         let cart = await this.getById(cid)
 
         if(!cart.products){
@@ -42,6 +42,53 @@ export default class Carts extends MongoContainer{
             }
         }
         await this.update(cart)
+    } */
+    addProductToCart = async (cid, prod, qty) => {
+        let cart = await this.getById(cid)
+        prod.id=prod._id.toString()
+        if(cart.products.length===0){
+            if(qty){
+                cart.products.push({product:prod._id, qty})
+                cart.totalQty = prod.price*qty
+                await this.update(cart)
+                return true
+            }
+        }else{
+            let product
+            //validate if the product is already in the cart
+            let result = cart.products.some((item)=>{
+                product = item.product.toString()
+                return product === prod.id
+            })
+            if(result){
+                cart.products.forEach(element => {
+                    product = element.product.toString()
+                    if(product === prod.id){
+                        let value = element.qty + qty
+                        if(value<=0){
+                            return false
+                        }else{
+                            if(prod.stock<value){
+                                return false
+                            }
+                            element.qty += qty
+                        }
+                    }
+                })
+            }else{
+                if(qty){
+                    if(prod.stock<qty){
+                        return false
+                    }
+                    cart.products.push({product:prod._id, qty})
+                }else{
+                    return false
+                }
+            }
+            await this.update(cart)
+            return true
+            // FALTA ACTUALIZAR EL TOTALQTY
+        }
     }
 
     // delete a product from a cart
@@ -80,6 +127,19 @@ export default class Carts extends MongoContainer{
             return copyList
         } catch (error) {
             console.log('Cart manager: {getProductCart}')
+            console.log(error)
+        }
+    }
+    getCartId = async (id)=>{
+        try {
+            let cart = await this.modelService.findById(id).populate('product').lean()
+            if(cart){
+                return cart
+            }else{
+                return null
+            }
+        } catch (error) {
+            console.log('Cart manager: {getCartId}')
             console.log(error)
         }
     }

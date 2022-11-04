@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="./style/cart.css">
+
+<div class="container">
+    <div class='cartContainer '>
+        <h2>CART: {{cart._id}}</h2>
+        <div class='cart container-fluid row'>
+
+            <div class="itemContainer col-md-8">
+                <div class="cardItemContainer">
+                    <li>
+
+                        {{#if cart.products}}
+                            <u>
+                                <p><samp>Name: </samp>{{name}}</p>
+                                <p><samp>Price: </samp>{{price}}</p>
+                            </u>
+                        {{else}}
+                            <h4>You have not added products to cart yet</h4>
+                        {{/if}}
+
+                    </li>
+                </div>
+            </div>
+
+            <div class="total col-md-4">
+                <h3>total</h3>
+                <p>{totalCart.toFixed(2)} USD</p>
+                <Button type="button" variant="primary" onClick={handleShow}>Shop Now</Button>
+                <button onClick={emptyCart} class='btn bg-secondary'>Delete All</button>
+            </div>
+        </div>
+
+    </div>
+</div>

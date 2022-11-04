@@ -1,2 +1,27 @@
 {"level":40,"time":1666234809198,"pid":99043,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/api/carts/juno:56"}
 {"level":40,"time":1666234907013,"pid":99210,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/juno:56"}
+{"level":50,"time":1667511322923,"pid":20276,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667512876529,"pid":20905,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513002825,"pid":20987,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513020677,"pid":21010,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513052466,"pid":21041,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513088190,"pid":21069,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513120634,"pid":21102,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513163427,"pid":21133,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513393733,"pid":21253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513433952,"pid":21311,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513537874,"pid":21397,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513558492,"pid":21416,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513598130,"pid":21453,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513627807,"pid":21485,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513719629,"pid":21540,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667513759887,"pid":21585,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667515075651,"pid":22253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667515126226,"pid":22253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667515218176,"pid":22357,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667517120240,"pid":23382,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667517302416,"pid":23472,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667517337155,"pid":23510,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667518336672,"pid":24073,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667518346183,"pid":24073,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1667518398554,"pid":24126,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}

@@ -17,11 +17,19 @@
                     <h4>{{product.name}}</h4>
                     <h6>{{product.price}} USD</h6>
 
-                    <p><samp>Stock:</samp> {{product.stock}}</p>
+                    <p><samp>Stock:</samp> 
+                    {{#if product.stock}}
+                        {{product.stock}}
+                    {{else}}
+                        out stock
+                    {{/if}}
+                    </p>
                     <p><samp>Brand:</samp>{{product.brand}}</p>
                     <p><samp>Country:</samp> {{product.country}}</p>
                     <div>
-                        <button type="button" class="btn btn-primary">add to car</button>
+                        {{#if product.stock}}
+                            <button id="addToCard" value="{{product._id}}" type="button" class="btn btn-primary">add to car</button>
+                        {{/if}}
                     </div>
                     <div class='overView'>
                         <h4>overview</h4>
@@ -33,3 +41,5 @@
         </div>
     </div>
 </div>
+
+<script src="../scripts/detail.js"></script>

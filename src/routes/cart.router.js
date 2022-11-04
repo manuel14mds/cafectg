@@ -3,6 +3,8 @@ import services from '../dao/index.js'
 import userAdmin from '../app.js'
 import pino from "pino"
 import __dirname from "../utils.js"
+import config from '../config/config.js'
+import jwt from 'jsonwebtoken'
 
 const router = Router()
 const streams = [
@@ -58,14 +60,16 @@ router.get('/:cid/products', validateCid, async (req,res)=>{
 })
 
 //add products to cart
-router.post('/:cid/products', validateCid, async (req,res)=>{
-    const {id, quantity} = req.body
-    if(!id||!quantity){
+router.post('/addToCart', loginValidater, async (req,res)=>{
+    const {pid, quantity, cartId} = req.body
+
+    if(!pid||!quantity||!cartId){
         return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
     }else{
         try {
-            await services.CartService.addProductToCart(req.params.cid, id, parseInt(quantity))
-            res.send({status:'success',message:'successfully saved into the cart'})
+            let product = await services.ProductService.getById(pid)
+            await services.CartService.addProductToCart(cartId, product, parseInt(quantity))
+            return res.send({status:'success',message:'successfully saved into the cart'})
         } catch (error) {
             logger.error(`Couldn't upload the product into the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't upload the product into the cart"})
@@ -99,6 +103,16 @@ async function validatePid(req,res,next){
     next()
 }
 
+//validate if the user is logged
+async function loginValidater(req,res,next){
+    const token = req.cookies[config.jwt.COOKIE]
+    if(!token)return res.status(401).send({message:'unauthorized'})
+    const user = jwt.verify(token, config.jwt.SECRET)
+    const wholeUser = await services.UserService.getByEmail(user.email)
+    req.body.cartId=wholeUser.cartId
+    next()
+    
+}
 async function validateCid(req,res,next){
     try {
         req.params.cart = await services.CartService.getById(req.params.cid)

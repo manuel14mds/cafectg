@@ -105,5 +105,22 @@
             "description":""
         }
 
-    ]
+    ],
+    "cart":{
+        "products":[
+            {
+                "product":{},
+                "quanty":100
+            },
+            {
+                "product":{},
+                "quanty":100
+            },
+            {
+                "product":{},
+                "quanty":100
+            }
+        ],
+        "totalQty":500
+    }
 }

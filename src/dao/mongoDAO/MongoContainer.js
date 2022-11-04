@@ -15,8 +15,8 @@ export default class MongoContainer {
     }
 
     getById = async (id) => {
-        let result = await this.modelService.findById(id).lean()//cuidado con esta prueba, puede dar error, no testeada
-        //let result = await this.modelService.findOne({_id:id}) 
+        //let result = await this.modelService.findById(id) //cuidado con esta prueba, puede dar error, no testeada
+        let result = await this.modelService.findOne({_id:id}).lean()
         return result
     }
 
@@ -25,9 +25,7 @@ export default class MongoContainer {
     }
 
     update = async (object) => {
-        let id = object.id
-        delete object.id
-        await this.modelService.updateOne({_id:id}, {$set:object})
+        await this.modelService.updateOne({_id:object._id}, {$set:object})
     }
 
     deleteAll = async ()=>{

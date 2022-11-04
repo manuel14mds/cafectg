@@ -15,8 +15,8 @@ router.post('/login', passport.authenticate('login', {session:false}), async(req
         phone:req.user.phone,
         age:req.user.age,
     }
-    const token = jwt.sign(loginUser, config.jwt.SECRET, {expiresIn:300})
-    res.cookie(config.jwt.COOKIE,token,{maxAge:300000,httpOnly:true}).redirect('/')
+    const token = jwt.sign(loginUser, config.jwt.SECRET, {expiresIn:3000})
+    res.cookie(config.jwt.COOKIE,token,{maxAge:3000000,httpOnly:true}).redirect('/')
     
 })
 router.get('/logout', async(req,res)=>{
@@ -48,8 +48,8 @@ router.get('/googlecallback',passport.authenticate('google',{session:false}),(re
         name:req.user.name,
         email:req.user.email
     }
-    const token =jwt.sign(loginUser,config.jwt.SECRET,{expiresIn:300});
-    res.cookie(config.jwt.COOKIE,token,{maxAge:300000,httpOnly:true}).redirect('/')
+    const token =jwt.sign(loginUser,config.jwt.SECRET,{expiresIn:3000});
+    res.cookie(config.jwt.COOKIE,token,{maxAge:3000000,httpOnly:true}).redirect('/')
 })
 
 

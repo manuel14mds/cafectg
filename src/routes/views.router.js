@@ -19,6 +19,18 @@ router.get('/login', (req,res)=>{
 router.get('/register', (req,res)=>{
     res.render('register')
 })
+/* router.post('/addToCard', (req,res)=>{
+    res.render('register')
+}) */
+router.get('/cart', async(req,res)=>{
+    const token = req.cookies[config.jwt.COOKIE]
+    if(!token) return res.render('account', {user:false})
+    const user = jwt.verify(token, config.jwt.SECRET)
+    const wholeUser = await services.UserService.getByEmail(user.email)
+    const cart = await services.CartService.getCartId(wholeUser.cartId)
+    console.log('cart:', cart)
+    res.render('cart',{cart})
+})
 
 router.get('/productDetail/:pid', async(req,res)=>{
     console.log('id:', req.params.pid)

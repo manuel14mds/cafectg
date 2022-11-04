@@ -1,0 +1,48 @@
+.cartContainer{
+    background-color: gray;
+    max-width: 1700px;
+    padding: 0;
+    margin: 0;
+}
+.cartContainer h2{
+    width: max-content;
+    font-size: 50px;
+}
+.cartContainer .cart{
+    background-color: whitesmoke;
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px;
+}
+.cartContainer .cart .itemContainer{
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.cartContainer .cart .total{
+    border-top: 2px dotted black;
+    padding: 2vw;
+    text-align: right;
+}
+.cartContainer .cart .total button{
+    margin-left: 10px;
+}
+
+
+@media (min-width: 768px) {
+    .cartContainer {
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .cartContainer .cart .itemContainer{
+        min-height: 600px;
+        max-height: auto;
+        overflow-y: scroll;
+    }
+    .cartContainer .cart .total{
+        border-left: 2px dotted black;
+        border-top: 0px dotted black;
+    }
+}

@@ -49,11 +49,13 @@ const initializePassport = () =>{
         const {email,given_name,family_name } = profile._json;
         let user = await services.UserService.getByEmail(email)
         if(!user){
+            let newCart = await services.CartService.create()
             const newUser = {
                 email,
                 name: given_name,
                 last_name: family_name,
-                password:''
+                password:'',
+                cartId:newCart._id,
             }
             let result = await services.UserService.save(newUser)
             return done(null,result);
