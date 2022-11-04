@@ -49,7 +49,6 @@ export default class Carts extends MongoContainer{
         if(cart.products.length===0){
             if(qty){
                 cart.products.push({product:prod._id, qty})
-                cart.totalQty = prod.price*qty
                 await this.update(cart)
                 return true
             }
@@ -109,18 +108,29 @@ export default class Carts extends MongoContainer{
             this.update(cart)
         }
     }
+    //empty cart
+    emptyCart = async (cid) => {
+        try {
+            let cart = await this.getById(cid)
+            cart.products=[]
+            this.update(cart)
+        } catch (error) {
+            console.log('Cart manager: {getProductCart}')
+            console.log(error)
+        }
+    }
 
     // return an object with all products' properties of the cart
     getProductsCart = async (cid)=>{
         try {
-            let cart = this.getById(cid)
+            let cart = await this.getById(cid)
             let copyList = []
             for(const item of cart.products){
                 console.log('cart product:', productService.getById(item.id))
                 copyList.push(
                     {
-                    product: productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                    quantity:item.quantity
+                    product: await productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
+                    quantity:item.qty
                     }
                 )
             }
@@ -132,7 +142,7 @@ export default class Carts extends MongoContainer{
     }
     getCartId = async (id)=>{
         try {
-            let cart = await this.modelService.findById(id).populate('product').lean()
+            let cart = await this.modelService.find({_id:id}).lean()
             if(cart){
                 return cart
             }else{

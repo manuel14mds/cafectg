@@ -86,6 +86,17 @@ router.delete('/:cid/products/:pid', validateCid, validatePid, async (req,res)=>
         return res.status(500).send({status:'error', error:"it couldn't delete the product from the cart"})
     }
 })
+//delete all products
+router.delete('/emptyCart/:cid', loginValidater, validateCid,async (req,res)=>{
+    try {
+        await services.CartService.emptyCart(req.params.cid)
+        res.send({status:'success',message:'successfully deleted'})
+    } catch (error) {
+        console.log(3)
+        logger.error(`Couldn't delete the product from the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
+        return res.status(500).send({status:'error', error:"it couldn't delete the product from the cart"})
+    }
+})
 
 router.get('/*:params',(req,res)=>{
     logger.warn(`route not implemented -> ${req.originalUrl}`)

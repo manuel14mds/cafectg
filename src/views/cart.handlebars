@@ -2,23 +2,25 @@
 
 <div class="container">
     <div class='cartContainer '>
-        <h2>CART: {{cart._id}}</h2>
+        <h2>CART</h2>
         <div class='cart container-fluid row'>
 
             <div class="itemContainer col-md-8">
                 <div class="cardItemContainer">
+
+                    {{#if newCart.newArray}}
                     <li>
-
-                        {{#if cart.products}}
-                            <u>
-                                <p><samp>Name: </samp>{{name}}</p>
-                                <p><samp>Price: </samp>{{price}}</p>
-                            </u>
-                        {{else}}
-                            <h4>You have not added products to cart yet</h4>
-                        {{/if}}
-
+                        {{#each newCart.newArray}}
+                        <div style="border: 1px solid black; padding:5px;">
+                            <p><samp>Name: </samp>{{product.name}}</p>
+                            <p><samp>Price: </samp>{{product.price}}</p>
+                            <p><samp>Quantity: </samp>{{qty}}</p>
+                        </div>
+                        {{/each}}
                     </li>
+                    {{else}}
+                    <h4>You have not added products yet</h4>
+                    {{/if}}
                 </div>
             </div>
 
@@ -26,9 +28,29 @@
                 <h3>total</h3>
                 <p>{totalCart.toFixed(2)} USD</p>
                 <Button type="button" variant="primary" onClick={handleShow}>Shop Now</Button>
-                <button onClick={emptyCart} class='btn bg-secondary'>Delete All</button>
+                <button class='btn bg-secondary' data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">Delete All</button>
             </div>
         </div>
 
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete All</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you wanna delete all products from cart?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button  id="deleteAllProducts" value="{{newCart._id}}" type="button" class="btn btn-primary">confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script src="./scripts/cart.js"></script>

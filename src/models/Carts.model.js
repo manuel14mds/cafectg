@@ -7,15 +7,11 @@ const cartsSchema = mongoose.Schema({
         {
             product:{
                 type:mongoose.SchemaTypes.ObjectId,
-                ref:'products'
+                ref:'Products'
             },
             qty:Number
         }
-    ],
-    totalQty:{
-        type:Number,
-        default:0
-    }
+    ]
 },{timestamps:true})
 
 const cartModelService = mongoose.model(collection,cartsSchema)
