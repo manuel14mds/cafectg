@@ -8,16 +8,18 @@
             <div class="itemContainer col-md-8">
                 <div class="cardItemContainer">
 
-                    {{#if newCart.newArray}}
-                    <li>
-                        {{#each newCart.newArray}}
-                        <div style="border: 1px solid black; padding:5px;">
-                            <p><samp>Name: </samp>{{product.name}}</p>
-                            <p><samp>Price: </samp>{{product.price}}</p>
-                            <p><samp>Quantity: </samp>{{qty}}</p>
-                        </div>
+                    {{#if cart.products}}
+                    <ul>
+                        {{#each cart.products}}
+                        <li>
+                            <div style="border: 1px solid black; padding:5px;">
+                                <p><samp>Name: </samp>{{product.name}}</p>
+                                <p><samp>Price: </samp>{{product.price}}</p>
+                                <p><samp>Quantity: </samp>{{qty}}</p>
+                            </div>
+                        </li>
                         {{/each}}
-                    </li>
+                    </ul>
                     {{else}}
                     <h4>You have not added products yet</h4>
                     {{/if}}
@@ -26,8 +28,8 @@
 
             <div class="total col-md-4">
                 <h3>total</h3>
-                <p>{totalCart.toFixed(2)} USD</p>
-                <Button type="button" variant="primary" onClick={handleShow}>Shop Now</Button>
+                <p>{{total}} USD</p>
+                <a href="/api/carts/purchase" type="button" class="btn btn-success" variant="primary">Shop Now</a>
                 <button class='btn bg-secondary' data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">Delete All</button>
             </div>
@@ -45,7 +47,7 @@
                         Are you sure you wanna delete all products from cart?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button  type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         <button  id="deleteAllProducts" value="{{newCart._id}}" type="button" class="btn btn-primary">confirm</button>
                     </div>
                 </div>

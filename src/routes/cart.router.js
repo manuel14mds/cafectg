@@ -76,6 +76,33 @@ router.post('/addToCart', loginValidater, async (req,res)=>{
         }
     }
 })
+//purchase
+router.get('/purchase', loginValidater, async (req,res)=>{
+    try {
+        let total = 0
+        let cart = await services.CartService.getCartId(req.body.user.cartId)
+    
+        for (const element of cart.products) {
+            total += element.product.price * element.qty
+            element.product.stock -= element.qty // Update stock
+            await services.ProductService.update(element.product) //update product
+        }
+        const date = new Date().toJSON()
+        const code =`ORDER-${total}-${date}`
+        
+        const purchase = {products:cart.products, totalQty:total, code}
+        
+        const user = req.body.user
+        user.purchases.push(purchase)
+        await services.UserService.update(user)
+    
+        await services.CartService.emptyCart(cart._id)
+        res.render('purchase', {purchase})
+        
+    } catch (error) {
+        res.status(500).send({error:'internal server error', message:"Purchase error"})
+    }
+})
 //delete product from cart
 router.delete('/:cid/products/:pid', validateCid, validatePid, async (req,res)=>{
     try {
@@ -121,6 +148,7 @@ async function loginValidater(req,res,next){
     const user = jwt.verify(token, config.jwt.SECRET)
     const wholeUser = await services.UserService.getByEmail(user.email)
     req.body.cartId=wholeUser.cartId
+    req.body.user = wholeUser
     next()
     
 }

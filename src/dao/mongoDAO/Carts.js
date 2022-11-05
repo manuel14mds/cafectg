@@ -142,12 +142,7 @@ export default class Carts extends MongoContainer{
     }
     getCartId = async (id)=>{
         try {
-            let cart = await this.modelService.find({_id:id}).lean()
-            if(cart){
-                return cart
-            }else{
-                return null
-            }
+            return await this.modelService.findOne({_id:id}).lean().populate('products.product')
         } catch (error) {
             console.log('Cart manager: {getCartId}')
             console.log(error)

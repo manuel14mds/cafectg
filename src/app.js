@@ -59,8 +59,8 @@ function reqInfo(req,res,next){
 }
 
 const PORT = process.env.PORT || 8080
-const MONGO_URL = `mongodb+srv://${config.mongo.USER}:${config.mongo.PSW}@clusterprueba.fp95ssd.mongodb.net/${config.mongo.DB}?retryWrites=true&w=majority`
 const server = app.listen(PORT, ()=> console.log(`listening on ${PORT} port`))
+const MONGO_URL = `mongodb+srv://${config.mongo.USER}:${config.mongo.PSW}@clusterprueba.fp95ssd.mongodb.net/${config.mongo.DB}?retryWrites=true&w=majority`
 
 mongoose.connect(MONGO_URL, err=>{
     err?console.log(MONGO_URL,err):console.log('connected to Atlas Mongo')

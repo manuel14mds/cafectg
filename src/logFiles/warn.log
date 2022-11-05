@@ -33,3 +33,28 @@
 {"level":50,"time":1667529909602,"pid":29257,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
 {"level":50,"time":1667529911548,"pid":29257,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
 {"level":50,"time":1667529918288,"pid":29257,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":40,"time":1667538201523,"pid":34962,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/purchase"}
+{"level":40,"time":1667540176965,"pid":35857,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/purchase"}
+{"level":40,"time":1667540302359,"pid":35982,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540336628,"pid":35982,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540338752,"pid":35982,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540372442,"pid":36051,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540378402,"pid":36051,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540426490,"pid":36098,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540428242,"pid":36098,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540443902,"pid":36098,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540450790,"pid":36138,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540602391,"pid":36226,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540729545,"pid":36309,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540767469,"pid":36309,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540791023,"pid":36367,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540821943,"pid":36367,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540851578,"pid":36429,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540866362,"pid":36429,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667540899034,"pid":36429,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667541146256,"pid":36429,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667541160183,"pid":36429,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667670051805,"pid":59011,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667671327904,"pid":59011,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667671562011,"pid":59616,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
+{"level":40,"time":1667672036399,"pid":59827,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
