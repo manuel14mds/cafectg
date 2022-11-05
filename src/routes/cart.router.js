@@ -87,8 +87,8 @@ router.get('/purchase', loginValidater, async (req,res)=>{
             element.product.stock -= element.qty // Update stock
             await services.ProductService.update(element.product) //update product
         }
-        const date = new Date().toJSON()
-        const code =`ORDER-${total}-${date}`
+        const date = new Date()
+        const code =`O${total}-${date[Symbol.toPrimitive]('number')}`
         
         const purchase = {products:cart.products, totalQty:total, code}
         
