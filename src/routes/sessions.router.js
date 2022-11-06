@@ -2,6 +2,7 @@ import { Router } from 'express'
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import config from '../config/config.js'
+import services from '../dao/index.js'
 //import config from '../config/config.js'
 
 const router = Router()
@@ -36,6 +37,20 @@ router.get('/current', async(req,res)=>{
     }
 })
 
+
+router.put('/userUpdate', async(req,res)=>{
+    const token = req.cookies[config.jwt.COOKIE]
+    if(!token) return res.redirect('/')
+    const user = jwt.verify(token, config.jwt.SECRET)
+    try {
+        const wholeUser = await services.UserService.getByEmail(user.email)
+        req.body._id=wholeUser._id
+        await services.UserService.update(req.body)
+        res.status(200).send('result')
+    } catch (error) {
+        res.status(500).send({error:"Server error", message:"Couldn't update User"})
+    }
+})
 router.post('/register', passport.authenticate('register', {session:false}), async(req,res)=>{
     res.status(200).send('result')
 })
