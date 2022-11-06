@@ -45,9 +45,9 @@ router.get('/productDetail/:pid', async(req,res)=>{
 router.get('/account', async(req,res)=>{
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.render('account', {user:false})
-    let user = jwt.verify(token, config.jwt.SECRET)
-    user = await services.UserService.getByEmail(user.email)
-    delete user.password
+    let userToken = jwt.verify(token, config.jwt.SECRET)
+    let user = await services.UserService.getByEmail(userToken.email)
+    if(user.password) delete user.password
     res.render('account',{user})
 })
 

@@ -5,6 +5,7 @@ import pino from "pino"
 import __dirname from "../utils.js"
 import config from '../config/config.js'
 import jwt from 'jsonwebtoken'
+import { emailTransport, emailHTMLmaker } from "../utils.js"
 
 const router = Router()
 const streams = [
@@ -95,6 +96,15 @@ router.get('/purchase', loginValidater, async (req,res)=>{
         const user = req.body.user
         user.purchases.push(purchase)
         await services.UserService.update(user)
+
+        let html = emailHTMLmaker(purchase,user)
+        let result = await emailTransport.sendMail({
+            from:'yo',
+            to:user.email,
+            subject:'Purchase Café Cartagena',
+            html:html
+        })
+        console.log(result)
     
         await services.CartService.emptyCart(cart._id)
         res.render('purchase', {purchase})
@@ -103,6 +113,7 @@ router.get('/purchase', loginValidater, async (req,res)=>{
         res.status(500).send({error:'internal server error', message:"Purchase error"})
     }
 })
+
 //delete product from cart
 router.delete('/:cid/products/:pid', validateCid, validatePid, async (req,res)=>{
     try {

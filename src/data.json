@@ -10,7 +10,7 @@
         },
         {
             "name":"Liofilizado Vanicanela",
-            "price":1,
+            "price":103,
             "stock":110,
             "brand":"Juan Valdez",
             "country":"Colombia",
@@ -18,7 +18,7 @@
         },
         {
             "name":"Café Volcan",
-            "price":120,
+            "price":98,
             "stock":100,
             "brand":"Juan Valdez",
             "country":"Colombia",
@@ -26,7 +26,7 @@
         },
         {
             "name":"Crema Instantanea",
-            "price":100,
+            "price":70,
             "stock":100,
             "brand":"Café oma",
             "country":"Colombia",
@@ -50,7 +50,7 @@
         },
         {
             "name":"Origen Comarca",
-            "price":1,
+            "price":110,
             "stock":100,
             "brand":"Café DURÁN",
             "country":"Panamá",
@@ -58,7 +58,7 @@
         },
         {
             "name":"Granos Tipo Exportación",
-            "price":1,
+            "price":113,
             "stock":100,
             "brand":"Café DURÁN",
             "country":"Panamá",
@@ -66,7 +66,7 @@
         },
         {
             "name":"Geisha",
-            "price":1,
+            "price":75,
             "stock":100,
             "brand":"Café DURÁN",
             "country":"Panamá",
@@ -74,7 +74,7 @@
         },
         {
             "name":"mezcla de la casa",
-            "price":600,
+            "price":90,
             "stock":100,
             "brand":"Café Entre Valles",
             "country":"Guatemala",
@@ -82,7 +82,7 @@
         },
         {
             "name":"Mezcla Gourmet",
-            "price":1,
+            "price":93,
             "stock":700,
             "brand":"Café Entre Valles",
             "country":"Guatemala",
@@ -90,7 +90,7 @@
         },
         {
             "name":"Mezcla Gourmet Defac",
-            "price":800,
+            "price":80,
             "stock":100,
             "brand":"Café Entre Valles",
             "country":"Guatemala",

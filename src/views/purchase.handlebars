@@ -6,18 +6,18 @@
         <h2>Order Code: {{purchase.code}}</h2>
         
         <h2>products:</h2>
-        <li>
+        <ul>
             {{#each purchase.products}}
-            <ul>
+            <li>
                 <div style="border: 2px solid black; padding:15px;">
                     <p><samp>Name: </samp>{{product.name}}</p>
                     <p><samp>Price: </samp>{{product.price}}</p>
                     <p><samp>Quantity: </samp>{{qty}}</p>
                 </div>
                 <hr>
-            </ul>
+            </li>
             {{/each}}
-        </li>
+        </ul>
         <h2>Total: {{purchase.totalQty}}</h2>
         <h2>Order Code: {{purchase.code}}</h2>
     </div>

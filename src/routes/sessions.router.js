@@ -13,6 +13,7 @@ router.post('/login', passport.authenticate('login', {session:false}), async(req
         role:req.user.role,
         name:req.user.name,
         last_name:req.user.last_name,
+        email:req.user.email,
         address:req.user.address,
         phone:req.user.phone,
         age:req.user.age,
