@@ -1,3 +1,16 @@
+const formImg = document.getElementById('profileForm')
+formImg.addEventListener('submit',(evt)=>{
+    evt.preventDefault()
+    let form_data = new FormData(formImg)
+    fetch('/api/sessions/user/image',{
+        method:"POST",
+        body:form_data
+    }).then(()=>window.location.href = "/account")
+})
+
+
+
+
 const form = document.getElementById('updateUserForm')
 form.addEventListener('submit',(evt)=>{
     evt.preventDefault()

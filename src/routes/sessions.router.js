@@ -3,6 +3,7 @@ import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import config from '../config/config.js'
 import services from '../dao/index.js'
+import { uploader } from '../utils.js'
 //import config from '../config/config.js'
 
 const router = Router()
@@ -37,7 +38,6 @@ router.get('/current', async(req,res)=>{
     }
 })
 
-
 router.put('/userUpdate', async(req,res)=>{
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.redirect('/')
@@ -45,6 +45,21 @@ router.put('/userUpdate', async(req,res)=>{
     try {
         const wholeUser = await services.UserService.getByEmail(user.email)
         req.body._id=wholeUser._id
+        await services.UserService.update(req.body)
+        res.status(200).send('result')
+    } catch (error) {
+        res.status(500).send({error:"Server error", message:"Couldn't update User"})
+    }
+})
+
+router.post('/user/image', uploader.single('file'),async(req,res)=>{
+    const token = req.cookies[config.jwt.COOKIE]
+    if(!token) return res.redirect('/')
+    const user = jwt.verify(token, config.jwt.SECRET)
+    try {
+        const wholeUser = await services.UserService.getByEmail(user.email)
+        req.body._id=wholeUser._id
+        req.body.picture = req.file.filename
         await services.UserService.update(req.body)
         res.status(200).send('result')
     } catch (error) {
@@ -66,6 +81,7 @@ router.get('/googlecallback',passport.authenticate('google',{session:false}),(re
     const token =jwt.sign(loginUser,config.jwt.SECRET,{expiresIn:3000});
     res.cookie(config.jwt.COOKIE,token,{maxAge:3000000,httpOnly:true}).redirect('/')
 })
+
 
 
 export default router

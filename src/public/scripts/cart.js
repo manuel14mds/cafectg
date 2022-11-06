@@ -1,6 +1,6 @@
 let btnDeleteAll = document.getElementById('deleteAllProducts')
 btnDeleteAll.addEventListener('click',(event)=>{
-    event.preventDefault
+    event.preventDefault()
     console.log(btnDeleteAll.value)
     fetch(`/api/carts/emptyCart/${btnDeleteAll.value}`,{
         method:'DELETE'

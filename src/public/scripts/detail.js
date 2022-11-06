@@ -1,6 +1,6 @@
 let btnAdd = document.getElementById('addToCard')
 btnAdd.addEventListener('click',(event)=>{
-    event.preventDefault
+    event.preventDefault()
     const data = {pid:`${btnAdd.value}`, quantity:1}
     fetch(`/api/carts/addToCart`,{
         method:'POST',

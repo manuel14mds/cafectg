@@ -5,7 +5,37 @@
 <main class="container" style="display: grid; place-items: center;">
     <div class="accContainer">
         <div class="accImageContainer">
-            <div class="accImage"></div>
+            {{#if user.picture}}
+                <div class="accImage" style="background-image: url(./images/users/{{user.picture}});"></div>
+                <!-- Button update avatar -->
+            {{else}}
+                <div class="accImage" style="background-image: url(./images/users/default.png);"></div>
+            {{/if}}
+            {{#if user}}
+                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#static"> edit </button>
+            {{/if}}
+            <!-- Modal update avatar-->
+            <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update Profile Image</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="profileForm">
+                                <div class="mb-3">
+                                    <label for="formFileSm" class="form-label">Select your image profile</label>
+                                    <input class="form-control form-control-sm" id="formFileSm" name="file" type="file">
+                                </div>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="accInfoContainer">
             <div class="accInfo">
