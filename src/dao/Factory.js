@@ -31,12 +31,10 @@ switch (persistence) {
         break
 }
 
-const services = {
+const persistenceFactory = {
     UserService,
     ProductService,
     CartService
 }
-/* export default {
 
-} */
-export default services
+export default persistenceFactory

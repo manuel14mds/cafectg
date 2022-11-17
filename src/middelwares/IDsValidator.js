@@ -1,8 +1,8 @@
-import services from "../dao/index.js"
+import persistenceFactory from "../dao/Factory.js"
 
 const validatePid = async (req,res,next)=>{
     try {
-        req.params.product = await services.ProductService.getById(req.params.pid)
+        req.params.product = await persistenceFactory.ProductService.getById(req.params.pid)
         if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
     } catch (error) {
         console.log('error en validatePid cart.router.js', error)
@@ -12,7 +12,7 @@ const validatePid = async (req,res,next)=>{
 }
 const validateCid = async (req,res,next)=>{
     try {
-        req.params.cart = await services.CartService.getById(req.params.cid)
+        req.params.cart = await persistenceFactory.CartService.getById(req.params.cid)
     } catch (error) {
         return res.status(300).send({status:'error', error:'Invalid id'})
     }

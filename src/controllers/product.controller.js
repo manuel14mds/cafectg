@@ -1,5 +1,5 @@
 import pino from "pino"
-import services from '../dao/index.js'
+import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
 import userAdmin from '../app.js'
 
@@ -11,13 +11,13 @@ const streams = [
 const logger = pino({},pino.multistream(streams))
 
 const getAll = async (req,res)=>{
-    let products = await services.ProductService.getAll()
+    let products = await persistenceFactory.ProductService.getAll()
     console.log(products)
     res.send({products})
 }
 
 const getByCategory = async (req,res) => {
-    let products = await services.ProductService.getAll()
+    let products = await persistenceFactory.ProductService.getAll()
     let data =[]
     products.forEach(element => {
         data.push(element._doc)
@@ -35,7 +35,7 @@ const update = async (req,res) => {
             try {
                 req.body.id=req.params.pid
                 console.log(req.body)
-                await services.ProductService.update(req.body)
+                await persistenceFactory.ProductService.update(req.body)
                 res.send({status:'success',message:'successfully saved'})
             } catch (error) {
                 logger.error(`Couldn't update the product | Method: ${req.method} | URL: ${req.originalUrl}`)
@@ -48,7 +48,7 @@ const createBulk = async (req,res) => {
     let products = req.body
     try {
         for (let item of products) {
-            await services.ProductService.addProduct(item)
+            await persistenceFactory.ProductService.addProduct(item)
         }
         res.send('products added')
     } catch (error) {
@@ -62,7 +62,7 @@ const add = async (req,res) => {
         const {name, price, stock} = req.body
         if(!name||!price||!stock||(typeof price != 'number')) return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
         try {
-            await services.ProductService.addProduct(req.body)
+            await persistenceFactory.ProductService.addProduct(req.body)
         } catch (error) {
             logger.error(`Couldn't save the product | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't save the product"})
@@ -75,7 +75,7 @@ const deleteOne = async (req,res) => {
         return res.send({error:-1, descripction: "route '/products/:pid' method 'DELETE' no authorized"})
     }else{
         try {
-            await services.ProductService.deleteById(req.params.pid)
+            await persistenceFactory.ProductService.deleteById(req.params.pid)
         } catch (error) {
             logger.error(`Couldn't delete the product | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't delete the product"})

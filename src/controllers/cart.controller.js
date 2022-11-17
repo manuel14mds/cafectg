@@ -1,5 +1,5 @@
 import userAdmin from '../app.js'
-import services from '../dao/index.js'
+import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
 import { emailTransport, emailHTMLmaker } from "../utils.js"
 import pino from 'pino'
@@ -12,11 +12,11 @@ const streams = [
 const logger = pino({},pino.multistream(streams))
 
 const getCarts = async (req,res)=>{
-    let cart = await services.CartService.getAll()
+    let cart = await persistenceFactory.CartService.getAll()
     res.send(cart)
 }
 const createOne = async (req,res)=>{
-    await services.CartService.create()
+    await persistenceFactory.CartService.create()
     res.send({status:'success',message:'successfully created'})
 }
 const deleteById = async (req,res)=>{
@@ -24,7 +24,7 @@ const deleteById = async (req,res)=>{
         return res.send({error:-1, descripction: "route '/carts/:cid' method 'DELETE' no authorized"})
     }else{
         try {
-            await services.CartService.deleteById(req.params.cid)
+            await persistenceFactory.CartService.deleteById(req.params.cid)
             res.send({status:'success',message:'successfully deleted'})
         } catch (error) {
             logger.error(`cart couldn't been deleted | Method: ${req.method} | URL: ${req.originalUrl}`)
@@ -35,11 +35,11 @@ const deleteById = async (req,res)=>{
 const getWhole = async (req,res)=>{
     try {
         let report = []
-        let cart = await services.CartService.getById(req.params.cid)
+        let cart = await persistenceFactory.CartService.getById(req.params.cid)
         let productList = {}
         for(let element of cart.products){
             productList = {
-                product: await services.ProductService.getById(element.id),
+                product: await persistenceFactory.ProductService.getById(element.id),
                 quantity:element.quantity
             }
             report.push(productList)
@@ -57,8 +57,8 @@ const addProducts = async (req,res)=>{
         return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
     }else{
         try {
-            let product = await services.ProductService.getById(pid)
-            await services.CartService.addProductToCart(cartId, product, parseInt(quantity))
+            let product = await persistenceFactory.ProductService.getById(pid)
+            await persistenceFactory.CartService.addProductToCart(cartId, product, parseInt(quantity))
             return res.send({status:'success',message:'successfully saved into the cart'})
         } catch (error) {
             logger.error(`Couldn't upload the product into the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
@@ -69,12 +69,12 @@ const addProducts = async (req,res)=>{
 const purchase = async (req,res)=>{
     try {
         let total = 0
-        let cart = await services.CartService.getCartId(req.body.user.cartId)
+        let cart = await persistenceFactory.CartService.getCartId(req.body.user.cartId)
     
         for (const element of cart.products) {
             total += element.product.price * element.qty
             element.product.stock -= element.qty // Update stock
-            await services.ProductService.update(element.product) //update product
+            await persistenceFactory.ProductService.update(element.product) //update product
         }
         const date = new Date()
         const code =`O${total}-${date[Symbol.toPrimitive]('number')}`
@@ -83,7 +83,7 @@ const purchase = async (req,res)=>{
         
         const user = req.body.user
         user.purchases.push(purchase)
-        await services.UserService.update(user)
+        await persistenceFactory.UserService.update(user)
 
         let html = emailHTMLmaker(purchase,user)
         let result = await emailTransport.sendMail({
@@ -94,7 +94,7 @@ const purchase = async (req,res)=>{
         })
         console.log(result)
     
-        await services.CartService.emptyCart(cart._id)
+        await persistenceFactory.CartService.emptyCart(cart._id)
         res.render('purchase', {purchase})
         
     } catch (error) {
@@ -103,7 +103,7 @@ const purchase = async (req,res)=>{
 }
 const deleteProduct = async (req,res)=>{
     try {
-        await services.CartService.deleteProductFromCart(req.params.cid, req.params.pid)
+        await persistenceFactory.CartService.deleteProductFromCart(req.params.cid, req.params.pid)
         res.send({status:'success',message:'successfully deleted from cart'})
     } catch (error) {
         logger.error(`Couldn't delete the product from the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
@@ -112,7 +112,7 @@ const deleteProduct = async (req,res)=>{
 }
 const emptyCart = async (req,res)=>{
     try {
-        await services.CartService.emptyCart(req.params.cid)
+        await persistenceFactory.CartService.emptyCart(req.params.cid)
         res.send({status:'success',message:'successfully deleted'})
     } catch (error) {
         logger.error(`Couldn't delete the product from the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
