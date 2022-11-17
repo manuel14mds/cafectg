@@ -1,8 +1,7 @@
 import { Router } from "express"
 
 import productController from "../controllers/product.controller.js"
-import services from '../dao/index.js'
-
+import { validatePid } from "../middelwares/IDsValidator.js"
 
 const router = Router()
 
@@ -29,14 +28,5 @@ router.get('/*:params',(req,res)=>{
     res.send({ error : -2, descripcion: `route '/api/products/${req.params[0]}' method 'GET' no implemented`})
 })
 
-async function validatePid(req,res,next){
-    try {
-        req.params.product = await services.ProductService.getById(req.params.pid)
-        if(!req.params.product) return res.status(404).send({status:'error', error:'Product not found'})
-    } catch (error) {
-        return res.status(404).send({status:'error', error:'Product not found'})
-    }
-    next()
-}
 
 export default router
