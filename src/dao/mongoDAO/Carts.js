@@ -1,5 +1,6 @@
 import cartModelService from '../../models/Carts.model.js'
 import MongoContainer from "./MongoContainer.js";
+import CartDTO from '../DTOs/DTOcart.js';
 export default class Carts extends MongoContainer{
     constructor(){
         super()
@@ -8,6 +9,11 @@ export default class Carts extends MongoContainer{
     create = async () => {
         let result = await this.save({})
         return result
+    }
+    getAll = async () => {
+        let data =  await this.modelService.find().lean()
+        const carts = data.map(cart => new CartDTO(cart))
+        return carts
     }
 
     /* addProductToCart = async (cid, pid, qty) => {
@@ -142,7 +148,9 @@ export default class Carts extends MongoContainer{
     }
     getCartId = async (id)=>{
         try {
-            return await this.modelService.findOne({_id:id}).lean().populate('products.product')
+            let result = await this.modelService.findOne({_id:id}).lean().populate('products.product')
+            const cart = new CartDTO(result)
+            return cart
         } catch (error) {
             console.log('Cart manager: {getCartId}')
             console.log(error)

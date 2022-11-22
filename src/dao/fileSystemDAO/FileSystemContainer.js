@@ -9,8 +9,7 @@ export default class MemoryContainer {
     getAll = async () => {
         if (fs.existsSync(this.path)) {
             let fileData = await fs.promises.readFile(this.path, 'utf-8')
-            let products = JSON.parse(fileData)
-            return products
+            return JSON.parse(fileData)
         } else {
             return []
         }

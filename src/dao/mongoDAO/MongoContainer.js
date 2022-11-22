@@ -4,11 +4,6 @@ export default class MongoContainer {
     constructor() {
     }
 
-    getAll = async () => {
-        let data =  await this.modelService.find().lean()
-        return data
-    }
-
     save = async (element) => {
         let result = await this.modelService.create(element)
         return result

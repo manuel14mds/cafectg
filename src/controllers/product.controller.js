@@ -4,7 +4,6 @@ import { userAdmin, logger } from '../app.js'
 
 const getAll = async (req,res)=>{
     let products = await persistenceFactory.ProductService.getAll()
-    console.log(products)
     res.send({products})
 }
 
@@ -14,7 +13,7 @@ const getByCategory = async (req,res) => {
     products.forEach(element => {
         data.push(element._doc)
     });
-    res.render('category', {data})
+    res.render('category', {products})
 }
 const update = async (req,res) => {
     if(!userAdmin){
