@@ -2,6 +2,7 @@ import { Router } from "express"
 
 import productController from "../controllers/product.controller.js"
 import { validatePid } from "../middelwares/IDsValidator.js"
+import { logger } from '../app.js'
 
 const router = Router()
 

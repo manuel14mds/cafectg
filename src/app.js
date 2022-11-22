@@ -17,6 +17,7 @@ import sessionsRouter from './routes/sessions.router.js'
 const streams = [
     {level:'info', stream:process.stdout},
     {level:'warn', stream:pino.destination(__dirname+'/logFiles/warn.log')},
+    {level:'error', stream:pino.destination(__dirname+'/logFiles/error.log')},
 ]
 const logger = pino({},pino.multistream(streams))
 const app = express()
@@ -63,4 +64,7 @@ mongoose.connect(MONGO_URL, err=>{
 
 
 let userAdmin = true
-export default userAdmin
+export {
+    userAdmin, 
+    logger,
+}

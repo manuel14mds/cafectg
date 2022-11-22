@@ -1,14 +1,6 @@
-import pino from "pino"
 import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
-import userAdmin from '../app.js'
-
-const streams = [
-    {level:'info', stream:process.stdout},
-    {level:'warn', stream:pino.destination(__dirname+'/logFiles/warn.log')},
-    {level:'error', stream:pino.destination(__dirname+'/logFiles/error.log')},
-]
-const logger = pino({},pino.multistream(streams))
+import { userAdmin, logger } from '../app.js'
 
 const getAll = async (req,res)=>{
     let products = await persistenceFactory.ProductService.getAll()
