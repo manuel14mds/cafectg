@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./src/api.test.js"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +24,10 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "pino": "^8.6.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0",
+    "supertest": "^6.3.1"
   }
 }

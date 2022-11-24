@@ -1,5 +1,5 @@
 
-const persistence = process.env.PERSISTENCE||"MONGODB"
+const persistence = process.env.PERSISTENCE||"MEMORY"
 let UserService
 let ProductService
 let CartService
