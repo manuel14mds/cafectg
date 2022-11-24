@@ -23,13 +23,20 @@ export default class MemoryContainer {
         this.data = newData
     }
 
-    update = (object) => {
-        let index = this.data.findIndex((element) => element.id == object.id)
-        this.data[index] = object
-        return true
+    update = (id, object) => {
+        let index = this.data.findIndex((element) => element.id == id)
+        let result = this.getById(id)
+
+        if (object.id) delete object.id
+        for (const item in object) {
+            result[item] = object[item]
+        }
+
+        this.data[index] = result
+        return this.data[index]
     }
 
-    deleteAll = ()=>{
+    deleteAll = () => {
         this.data = []
     }
 }

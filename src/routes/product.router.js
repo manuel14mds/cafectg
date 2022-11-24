@@ -12,6 +12,9 @@ router.get('/', productController.getAll)
 // get products by category
 router.get('/category', productController.getByCategory)
 
+// get products by category
+router.get('/:pid', validatePid, productController.getById)
+
 // update product
 router.put('/:pid', validatePid, productController.update)
 

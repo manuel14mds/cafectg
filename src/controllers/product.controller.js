@@ -6,7 +6,15 @@ const getAll = async (req,res)=>{
     let products = await persistenceFactory.ProductService.getAll()
     res.send({products})
 }
-
+const getById = async(req,res)=>{
+    try {
+        let product = await persistenceFactory.ProductService.getById(req.params.pid)
+        res.send(product);
+    } catch (error) {
+        logger.error(`Couldn't get the product | Method: ${req.method} | URL: ${req.originalUrl}`)
+        return res.status(500).send({status:'error', error:"it couldn't get the product"})
+    }
+}
 const getByCategory = async (req,res) => {
     let products = await persistenceFactory.ProductService.getAll()
     let data =[]
@@ -24,10 +32,8 @@ const update = async (req,res) => {
             return res.status(400).send({status:'error', error:"blank spaces are NOT allowed"})
         }else{
             try {
-                req.body.id=req.params.pid
-                console.log(req.body)
-                await persistenceFactory.ProductService.update(req.body)
-                res.send({status:'success',message:'successfully saved'})
+                let result = await persistenceFactory.ProductService.update(req.params.pid, req.body)
+                res.send({status:'success',message:'update successfully', product:result})
             } catch (error) {
                 logger.error(`Couldn't update the product | Method: ${req.method} | URL: ${req.originalUrl}`)
                 return res.status(500).send({status:'error', error:"it couldn't update the product"})
@@ -78,6 +84,7 @@ const deleteOne = async (req,res) => {
 export default {
     getAll,
     getByCategory,
+    getById,
     update,
     createBulk,
     add,

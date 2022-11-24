@@ -38,8 +38,7 @@ const userUpdate = async (req,res) =>{
     const user = jwt.verify(token, config.jwt.SECRET)
     try {
         const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        req.body._id=wholeUser._id
-        await persistenceFactory.UserService.update(req.body)
+        await persistenceFactory.UserService.update(wholeUser._id, req.body)
         res.status(200).send('result')
     } catch (error) {
         res.status(500).send({error:"Server error", message:"Couldn't update User"})

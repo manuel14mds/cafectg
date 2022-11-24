@@ -31,3 +31,4 @@
 {"level":50,"time":1667529909602,"pid":29257,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
 {"level":50,"time":1667529911548,"pid":29257,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
 {"level":50,"time":1667529918288,"pid":29257,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669312970216,"pid":90554,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't update the product | Method: PUT | URL: /api/products/13"}

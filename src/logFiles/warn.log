@@ -68,3 +68,5 @@
 {"level":40,"time":1667749807264,"pid":78934,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
 {"level":40,"time":1667751600027,"pid":79683,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts/style/style.css"}
 {"level":40,"time":1669078158636,"pid":51917,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/products/6367da3373d3877d5465e048"}
+{"level":40,"time":1669309832407,"pid":88999,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/products/2"}
+{"level":50,"time":1669312970216,"pid":90554,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't update the product | Method: PUT | URL: /api/products/13"}

@@ -19,8 +19,8 @@ export default class MongoContainer {
         await this.modelService.deleteOne({_id:id})
     }
 
-    update = async (object) => {
-        await this.modelService.updateOne({_id:object._id}, {$set:object})
+    update = async (id, object) => {
+        await this.modelService.updateOne({_id:id}, {$set:object})
     }
 
     deleteAll = async ()=>{

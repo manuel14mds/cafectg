@@ -24,14 +24,14 @@ export default class Products extends FileSystemContainer{
             product.code = (Math.random() + 1).toString(36).substring(7) //create a random code
             product.enable = true
             product.time_stamp = Date.now().toLocaleString()
-            this.save(product)
+            await this.save(product)
             return product.id
         } else {
             product.id = data[data.length - 1].id + 1
             product.code = await this.codeGenerator()
             product.time_stamp = Date.now().toLocaleString()
             product.enable = true
-            this.save(product)
+            await this.save(product)
             return product.id
         }
         

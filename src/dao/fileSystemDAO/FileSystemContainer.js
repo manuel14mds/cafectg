@@ -34,12 +34,20 @@ export default class MemoryContainer {
         await fs.promises.writeFile(this.path, JSON.stringify(newData, null, '\t'))
     }
 
-    update = async (object) => {
+    update = async (id, object) => {
         let list = await this.getAll()
-        let index = list.findIndex((element) => element.id == object.id)
-        list[index] = object
+
+        let index = list.findIndex((element) => element.id == id)
+        let result = await this.getById(id)
+
+        if (object.id) delete object.id
+        for (const item in object) {
+            result[item] = object[item]
+        }
+
+        list[index] = result
         await fs.promises.writeFile(this.path, JSON.stringify(list, null, '\t'))
-        return true
+        return result
     }
 
     deleteAll = async ()=>{
