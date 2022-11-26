@@ -85,7 +85,6 @@ const purchase = async (req,res)=>{
             subject:'Purchase Café Cartagena',
             html:html
         })
-        console.log(result)
     
         await persistenceFactory.CartService.emptyCart(cart._id)
         res.render('purchase', {purchase})

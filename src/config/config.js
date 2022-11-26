@@ -1,6 +1,7 @@
 export default{
     app:{
-        DOMAIN:process.env.DOMAIN
+        DOMAIN:process.env.DOMAIN,
+        PERSISTENCE:process.env.PERSISTENCE || "MONGODB",
     },
     mongo:{
         USER:process.env.MONGO_USER,
@@ -14,5 +15,5 @@ export default{
     google:{
         CLIENT_ID:process.env.GOOGLE_CID,
         CLIENT_SECRET:process.env.GOOGLE_CSECRET
-    }
+    },
 }

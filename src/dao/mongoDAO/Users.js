@@ -20,10 +20,16 @@ export default class Users extends MongoContainer{
         })
     }
     getByEmail = async(email) => {
-        let user = await this.modelService.findOne({email}).lean()
-        if(!user){
+        let result = await this.modelService.findOne({email}).lean()
+        result.id = result._id
+        return result
+    }
+    createUser = async(element) => {
+        let result = await this.modelService.create(element)
+        if(!result){
             return null
         }else{
+            let user = new UserDTO(result)
             return user
         }
     }

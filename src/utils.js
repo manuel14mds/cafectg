@@ -42,8 +42,6 @@ export const emailHTMLmaker =(purchase,user)=>{
         <h2>products:</h2>
     `
     purchase.products.forEach(element => {
-        console.log(4)
-        console.log('element : ', element)
         str +=`
             <div style="border: 2px solid black; padding:15px;">
                 <p><samp>Name: </samp>${element.product.name}</p>

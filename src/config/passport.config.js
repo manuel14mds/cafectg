@@ -15,14 +15,14 @@ const initializePassport = () =>{
             if(exists) return done(null,false,{message:"User already exists"})
 
             let newCart = await persistenceFactory.CartService.create()
-            let newUser = {
+            const newUser = {
                 name,
                 email,
                 password: createHash(password),
-                cartId:newCart._id,
+                cartId:newCart.id,
             }
 
-            let result = await persistenceFactory.UserService.save(newUser)
+            let result = await persistenceFactory.UserService.createUser(newUser)
             return done(null,result)
         }catch(error){
             done(error)
@@ -55,18 +55,17 @@ const initializePassport = () =>{
                 name: given_name,
                 last_name: family_name,
                 password:'',
-                cartId:newCart._id,
+                cartId:newCart.id,
             }
-            let result = await persistenceFactory.UserService.save(newUser)
+            let result = await persistenceFactory.UserService.createUser(newUser)
             return done(null,result);
         }else{
             return done(null,user);
         }
-        done(null,false);
     }))
 
     passport.serializeUser((user,done)=>{
-        done(null,user._id)
+        done(null,user.id)
     })
     passport.deserializeUser(async(id,done)=>{
         let result = await persistenceFactory.UserService.getById(id)

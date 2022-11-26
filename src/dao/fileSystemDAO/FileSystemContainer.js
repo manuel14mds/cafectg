@@ -36,10 +36,10 @@ export default class MemoryContainer {
 
     update = async (id, object) => {
         let list = await this.getAll()
-
+        
         let index = list.findIndex((element) => element.id == id)
         let result = await this.getById(id)
-
+        
         if (object.id) delete object.id
         for (const item in object) {
             result[item] = object[item]

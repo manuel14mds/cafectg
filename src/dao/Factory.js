@@ -1,5 +1,6 @@
+import config from '../config/config.js'
 
-const persistence = process.env.PERSISTENCE||"MONGODB"
+const persistence = config.app.PERSISTENCE
 let UserService
 let ProductService
 let CartService

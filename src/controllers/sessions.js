@@ -38,7 +38,7 @@ const userUpdate = async (req,res) =>{
     const user = jwt.verify(token, config.jwt.SECRET)
     try {
         const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        await persistenceFactory.UserService.update(wholeUser._id, req.body)
+        await persistenceFactory.UserService.update(wholeUser.id, req.body)
         res.status(200).send('result')
     } catch (error) {
         res.status(500).send({error:"Server error", message:"Couldn't update User"})
@@ -50,9 +50,9 @@ const userImage = async (req,res) =>{
     const user = jwt.verify(token, config.jwt.SECRET)
     try {
         const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        req.body._id=wholeUser._id
+        req.body.id=wholeUser.id
         req.body.picture = req.file.filename
-        await persistenceFactory.UserService.update(req.body)
+        await persistenceFactory.UserService.update(wholeUser.id, req.body)
         res.status(200).send('result')
     } catch (error) {
         res.status(500).send({error:"Server error", message:"Couldn't update User"})

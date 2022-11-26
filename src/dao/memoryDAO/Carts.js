@@ -16,7 +16,7 @@ export default class Carts extends MemoryContainer{
         }
         cart.products = []
         this.save(cart)
-        return cart.id
+        return cart
     }
 
     addProductToCart = (cid, pid, qty) => {
@@ -63,22 +63,17 @@ export default class Carts extends MemoryContainer{
 
     // return an object with all products' properties of the cart
     getProductsCart = (cid)=>{
-        try {
-            let cart = this.getById(cid)
-            let copyList = []
-            for(const item of cart.products){
-                console.log('cart product:', productService.getById(item.id))
-                copyList.push(
-                    {
-                    product: productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                    quantity:item.quantity
-                    }
-                )
-            }
-            return copyList
-        } catch (error) {
-            console.log('Cart manager: {getProductCart}')
-            console.log(error)
+        let cart = this.getById(cid)
+        let copyList = []
+        for(const item of cart.products){
+            copyList.push(
+                {
+                product: productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
+                quantity:item.quantity
+                }
+            )
         }
+        return copyList
+
     }
 }

@@ -27,8 +27,7 @@ const update = async (req,res) => {
     if(!userAdmin){
         return res.send({error:-1, descripction: "route '/products/:pid' method 'PUT' no authorized"})
     }else{
-        const {name, price, stock, enable} = req.body
-        if(!name||!price||!stock||!enable){
+        if(!req.body){
             return res.status(400).send({status:'error', error:"blank spaces are NOT allowed"})
         }else{
             try {

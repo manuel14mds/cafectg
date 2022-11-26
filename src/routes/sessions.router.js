@@ -4,6 +4,7 @@ import passport from 'passport'
 import { uploader } from '../utils.js'
 
 import sessions from '../controllers/sessions.js'
+import persistenceFactory from '../dao/Factory.js'
 
 //import config from '../config/config.js'
 
@@ -32,6 +33,11 @@ router.get('/google',passport.authenticate('google',{session:false,scope:['email
 
 // google calback
 router.get('/googlecallback',passport.authenticate('google',{session:false}), sessions.googleCallback)
+
+router.get('/users',async (req,res)=>{
+    const result = await persistenceFactory.UserService.getAll()
+    res.status(200).send(result)
+})
 
 
 

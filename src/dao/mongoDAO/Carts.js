@@ -8,6 +8,7 @@ export default class Carts extends MongoContainer{
     }
     create = async () => {
         let result = await this.save({})
+        result.id = result._id
         return result
     }
     getAll = async () => {
@@ -116,45 +117,29 @@ export default class Carts extends MongoContainer{
     }
     //empty cart
     emptyCart = async (cid) => {
-        try {
-            let cart = await this.getById(cid)
-            cart.products=[]
-            this.update(cart)
-        } catch (error) {
-            console.log('Cart manager: {getProductCart}')
-            console.log(error)
-        }
+        let cart = await this.getById(cid)
+        cart.products=[]
+        this.update(cart)
     }
 
     // return an object with all products' properties of the cart
     getProductsCart = async (cid)=>{
-        try {
-            let cart = await this.getById(cid)
-            let copyList = []
-            for(const item of cart.products){
-                console.log('cart product:', productService.getById(item.id))
-                copyList.push(
-                    {
-                    product: await productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                    quantity:item.qty
-                    }
-                )
-            }
-            return copyList
-        } catch (error) {
-            console.log('Cart manager: {getProductCart}')
-            console.log(error)
+        let cart = await this.getById(cid)
+        let copyList = []
+        for(const item of cart.products){
+            copyList.push(
+                {
+                product: await productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
+                quantity:item.qty
+                }
+            )
         }
+        return copyList
     }
     getCartId = async (id)=>{
-        try {
-            let result = await this.modelService.findOne({_id:id}).lean().populate('products.product')
-            const cart = new CartDTO(result)
-            return cart
-        } catch (error) {
-            console.log('Cart manager: {getCartId}')
-            console.log(error)
-        }
+        let result = await this.modelService.findOne({_id:id}).lean().populate('products.product')
+        const cart = new CartDTO(result)
+        return cart
     }
     
 }

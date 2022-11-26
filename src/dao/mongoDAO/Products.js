@@ -37,32 +37,28 @@ export default class Products extends MongoContainer{
     //Filter products by categories
     findByCategory = async (category)=>{
         let result = []
-        try {
-            switch (category) {
-                case 'co':
-                    result = await this.modelService.find({country:'Colombia'}).lean()
-                    break;
-                case 'pa':
-                    result = await this.modelService.find({country:'Panamá'}).lean()
-                    break;
-                case 'gt':
-                    result = await this.modelService.find({country:'Guatemala'}).lean()
-                    break;
-                case 'jv':
-                    result = await this.modelService.find({brand:'Juan Valdez'}).lean()
-                    break;
-                case 'om':
-                    result = await this.modelService.find({brand:'Café oma'}).lean()
-                    break;
-                case 'du':
-                    result = await this.modelService.find({brand:'Café DURÁN'}).lean()
-                    break;
-                case 'ev':
-                    result = await this.modelService.find({brand:'Café Entre Valles'}).lean()
-                    break;
-            }
-        } catch (error) {
-            console.log('error: ',error)
+        switch (category) {
+            case 'co':
+                result = await this.modelService.find({country:'Colombia'}).lean()
+                break;
+            case 'pa':
+                result = await this.modelService.find({country:'Panamá'}).lean()
+                break;
+            case 'gt':
+                result = await this.modelService.find({country:'Guatemala'}).lean()
+                break;
+            case 'jv':
+                result = await this.modelService.find({brand:'Juan Valdez'}).lean()
+                break;
+            case 'om':
+                result = await this.modelService.find({brand:'Café oma'}).lean()
+                break;
+            case 'du':
+                result = await this.modelService.find({brand:'Café DURÁN'}).lean()
+                break;
+            case 'ev':
+                result = await this.modelService.find({brand:'Café Entre Valles'}).lean()
+                break;
         }
         const products = result.map(product => new ProductDTO(product))
         return products

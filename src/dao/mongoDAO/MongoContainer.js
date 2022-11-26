@@ -12,6 +12,7 @@ export default class MongoContainer {
     getById = async (id) => {
         //let result = await this.modelService.findById(id) //cuidado con esta prueba, puede dar error, no testeada
         let result = await this.modelService.findOne({_id:id}).lean()
+        result.id = result._id
         return result
     }
 

@@ -17,7 +17,7 @@ export default class Carts extends FileSystemContainer{
         }
         cart.products = []
         await this.save(cart)
-        return cart.id
+        return cart
     }
 
     //add a product into cart
