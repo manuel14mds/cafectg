@@ -51,9 +51,10 @@ const addProducts = async (req,res)=>{
         return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
     }else{
         try {
-            let product = await persistenceFactory.ProductService.getById(pid)
+            const product = await persistenceFactory.ProductService.getById(pid)
             await persistenceFactory.CartService.addProductToCart(cartId, product, parseInt(quantity))
-            return res.send({status:'success',message:'successfully saved into the cart'})
+            const cart = await persistenceFactory.CartService.getCartId(cartId)
+            return res.send({status:'success',message:'successfully saved into the cart', })
         } catch (error) {
             logger.error(`Couldn't upload the product into the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
             return res.status(500).send({status:'error', error:"it couldn't upload the product into the cart"})
@@ -96,8 +97,9 @@ const purchase = async (req,res)=>{
 }
 const deleteProduct = async (req,res)=>{
     try {
-        await persistenceFactory.CartService.deleteProductFromCart(req.params.cid, req.params.pid)
-        res.send({status:'success',message:'successfully deleted from cart'})
+        const product = await persistenceFactory.ProductService.getById(req.params.pid)
+        const cart = await persistenceFactory.CartService.deleteProductFromCart(req.params.cid, product,req.params.pid)
+        res.send({status:'success',message:'successfully deleted from cart', cart:cart})
     } catch (error) {
         logger.error(`Couldn't delete the product from the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
         return res.status(500).send({status:'error', error:"it couldn't delete the product from the cart"})
@@ -105,8 +107,8 @@ const deleteProduct = async (req,res)=>{
 }
 const emptyCart = async (req,res)=>{
     try {
-        await persistenceFactory.CartService.emptyCart(req.params.cid)
-        res.send({status:'success',message:'successfully deleted'})
+        const cart = await persistenceFactory.CartService.emptyCart(req.params.cid)
+        res.send({status:'success',message:'successfully deleted', cart:cart})
     } catch (error) {
         logger.error(`Couldn't delete the product from the cart | Method: ${req.method} | URL: ${req.originalUrl}`)
         return res.status(500).send({status:'error', error:"it couldn't delete the product from the cart"})

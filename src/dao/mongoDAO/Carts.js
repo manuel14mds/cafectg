@@ -1,6 +1,7 @@
 import cartModelService from '../../models/Carts.model.js'
 import MongoContainer from "./MongoContainer.js";
 import CartDTO from '../DTOs/DTOcart.js';
+import Cart from '../../model/cart.class.js';
 export default class Carts extends MongoContainer{
     constructor(){
         super()
@@ -19,19 +20,20 @@ export default class Carts extends MongoContainer{
 
 
     addProductToCart = async (cid, prod, qty) => {
-        
-        if(qty > prod.stock){
+        if(qty > prod.stock){// si la cantidad supera al stock del producto
             qty = prod.stock
         }
-        let cart = await this.getById(cid)// traigo el cart
+        let result = await this.getById(cid)// traigo el cart
+        if(result._id){
+            result.id = result._id
+        }
+        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
         prod.id=prod._id.toString()
         
         if(cart.products.length===0){// no hay productos en el carrito
-            if(qty){
-                cart.products.push({product:prod._id, qty})
-                await this.update(cart)// pongo el producto y la cantidad en el carrito
-                return true
-            }
+            cart.addProduct(prod.id, prod, qty)
+            await this.update(cart.id, cart)// pongo el producto y la cantidad en el carrito
+            return cart
         }else{// sí hay productos en el carrito
             let product
             //validate if the product is already in the cart
@@ -39,44 +41,43 @@ export default class Carts extends MongoContainer{
                 product = item.product.toString()
                 return product === prod.id
             })
-            
-            // Qué pasa si qty es mayor que el stock del producto?
-            //if(qty > p)
-            
-            
             if(result){ // Sí está el producto en el carrito
-                cart.products.forEach(element => {
-                    product = element.product.toString()
-                    if(product === prod.id){
-                        let value = element.qty + qty
-                        if(value<=0){
-                            return false
-                        }else{
-                            if(prod.stock<value){
-                                return false
-                            }else{
-                                element.qty += qty
-                            }
-                        }
-                    }
-                })
+                cart.addQty(prod.id, prod, qty)
             }else{
-                if(prod.stock<qty){
-                    return false
-                }else{
-                    cart.products.push({product:prod._id, qty})
-                }
+                cart.addProduct(prod.id, prod, qty)
             }
-            await this.update(cart._id, cart)
-            return true
-            // FALTA ACTUALIZAR EL TOTALQTY
+            await this.update(cart.id, cart)
         }
     }
 
     // delete a product from a cart
     // require cartID and productID
-    deleteProductFromCart = async (cid, pid) => {
-        let cart = await this.getById(cid)
+    deleteProductFromCart = async (cid, prod, pid) => {
+        let result = await this.getById(cid)// traigo el cart
+        if(result._id){
+            result.id = result._id
+        }
+        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
+        prod.id=prod._id.toString()
+        
+        if(cart.products.length===0){// no hay productos en el carrito
+            return true
+        }else{// sí hay productos en el carrito
+            let product
+            //validate if the product is already in the cart
+            let result = cart.products.some((item)=>{
+                product = item.product.toString()
+                return product === prod.id
+            })
+            if(result){ // Sí está el producto en el carrito
+                cart.removeProduct(pid, prod)
+            }else{
+                return true
+            }
+            await this.update(cart.id, cart)
+            return cart
+        }
+        /* let cart = await this.getById(cid)
 
         let newCartProduts = []
 
@@ -89,13 +90,18 @@ export default class Carts extends MongoContainer{
             }
             cart.products = newCartProduts
             this.update(cart)
-        }
+        } */
     }
     //empty cart
     emptyCart = async (cid) => {
-        let cart = await this.getById(cid)
-        cart.products=[]
-        this.update(cart)
+        let result = await this.getById(cid)
+        if(result._id){
+            result.id = result._id
+        }
+        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
+        cart.empty()
+        this.update(cart.id, cart)
+        return cart
     }
 
     // return an object with all products' properties of the cart

@@ -4,38 +4,47 @@ export default class Cart {
         this.products = cart.products;
         this.total = cart.total
     }
-    totalUpdate = ()=>{
-        let update
-        cart.products.forEach(element => {
-            update += element.product.price * element.qty
-        })
-        this.total = update
+    totalUpdate(prod, qty){
+        this.total += prod.price * qty
     }
-    addProduct = (pid, qty) => {
+    addProduct(pid, prod, qty) {
         this.products.push({product:pid, qty})
-        this.totalUpdate()
+        this.totalUpdate(prod, qty)
     }
-    addQty = (pid, prod, qty) => {
+    addQty(pid, prod, qty) {
         let auxProductId
         this.products.forEach(element => {
             auxProductId = element.product.toString()
             if(auxProductId === pid){
                 let value = element.qty + qty
                 if(value <= 0){
-                    this.products = this.products.filter((e)=> e.product != auxProductId)
-                    this.totalUpdate()
+                    this.removeProduct(pid, prod)
                     return true
                 }else{
                     if(prod.stock<value){
                         element.qty = prod.stock
+                        this.totalUpdate(prod, qty)
                         return true
                     }else{
                         element.qty += qty
+                        this.totalUpdate(prod, qty)
                         return true
                     }
                 }
             }
         })
-        this.totalUpdate()
+        
+    }
+    removeProduct(pid, prod){
+        this.products = this.products.filter((e)=> {
+            if(e.product == pid){
+                this.total -= e.qty * prod.price
+            }
+            return e.product != pid
+        })
+    }
+    empty(){
+        this.products = []
+        this.total = 0
     }
 }

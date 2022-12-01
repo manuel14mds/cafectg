@@ -5,7 +5,7 @@ export const qtyValidator = async (req,res,next) => {
     if(isNaN(quantity)){
         try {
             quantity = parseInt(quantity)
-            if(quantity < 1){
+            if(quantity = 0){
                 return res.status(400).send({status:'Bad Request', error:"Quantity has a invalid value"})
             }
         } catch (error) {
