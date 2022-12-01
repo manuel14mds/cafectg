@@ -38,6 +38,8 @@ btnAdd.addEventListener('click',(event)=>{
                 },
                 onClick: function(){} // Callback after click
             }).showToast();
+        }else{
+            console.log('algo salio mal')
         }
     })
 })

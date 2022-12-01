@@ -11,7 +11,11 @@ const cartsSchema = mongoose.Schema({
             },
             qty:Number
         }
-    ]
+    ],
+    total:{
+        type:Number,
+        default:0
+    }
 },{timestamps:true})
 
 const cartModelService = mongoose.model(collection,cartsSchema)

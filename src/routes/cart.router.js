@@ -3,6 +3,8 @@ import cartController from '../controllers/cart.controller.js'
 
 import { loginValidater } from '../middelwares/authUser.js'
 import { validateCid, validatePid } from "../middelwares/IDsValidator.js"
+import { stockValidator } from '../middelwares/productStock.js'
+import { qtyValidator } from '../middelwares/productQuantity.js'
 
 const router = Router()
 
@@ -19,7 +21,7 @@ router.delete('/:cid', validateCid, cartController.deleteById)
 router.get('/:cid/products', validateCid, cartController.getWhole )
 
 //add products to cart
-router.post('/addToCart', loginValidater, cartController.addProducts)
+router.post('/addToCart', loginValidater, stockValidator, qtyValidator, cartController.addProducts)
 
 //purchase
 router.get('/purchase', loginValidater, cartController.purchase)

@@ -1,0 +1,2 @@
+{"level":50,"time":1669655594372,"pid":50346,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669655622836,"pid":50346,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}

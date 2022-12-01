@@ -44,9 +44,10 @@ const getWhole = async (req,res)=>{
     }
 }
 const addProducts = async (req,res)=>{
-    const {pid, quantity, cartId} = req.body
+    const {pid, quantity} = req.body
+    const { cartId } = req.body.user
 
-    if(!pid||!quantity||!cartId){
+    if(!pid||!quantity){
         return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
     }else{
         try {

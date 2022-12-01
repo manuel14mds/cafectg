@@ -7,7 +7,6 @@ export const loginValidater = async (req,res,next) => {
     if(!token)return res.status(401).send({message:'unauthorized'})
     const user = jwt.verify(token, config.jwt.SECRET)
     const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-    req.body.cartId=wholeUser.cartId
     req.body.user = wholeUser
     next()
 }
