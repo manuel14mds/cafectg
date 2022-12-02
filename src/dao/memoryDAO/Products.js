@@ -1,4 +1,5 @@
 import MemoryContainer from "./MemoryContainer.js";
+import ProductDTO from "../DTOs/DTO.product.js";
 export default class Products extends MemoryContainer{
     constructor(){
         super()
@@ -31,5 +32,34 @@ export default class Products extends MemoryContainer{
             return product.id
         }
         
+    }
+
+    findByCategory = (category)=>{
+        let result = []
+        switch (category) {
+            case 'co':
+                result = this.data.filter((e)=> e.country == 'Colombia')
+                break;
+            case 'pa':
+                result = this.data.filter((e)=> e.country == 'Panamá')
+                break;
+            case 'gt':
+                result = this.data.filter((e)=> e.country == 'Guatemala')
+                break;
+            case 'jv':
+                result = this.data.filter((e)=> e.brand == 'Juan Valdez')
+                break;
+            case 'om':
+                result = this.data.filter((e)=> e.brand == 'Café oma')
+                break;
+            case 'du':
+                result = this.data.filter((e)=> e.brand == 'Café DURÁN')
+                break;
+            case 'ev':
+                result = this.data.filter((e)=> e.brand == 'Café Entre Valles')
+                break;
+        }
+        const products = result.map(product => new ProductDTO(product.id, product))
+        return products
     }
 }

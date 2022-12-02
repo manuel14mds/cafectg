@@ -14,6 +14,7 @@ export default class MemoryContainer {
     }
 
     getById = (id) => {
+        console.log('entra al memory de product')
         let result = this.data.find((element) => element.id == id)
         return result
     }

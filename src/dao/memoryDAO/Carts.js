@@ -1,7 +1,8 @@
 import MemoryContainer from "./MemoryContainer.js";
 import Products from "./Products.js";
 import Cart from "../../model/cart.class.js";
-const productService = new Products()
+
+
 export default class Carts extends MemoryContainer{
     constructor(){
         super()
@@ -135,18 +136,27 @@ export default class Carts extends MemoryContainer{
         return copyList
 
     } */
-    getCartId = (cid)=>{
+    getCartId = async (cid)=>{
+        const productService = new Products()
         let cart = this.getById(cid)
+        console.log('cart de getcartid principio: ', cart)
         let copyList = []
+        const listProducts = productService.getAll()
+        console.log('listProducts',listProducts)
+        let product 
         for(const item of cart.products){
+            console.log('loop item:', item)
+            product = await listProducts.products.find((element) => element.id == item.product)
+            console.log(product)
             copyList.push(
                 {
-                product: productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                quantity:item.quantity
+                    product,
+                    qty:item.qty
                 }
-            )
-        }
-        cart.products = copyList
+                )
+            }
+            cart.products = copyList
+            console.log('cart de getcartid final: ', cart)
         return cart
     }
 }

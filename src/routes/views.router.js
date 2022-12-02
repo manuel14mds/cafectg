@@ -5,35 +5,32 @@ import jwt from 'jsonwebtoken'
 
 const router = Router()
 
-router.get('/', (req,res)=>{
+router.get('/', (req,res)=>{//bien
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.render('index', {user:false})
     const user = jwt.verify(token, config.jwt.SECRET)
     res.render('index', {user})
 })
 
-router.get('/login', (req,res)=>{
+router.get('/login', (req,res)=>{//bien
     res.render('login')
 })
 
-router.get('/register', (req,res)=>{
+router.get('/register', (req,res)=>{//bien
     res.render('register')
 })
 
-router.get('/cart', async(req,res)=>{
+router.get('/cart', async(req,res)=>{//bien
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.render('account', {user:false})
     const user = jwt.verify(token, config.jwt.SECRET)
     const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
     let cart = await persistenceFactory.CartService.getCartId(wholeUser.cartId)
-    let total = 0
-    cart.products.forEach(element => {
-        total += element.product.price * element.qty
-    })
-    res.render('cart',{cart,total})
+    console.log(cart)
+    res.render('cart',{cart})
 })
 
-router.get('/productDetail/:pid', async(req,res)=>{
+router.get('/productDetail/:pid', async(req,res)=>{//bien
     try {
         let product = await persistenceFactory.ProductService.getById(req.params.pid)
         res.render('detail',{product})
@@ -42,7 +39,7 @@ router.get('/productDetail/:pid', async(req,res)=>{
     }
 })
 
-router.get('/account', async(req,res)=>{
+router.get('/account', async(req,res)=>{//bien
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.render('account', {user:false})
     let userToken = jwt.verify(token, config.jwt.SECRET)
@@ -51,7 +48,7 @@ router.get('/account', async(req,res)=>{
     res.render('account',{user})
 })
 
-router.get('/category', async(req,res)=>{
+router.get('/category', async(req,res)=>{//bien
     const ctg = req.query.category
     if(ctg === 'all'){
         let products = await persistenceFactory.ProductService.getAll()

@@ -63,32 +63,30 @@ const addProducts = async (req,res)=>{
 }
 const purchase = async (req,res)=>{
     try {
-        let total = 0
         let cart = await persistenceFactory.CartService.getCartId(req.body.user.cartId)
-    
+        
         for (const element of cart.products) {
-            total += element.product.price * element.qty
             element.product.stock -= element.qty // Update stock
             await persistenceFactory.ProductService.update(element.product) //update product
         }
         const date = new Date()
-        const code =`O${total}-${date[Symbol.toPrimitive]('number')}`
+        const code =`O${cart.total}-${date[Symbol.toPrimitive]('number')}`
         
-        const purchase = {products:cart.products, totalQty:total, code}
+        const purchase = {products:cart.products, totalQty:cart.total, code}
         
         const user = req.body.user
         user.purchases.push(purchase)
-        await persistenceFactory.UserService.update(user)
-
+        await persistenceFactory.UserService.update(user.id, user)
+        
         let html = emailHTMLmaker(purchase,user)
         let result = await emailTransport.sendMail({
-            from:'yo',
+            from:'Café Cartagena',
             to:user.email,
             subject:'Purchase Café Cartagena',
             html:html
         })
-    
-        await persistenceFactory.CartService.emptyCart(cart._id)
+        
+        await persistenceFactory.CartService.emptyCart(cart.id)
         res.render('purchase', {purchase})
         
     } catch (error) {

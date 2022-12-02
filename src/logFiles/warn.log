@@ -21,3 +21,12 @@
 {"level":50,"time":1669925733079,"pid":86710,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
 {"level":50,"time":1669925852574,"pid":86796,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
 {"level":50,"time":1669925898305,"pid":86836,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669948149780,"pid":96459,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669948482227,"pid":96669,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669948489524,"pid":96669,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669950163009,"pid":97602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669951837111,"pid":98586,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669951855279,"pid":98586,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669951857941,"pid":98586,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669952443678,"pid":98879,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}
+{"level":50,"time":1669952798791,"pid":99084,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the cart | Method: POST | URL: /api/carts/addToCart"}

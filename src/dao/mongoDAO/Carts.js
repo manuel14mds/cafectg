@@ -16,7 +16,7 @@ export default class Carts extends MongoContainer{
 
     getAll = async () => {
         let data =  await this.modelService.find().lean()
-        const carts = data.map(cart => new CartDTO(cart))
+        const carts = data.map(cart => new Cart(cart._id, cart))
         return carts
     }
 
@@ -80,33 +80,30 @@ export default class Carts extends MongoContainer{
     //empty cart
     emptyCart = async (cid) => {
         let result = await this.getById(cid)
-        if(result._id){
-            result.id = result._id
-        }
         const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
         cart.empty()
         this.update(cart.id, cart)
         return cart
     }
 
-    // return an object with all products' properties of the cart
     /* getProductsCart = async (cid)=>{
         const cart = await this.getById(cid)
         let copyList = []
         for(const item of cart.products){
             copyList.push(
                 {
-                product: await productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                quantity:item.qty
+                    product: await productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
+                    quantity:item.qty
                 }
-            )
-        }
-        return copyList
-    } */
-
+                )
+            }
+            return copyList
+        } */
+        
+    // return an object with all products' properties of the cart
     getCartId = async (id)=>{
         let result = await this.modelService.findOne({_id:id}).lean().populate('products.product')
-        const cart = new CartDTO(result)
+        const cart = new Cart(result._id, result)
         return cart
     }
     
