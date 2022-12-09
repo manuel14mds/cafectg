@@ -2,6 +2,9 @@ import { Router } from 'express'
 import persistenceFactory from '../dao/Factory.js'
 import config from '../config/config.js'
 import jwt from 'jsonwebtoken'
+import {loginValidater} from '../middelwares/authUser.js'
+import CartPopulateDTO from '../dao/DTOs/DTOcartPopulate.js'
+import UserDTO from '../dao/DTOs/DTOuser.js'
 
 const router = Router()
 
@@ -20,13 +23,15 @@ router.get('/register', (req,res)=>{//bien
     res.render('register')
 })
 
-router.get('/cart', async(req,res)=>{//bien
-    const token = req.cookies[config.jwt.COOKIE]
-    if(!token) return res.render('account', {user:false})
-    const user = jwt.verify(token, config.jwt.SECRET)
-    const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-    let cart = await persistenceFactory.CartService.getCartId(wholeUser.cartId)
-    console.log(cart)
+router.get('/cart', loginValidater,async(req,res)=>{//bien
+    let cart = await persistenceFactory.CartService.getCart(req.body.user.cartId)
+
+    if(config.app.PERSISTENCE != 'MONGODB'){
+        const cartPopulated = new CartPopulateDTO(cart.id, cart)
+        cartPopulated.populate()
+        cart = cartPopulated
+    }
+    
     res.render('cart',{cart})
 })
 
@@ -35,16 +40,12 @@ router.get('/productDetail/:pid', async(req,res)=>{//bien
         let product = await persistenceFactory.ProductService.getById(req.params.pid)
         res.render('detail',{product})
     } catch (error) {
-        res.status(500).send('insternal error')
+        res.status(500).send('internal error')
     }
 })
 
-router.get('/account', async(req,res)=>{//bien
-    const token = req.cookies[config.jwt.COOKIE]
-    if(!token) return res.render('account', {user:false})
-    let userToken = jwt.verify(token, config.jwt.SECRET)
-    let user = await persistenceFactory.UserService.getByEmail(userToken.email)
-    if(user.password) delete user.password
+router.get('/account', loginValidater, async(req,res)=>{//bien
+    const user = new UserDTO(req.body.user.id, req.body.user)
     res.render('account',{user})
 })
 

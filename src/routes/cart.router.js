@@ -17,14 +17,17 @@ router.post('/', cartController.createOne)
 //deleteById
 router.delete('/:cid', validateCid, cartController.deleteById)
 
+// get By Id
+router.get('/:cid', validateCid, cartController.getById)
+
 //ListEntireProductsCart
-router.get('/:cid/products', validateCid, cartController.getWhole )
+router.get('/:cid/products', validateCid, cartController.getWhole)
 
 //add products to cart
-router.post('/addToCart', loginValidater, stockValidator, qtyValidator, cartController.addProducts)
+router.post('/addToCart', loginValidater, stockValidator, qtyValidator, cartController.addProducts);
 
 //purchase
-router.get('/purchase', loginValidater, cartController.purchase)
+router.get('/buy', loginValidater, cartController.purchase)
 
 //delete product from cart
 router.delete('/:cid/products/:pid', validateCid, validatePid, cartController.deleteProduct)

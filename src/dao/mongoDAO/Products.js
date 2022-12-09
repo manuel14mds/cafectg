@@ -9,14 +9,13 @@ export default class Products extends MongoContainer{
 
     getAll = async () => {
         let data =  await this.modelService.find().lean()
-        const products = data.map(product => new ProductDTO(product))
+        const products = data.map(product => new ProductDTO(product._id, product))
         return products
     }
 
     //generate a new product code
     codeGenerator = async () => {
         let codes = await this.modelService.find({}, {code:1, _id:0})
-        //let product = await this.modelService.find({_id:'631129ad3ccd80cdc3c7dfd9'})
         let new_code = ''
         if(!codes){
             new_code = (Math.random() + 1).toString(36).substring(7)
@@ -60,7 +59,7 @@ export default class Products extends MongoContainer{
                 result = await this.modelService.find({brand:'Café Entre Valles'}).lean()
                 break;
         }
-        const products = result.map(product => new ProductDTO(product))
+        const products = result.map(product => new ProductDTO(product._id, product))
         return products
     }
 }

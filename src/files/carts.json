@@ -1,3 +1,17 @@
 [
-
+	{
+		"id": 1,
+		"time_stamp": "1.670.367.354.764",
+		"products": [
+			{
+				"product": 7,
+				"qty": 1
+			},
+			{
+				"product": 1,
+				"qty": 2
+			}
+		],
+		"total": 310
+	}
 ]

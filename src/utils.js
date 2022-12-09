@@ -22,7 +22,6 @@ const storage = multer.diskStorage({
 })
 export const uploader = multer({storage:storage})
 
-
 export const emailTransport = nodemailer.createTransport({
     service:'gmail',
     port: 587,
@@ -60,4 +59,5 @@ export const emailHTMLmaker =(purchase,user)=>{
         return "<h1> purchase successfully, display purchase error</h1>"
     }
 }
+
 export default __dirname

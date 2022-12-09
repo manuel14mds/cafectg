@@ -25,10 +25,9 @@ export default class Carts extends MongoContainer{
             qty = prod.stock
         }
         let result = await this.getById(cid)// traigo el cart
-        result.id = result._id
 
         const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
-        prod.id=prod._id.toString()
+        if(prod._id) prod.id=prod._id.toString()
         
         if(cart.products.length===0){// no hay productos en el carrito
             cart.addProduct(prod.id, prod, qty)
@@ -86,23 +85,15 @@ export default class Carts extends MongoContainer{
         return cart
     }
 
-    /* getProductsCart = async (cid)=>{
-        const cart = await this.getById(cid)
-        let copyList = []
-        for(const item of cart.products){
-            copyList.push(
-                {
-                    product: await productService.getById(item.id), // ------------------------ It hasnt been used XXXXXXXXXXXXXXXXXX
-                    quantity:item.qty
-                }
-                )
-            }
-            return copyList
-        } */
-        
-    // return an object with all products' properties of the cart
-    getCartId = async (id)=>{
+    // return a cart populated
+    getCart = async (id)=>{
         let result = await this.modelService.findOne({_id:id}).lean().populate('products.product')
+        const cart = new Cart(result._id, result)
+        return cart
+    }
+    // return al carts 
+    getById = async (id)=>{
+        let result = await this.modelService.findOne({_id:id}).lean()
         const cart = new Cart(result._id, result)
         return cart
     }

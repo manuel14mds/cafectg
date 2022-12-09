@@ -15,7 +15,7 @@ export default class Cart {
         let auxProductId
         this.products.forEach(element => {
             auxProductId = element.product.toString()
-            if(auxProductId === pid){
+            if(element.product == pid){
                 let value = element.qty + qty
                 if(value <= 0){
                     this.removeProduct(pid, prod)
@@ -33,7 +33,6 @@ export default class Cart {
                 }
             }
         })
-        
     }
     removeProduct(pid, prod){
         this.products = this.products.filter((e)=> {

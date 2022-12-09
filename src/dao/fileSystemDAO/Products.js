@@ -64,7 +64,7 @@ export default class Products extends FileSystemContainer{
                 result = data.filter((e)=> e.brand == 'Café Entre Valles')
                 break;
         }
-        const products = result.map(product => new ProductDTO(product))
+        const products = result.map(product => new ProductDTO(product.id, product))
         return products
     }
 }
