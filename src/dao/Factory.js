@@ -18,10 +18,12 @@ switch (persistence) {
     case 'FILESYSTEM':
         const {default:FileSUser} = await import('./fileSystemDAO/Users.js')
         const {default:FileSProduct} = await import('./fileSystemDAO/Products.js') 
-        const {default:FileSCarts} = await import('./fileSystemDAO/Carts.js') 
+        const {default:FileSCarts} = await import('./fileSystemDAO/Carts.js')
+        const {default:FileSPurchases} = await import('./fileSystemDAO/Purchases.js') 
         UserService = new FileSUser()
         ProductService = new FileSProduct()
         CartService = new FileSCarts()
+        PurchaseService = new FileSPurchases()
         break
     case 'MONGODB':
         const {default:MongoUser} = await import('./mongoDAO/Users.js')

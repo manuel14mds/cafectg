@@ -1,6 +1,6 @@
 import persistenceFactory from "../dao/Factory.js"
-import ProductDTO from '../dao/DTOs/DTO.product.js'
-
+import config from "../config/config.js"
+import PurchaseDTO from '../dao/DTOs/DTOPurchasePopulate.js'
 
 const get = async (req,res)=>{
     const data = await persistenceFactory.PurchaseService.getAll()
@@ -13,7 +13,12 @@ const create = async (req,res)=>{
     res.send({message:'success', payload: purchase})
 }
 const getById = async (req,res)=>{
-    const purchase = await persistenceFactory.PurchaseService.getPopulate(req.params.purchase.id)
+    let purchase = await persistenceFactory.PurchaseService.getPopulate(req.params.purchase.id)
+    if(config.app.PERSISTENCE != 'MONGODB'){
+        const purchasePopulated = new PurchaseDTO(purchase.id, purchase)
+        await purchasePopulated.populate()
+        purchase = purchasePopulated
+    }
     res.send({message:'success', payload: purchase})
 }
 
@@ -21,5 +26,4 @@ export default {
     get,
     create,
     getById,
-
 }

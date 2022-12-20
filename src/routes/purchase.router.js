@@ -6,6 +6,6 @@ const router = Router ()
 
 router.get('/', purchaseController.get)
 router.post('/:cid', validateCid, purchaseController.create)
-router.get('/:bid', purchaseController.getById)
+router.get('/:bid', validateBid, purchaseController.getById)
 
 export default router

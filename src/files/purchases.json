@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"time_stamp": "1.671.563.212.179",
+		"products": [
+			{
+				"product": 7,
+				"qty": 1
+			},
+			{
+				"product": 1,
+				"qty": 2
+			}
+		],
+		"total": 310
+	},
+	{
+		"id": 2,
+		"time_stamp": "1.671.565.093.714",
+		"products": [
+			{
+				"product": 7,
+				"qty": 1
+			},
+			{
+				"product": 1,
+				"qty": 2
+			}
+		],
+		"total": 310
+	}
+]
