@@ -4,6 +4,7 @@ const persistence = config.app.PERSISTENCE
 let UserService
 let ProductService
 let CartService
+let PurchaseService
 
 switch (persistence) {
     case 'MEMORY':
@@ -26,16 +27,19 @@ switch (persistence) {
         const {default:MongoUser} = await import('./mongoDAO/Users.js')
         const {default:MongoProduct} = await import('./mongoDAO/Products.js') 
         const {default:MongoCarts} = await import('./mongoDAO/Carts.js') 
+        const {default:MongoPurchase} = await import('./mongoDAO/purchases.js')
         UserService = new MongoUser()
         ProductService = new MongoProduct()
         CartService = new MongoCarts()
+        PurchaseService = new MongoPurchase()
         break
 }
 
 const persistenceFactory = {
     UserService,
     ProductService,
-    CartService
+    CartService,
+    PurchaseService,
 }
 
 export default persistenceFactory

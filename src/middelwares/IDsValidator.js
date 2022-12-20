@@ -12,14 +12,24 @@ const validatePid = async (req,res,next)=>{
 const validateCid = async (req,res,next)=>{
     try {
         req.params.cart = await persistenceFactory.CartService.getById(req.params.cid)
+        if(!req.params.cart) return res.status(404).send({status:'error', error:'Cart not found'})
     } catch (error) {
         return res.status(300).send({status:'error', error:'Cart not found'})
     }
-    if(!req.params.cart) return res.status(404).send({status:'error', error:'Cart not found'})
+    next()
+}
+const validateBid = async (req,res,next)=>{
+    try {
+        req.params.purchase = await persistenceFactory.PurchaseService.getById(req.params.bid)
+        if(!req.params.purchase) return res.status(404).send({status:'error', error:'Purchase not found'})
+    } catch (error) {
+        return res.status(300).send({status:'error', error:'Purchase not found'})
+    }
     next()
 }
 
 export {
     validateCid,
     validatePid,
+    validateBid,
 }

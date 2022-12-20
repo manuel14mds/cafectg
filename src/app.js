@@ -13,6 +13,7 @@ import viewsRouter from './routes/views.router.js'
 import productRouter from './routes/product.router.js'
 import cartRouter from './routes/cart.router.js'
 import sessionsRouter from './routes/sessions.router.js'
+import purchaseRouter from './routes/purchase.router.js'
 
 const streams = [
     {level:'info', stream:process.stdout},
@@ -43,6 +44,8 @@ app.use(passport.initialize())
 app.use('/',viewsRouter)
 app.use('/api/products',reqInfo,productRouter)
 app.use('/api/carts',reqInfo,cartRouter)
+app.use('/api/carts',reqInfo,cartRouter)
+app.use('/api/purchases',reqInfo,purchaseRouter)
 app.use('/api/sessions', sessionsRouter)
 
 
