@@ -10,7 +10,7 @@ export default class MemoryContainer {
 
     save = (element) => {
         this.data.push(element)
-        return element
+        return element.id
     }
 
     getById = (id) => {

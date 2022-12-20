@@ -1,14 +1,12 @@
-import __dirname from '../../utils.js'
-import FileSystemContainer from "./FileSystemContainer.js";
+import MemoryContainer from "./MemoryContainer.js";
 
-export default class Purchases extends FileSystemContainer{
+export default class Purchases extends MemoryContainer{
     constructor(){
         super()
-        this.path = __dirname + '/files/purchases.json'
     }
 
     create = async (cart) => {
-        let data = await this.getAll()
+        let data = this.getAll()
         let newPurchase = {}
         if (data.length === 0) {
             newPurchase.id = 1
@@ -19,12 +17,12 @@ export default class Purchases extends FileSystemContainer{
         }
         newPurchase.products = cart.products
         newPurchase.total = cart.total
-        const purchaseId =  await this.save(newPurchase)
+        const purchaseId =  this.save(newPurchase)
         return purchaseId
     }
 
     getPopulate = async (id) => {
-        let result = await this.getById(id)
+        let result = this.getById(id)
         return result
     }
 }
