@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken'
 import {loginValidater} from '../middelwares/authUser.js'
 import { validateBid } from '../middelwares/IDsValidator.js' 
 import CartPopulateDTO from '../dao/DTOs/DTOcartPopulate.js'
+import PurchaseDTO from '../dao/DTOs/DTOPurchasePopulate.js'
+
 import UserDTO from '../dao/DTOs/DTOuser.js'
 
 const router = Router()
@@ -43,10 +45,16 @@ router.get('/productDetail/:pid', async(req,res)=>{//bien
     } catch (error) {
         res.status(500).send('internal error')
     }
+
 })
 router.get('/resume/purchase/:bid', validateBid, async(req,res)=>{
     try {
-        const purchase = await persistenceFactory.PurchaseService.getPopulate(req.params.purchase.id)
+        let purchase = await persistenceFactory.PurchaseService.getPopulate(req.params.purchase.id)
+        if(config.app.PERSISTENCE != 'MONGODB'){
+            const purchasePopulated = new PurchaseDTO(purchase.id, purchase)
+            await purchasePopulated.populate()
+            purchase = purchasePopulated
+        }
         res.render('purchase',{purchase})
     } catch (error) {
         res.status(500).send('internal error')

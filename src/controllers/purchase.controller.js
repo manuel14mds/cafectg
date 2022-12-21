@@ -8,10 +8,16 @@ const get = async (req,res)=>{
     console.log(data)
     res.send({message:'success', payload: data})
 }
+
 const create = async (req,res)=>{
     //create a new purchase
     const purchaseID = await persistenceFactory.PurchaseService.create(req.params.cart)
-    const purchase = await persistenceFactory.PurchaseService.getPopulate(purchaseID)
+    let purchase = await persistenceFactory.PurchaseService.getPopulate(purchaseID)
+    if(config.app.PERSISTENCE != 'MONGODB'){
+        const purchasePopulated = new PurchaseDTO(purchase.id, purchase)
+        await purchasePopulated.populate()
+        purchase = purchasePopulated
+    }
 
     // add new purchase to user
     const user = req.body.user
@@ -32,6 +38,7 @@ const create = async (req,res)=>{
 
     res.send({message:'success', payload: purchase})
 }
+
 const getById = async (req,res)=>{
     let purchase = await persistenceFactory.PurchaseService.getPopulate(req.params.purchase.id)
     if(config.app.PERSISTENCE != 'MONGODB'){
