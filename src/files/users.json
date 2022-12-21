@@ -6,7 +6,7 @@
 		"password": "",
 		"cartId": 1,
 		"id": 1,
-		"time_stamp": "1.670.367.354.804",
+		"time_stamp": "1.671.654.894.676",
 		"role": "user",
 		"age": -1,
 		"address": "",
@@ -14,7 +14,10 @@
 		"phone": "",
 		"active": true,
 		"wishlistId": "",
-		"purchases": [],
+		"purchases": [
+			1,
+			2
+		],
 		"cards": [
 			"MSC",
 			"AEX",

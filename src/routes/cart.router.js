@@ -24,10 +24,7 @@ router.get('/:cid', validateCid, cartController.getById)
 router.get('/:cid/products', validateCid, cartController.getWhole)
 
 //add products to cart
-router.post('/addToCart', loginValidater, stockValidator, qtyValidator, cartController.addProducts);
-
-//purchase
-router.get('/buy', loginValidater, cartController.purchase)
+router.post('/addToCart', loginValidater, stockValidator, qtyValidator, cartController.addProducts)
 
 //delete product from cart
 router.delete('/:cid/products/:pid', validateCid, validatePid, cartController.deleteProduct)
