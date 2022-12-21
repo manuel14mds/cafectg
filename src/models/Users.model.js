@@ -43,7 +43,14 @@ const usersSchema = mongoose.Schema({
     },
     cartId:String,
     wishlistId:String,
-    purchases:Array,
+    purchases:[
+        {
+            purchase:{
+                type:mongoose.SchemaTypes.ObjectId,
+                ref:'purchases'
+            }
+        }
+    ],
     cards:['MSC','AEX','DIN','VIS'],
 
 },{timestamps:true})

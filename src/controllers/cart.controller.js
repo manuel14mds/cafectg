@@ -111,7 +111,6 @@ const purchased = async (req,res)=>{
     } catch (error) {
         res.status(500).send({error:'internal server error', message:"Purchase error"})
     } */
-    res.sed('todo ok')
 }
 const deleteProduct = async (req,res)=>{
     try {

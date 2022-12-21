@@ -37,7 +37,7 @@ export const emailHTMLmaker =(purchase,user)=>{
         `
     str += `
         <h1>Café Cartagena - Purchase - ${user.name} ${user.last_name}</h1>
-        <h2>Order Code: ${purchase.code}</h2>
+        <h2>Order Code: ${purchase.id}</h2>
         <h2>products:</h2>
     `
     purchase.products.forEach(element => {
@@ -50,8 +50,8 @@ export const emailHTMLmaker =(purchase,user)=>{
             <hr>`
     });
     str +=`
-        <h2>Total: ${purchase.totalQty} USD</h2>
-        <h2>Order Code: ${purchase.code}</h2>
+        <h2>Total: ${purchase.total} USD</h2>
+        <h2>Order Code: ${purchase.id}</h2>
     </div>
     `
     return str

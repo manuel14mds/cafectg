@@ -8,7 +8,7 @@ export default class Users extends MongoContainer{
     }
     getAll = async () => {
         let data =  await this.modelService.find().lean()
-        const users = data.map(user => new UserDTO(user))
+        const users = data.map(user => new UserDTO(user._id, user))
         return users
     }
     changeStatus = async (uid, value) => {
@@ -31,7 +31,7 @@ export default class Users extends MongoContainer{
         if(!result){
             return null
         }else{
-            let user = new UserDTO(result)
+            let user = new UserDTO(result._id, result)
             return user
         }
     }

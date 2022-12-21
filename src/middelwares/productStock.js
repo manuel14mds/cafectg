@@ -8,8 +8,8 @@ export const stockValidator = async (req,res,next) => {
         }else if(product.stock < 1){
             return res.status(400).send({error:'bad request',message:'Product Without stock'})
         }
-        next()
     } catch (error) {
         return res.status(500).send({error:'server error',message:"Couldn't validate product stock"})
     }
+    next()
 }

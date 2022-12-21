@@ -29,12 +29,33 @@
             <div class="total col-md-4">
                 <h3>total</h3>
                 <p>{{cart.total}} USD</p>
-                <a href="/api/carts/buy" type="button" class="btn btn-success" variant="primary">Shop Now</a>
+                <a type="button" class="btn btn-success" variant="primary" data-bs-toggle="modal" data-bs-target="#shop">Buy now</a>
                 <button class='btn bg-secondary' data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">Delete All</button>
             </div>
         </div>
 
+        <!-- Modal Shop-->
+        <div class="modal fade" id="shop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Buy Products</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Do you wanna shop this/these product/s right now?<br><br>
+                    Total: {{cart.total}} USD
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+                    <button type="button" id="shopBtn" class="btn btn-success" value="{{cart.id}}" >Shop Now</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal empty cart-->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">

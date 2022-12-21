@@ -19,7 +19,9 @@ export default class Purchases extends MongoContainer{
     }
     getPopulate = async (id) => {
         let result = await this.modelService.findOne({_id:id}).lean().populate('products.product')
-        const products = result.products.map(item => item.product = new ProductDTO(item.product._id, item.product))
+        const products = result.products.map(item => {
+            return {product : new ProductDTO(item.product._id, item.product), qty: item.qty}
+        })
         result.id = result._id
         result.products = products
         return result
