@@ -42,7 +42,10 @@ const usersSchema = mongoose.Schema({
         require:true
     },
     cartId:String,
-    wishlistId:String,
+    wishlistId:{
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:'purchases'
+    },
     purchases:[
         {
             purchase:{

@@ -27,9 +27,20 @@ const validateBid = async (req,res,next)=>{
     }
     next()
 }
+const validateWid = async (req,res,next)=>{
+    try {
+        req.params.wishList = await persistenceFactory.WishListService.getById(req.params.wid)
+        if(!req.params.wishList) return res.status(404).send({status:'error', error:'Wish List not found'})
+        if(req.params.wishList._id) req.params.wishList.id = req.params.wishList._id 
+    } catch (error) {
+        return res.status(300).send({status:'error', error:'Wish List not found'})
+    }
+    next()
+}
 
 export {
     validateCid,
     validatePid,
     validateBid,
+    validateWid,
 }
