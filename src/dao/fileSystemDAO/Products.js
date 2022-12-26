@@ -67,4 +67,19 @@ export default class Products extends FileSystemContainer{
         const products = result.map(product => new ProductDTO(product.id, product))
         return products
     }
+
+    // purchase: decrese product qty
+    purchaseSubst = async(cart)=>{
+        try {
+            let product = {}
+            for (const item of cart.products) {
+                product = await this.getById(item.product)
+                product.stock -= item.qty
+                await this.update(product.id, product)
+            }
+        } catch (error) {
+            return false
+        }
+        return true
+    }
 }

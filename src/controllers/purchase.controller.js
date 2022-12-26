@@ -33,6 +33,9 @@ const create = async (req,res)=>{
         html:html
     })
 
+    //decrese product qty 
+    await persistenceFactory.ProductService.purchaseSubst(req.params.cart)
+
     // empty cart
     await persistenceFactory.CartService.emptyCart(req.params.cart.id)
 

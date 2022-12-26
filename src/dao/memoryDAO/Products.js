@@ -62,4 +62,18 @@ export default class Products extends MemoryContainer{
         const products = result.map(product => new ProductDTO(product.id, product))
         return products
     }
+    // purchase: decrese product qty
+    purchaseSubst = (cart)=>{
+        try {
+            let product = {}
+            for (const item of cart.products) {
+                product = this.getById(item.product)
+                product.stock -= item.qty
+                this.update(product.id, product)
+            }
+        } catch (error) {
+            return false
+        }
+        return true
+    }
 }
