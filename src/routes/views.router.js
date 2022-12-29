@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { logger } from '../app.js'
 import persistenceFactory from '../dao/Factory.js'
 import config from '../config/config.js'
 import jwt from 'jsonwebtoken'
@@ -77,10 +78,6 @@ router.get('/category', async(req,res)=>{//bien
     }
 })
 
-router.all('/*:params',(req,res)=>{
-    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
-    res.send({ error : -2, descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
-})
 
 async function userValidater(req,res,next){
     const token = req.cookies[config.jwt.COOKIE]

@@ -45,3 +45,20 @@
 {"level":50,"time":1672336318825,"pid":61450,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the wish list | Method: POST | URL: /api/wishlist/63adcf8b391fd41185bc4932/product/6367da3273d3877d5465e036"}
 {"level":50,"time":1672336559246,"pid":61597,"hostname":"MacBook-Pro-de-Manuel.local","msg":"Couldn't upload the product into the wish list | Method: POST | URL: /api/wishlist/63adcf8b391fd41185bc4932/product/6367da3273d3877d5465e036"}
 {"level":40,"time":1672340271431,"pid":63239,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/63adcf8b391fd41185bc4932/emptyft Method: DELETE"}
+{"level":40,"time":1672346305115,"pid":65857,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist Method: GET"}
+{"level":40,"time":1672346316900,"pid":65857,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist Method: GET"}
+{"level":40,"time":1672346392883,"pid":65857,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672346422356,"pid":65857,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/products Method: GET"}
+{"level":40,"time":1672346488608,"pid":65857,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/carts Method: GET"}
+{"level":40,"time":1672347551398,"pid":66370,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672347553267,"pid":66370,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672347567345,"pid":66370,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: POST"}
+{"level":40,"time":1672347572817,"pid":66370,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672347719909,"pid":66459,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672348075308,"pid":66633,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672348093117,"pid":66663,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672348095398,"pid":66663,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672348259092,"pid":66744,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672348292420,"pid":66779,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlist/ Method: GET"}
+{"level":40,"time":1672348832911,"pid":67100,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/wishlista Method: GET"}
+{"level":40,"time":1672348861214,"pid":67100,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> /api/productso Method: GET"}

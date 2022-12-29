@@ -28,9 +28,9 @@ router.delete('/:wid/product/:pid', validateWid, validatePid, wishListController
 //delete all products from cart
 router.delete('/:wid/empty', validateWid, wishListController.emptyWishList)
 
-router.all('/*:params',(req,res)=>{
+/* router.all('*',(req,res)=>{
     logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
     res.send({ error : -2, descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
-})
+}) */
 
 export default router

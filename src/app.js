@@ -50,9 +50,15 @@ app.use('/api/purchases',reqInfo,purchaseRouter)
 app.use('/api/sessions', sessionsRouter)
 
 
-app.get('/*:params',(req,res)=>{
+/* app.get('/*:params',(req,res)=>{
     res.send({ error : -2, descripcion: `route '/${req.params[0]}' method 'GET' no implemented`})
-})
+}) */
+app.use(function(req, res, next) {
+    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
+    res.status(404).send({status:404,title:"Not Found", descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
+    next();
+});
+
 function reqInfo(req,res,next){
     logger.info(`Method: ${req.method} | URL: ${req.protocol + '://' + req.get('host') + req.originalUrl}`)
     next()

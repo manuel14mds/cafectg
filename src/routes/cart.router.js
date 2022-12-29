@@ -32,9 +32,4 @@ router.delete('/:cid/products/:pid', validateCid, validatePid, cartController.de
 //delete all products from cart
 router.delete('/emptyCart/:cid', loginValidater, validateCid, cartController.emptyCart)
 
-router.all('/*:params',(req,res)=>{
-    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
-    res.send({ error : -2, descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
-})
-
 export default router

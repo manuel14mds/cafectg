@@ -27,10 +27,6 @@ router.post('/', productController.add)
 //delete product by id
 router.delete('/:pid', validatePid, productController.deleteOne)
 
-router.all('/*:params',(req,res)=>{
-    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
-    res.send({ error : -2, descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
-})
 
 
 export default router
