@@ -13,10 +13,12 @@ switch (persistence) {
         const {default:MemoryProduct} = await import('./MemoryDAO/Products.js') 
         const {default:MemoryCarts} = await import('./MemoryDAO/Carts.js') 
         const {default:MemoryPurchases} = await import('./MemoryDAO/Purchases.js') 
+        const {default:MemoryWishList} = await import('./MemoryDAO/WishLists.js')
         UserService = new MemoryUser()
         ProductService = new MemoryProduct()
         CartService = new MemoryCarts()
         PurchaseService = new MemoryPurchases()
+        WishListService = new MemoryWishList()
         break
     case 'FILESYSTEM':
         const {default:FileSUser} = await import('./fileSystemDAO/Users.js')

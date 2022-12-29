@@ -34,10 +34,10 @@ router.get('/google',passport.authenticate('google',{session:false,scope:['email
 // google calback
 router.get('/googlecallback',passport.authenticate('google',{session:false}), sessions.googleCallback)
 
-/* router.get('/users',async (req,res)=>{
+router.get('/users',async (req,res)=>{
     const result = await persistenceFactory.UserService.getAll()
     res.status(200).send(result)
-}) */
+})
 
 
 export default router

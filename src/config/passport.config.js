@@ -15,11 +15,13 @@ const initializePassport = () =>{
             if(exists) return done(null,false,{message:"User already exists"})
 
             let newCart = await persistenceFactory.CartService.create()
+            const newWishlist = await persistenceFactory.WishListService.create()
             const newUser = {
                 name,
                 email,
                 password: createHash(password),
                 cartId:newCart.id,
+                wishlistId:newWishlist.id,
             }
 
             let result = await persistenceFactory.UserService.createUser(newUser)
@@ -50,12 +52,14 @@ const initializePassport = () =>{
         let user = await persistenceFactory.UserService.getByEmail(email)
         if(!user){
             let newCart = await persistenceFactory.CartService.create()
+            const newWishlist = await persistenceFactory.WishListService.create()
             const newUser = {
                 email,
                 name: given_name,
                 last_name: family_name,
                 password:'',
                 cartId:newCart.id,
+                wishlistId:newWishlist.id,
             }
             let result = await persistenceFactory.UserService.createUser(newUser)
             return done(null,result);

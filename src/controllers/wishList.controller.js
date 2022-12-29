@@ -12,7 +12,7 @@ const getAllWLs = async (req,res)=>{
 
 const createOne = async (req,res)=>{
     await persistenceFactory.WishListService.create()
-    res.send({status:'success',message:'Wish list successfully created'})
+    res.send({status:'success',message:'WishList successfully created'})
 }
 
 const getById = async (req,res)=>{

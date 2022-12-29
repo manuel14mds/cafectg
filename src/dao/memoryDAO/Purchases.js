@@ -5,7 +5,7 @@ export default class Purchases extends MemoryContainer{
         super()
     }
 
-    create = async (cart) => {
+    create = (cart) => {
         let data = this.getAll()
         let newPurchase = {}
         if (data.length === 0) {
@@ -21,7 +21,7 @@ export default class Purchases extends MemoryContainer{
         return purchaseId
     }
 
-    getPopulate = async (id) => {
+    getPopulate = (id) => {
         let result = this.getById(id)
         return result
     }

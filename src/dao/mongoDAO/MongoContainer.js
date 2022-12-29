@@ -6,6 +6,7 @@ export default class MongoContainer {
 
     save = async (element) => {
         let result = await this.modelService.create(element)
+        result.id = result._id
         return result
     }
 
@@ -21,6 +22,7 @@ export default class MongoContainer {
 
     update = async (id, object) => {
         let result = await this.modelService.updateOne({_id:id}, {$set:object})
+        result.id = result._id
         return result
     }
 

@@ -30,7 +30,6 @@ export default class Users extends MemoryContainer{
         element.picture = ''
         element.phone = ''
         element.active = true
-        element.wishlistId = ''
         element.purchases = []
         element.cards=['MSC','AEX','DIN','VIS']
 

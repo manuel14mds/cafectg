@@ -44,7 +44,7 @@ const usersSchema = mongoose.Schema({
     cartId:String,
     wishlistId:{
         type:mongoose.SchemaTypes.ObjectId,
-        ref:'purchases'
+        ref:'wishLists'
     },
     purchases:[
         {

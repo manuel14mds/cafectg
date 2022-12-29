@@ -1,14 +1,12 @@
-import __dirname from '../../utils.js'
-import FileSystemContainer from "./FileSystemContainer.js";
+import MemoryContainer from "./MemoryContainer.js";
 
-export default class WishLists extends FileSystemContainer{
+export default class WishLists extends MemoryContainer{
     constructor(){
         super()
-        this.path = __dirname + '/files/wishlists.json'
     }
 
-    create = async () => {
-        let data = await this.getAll()
+    create =  () => {
+        let data = this.getAll()
         let newWishList = {}
         if (data.length === 0) {
             newWishList.id = 1
@@ -18,8 +16,7 @@ export default class WishLists extends FileSystemContainer{
             newWishList.time_stamp = Date.now().toLocaleString()
         }
         newWishList.products = []
-        await this.save(newWishList)
+        this.save(newWishList)
         return newWishList
     }
-
 }
