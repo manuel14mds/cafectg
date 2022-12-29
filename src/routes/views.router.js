@@ -76,10 +76,17 @@ router.get('/category', async(req,res)=>{//bien
         res.render('category',{products})
     }
 })
+
+router.all('/*:params',(req,res)=>{
+    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
+    res.send({ error : -2, descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
+})
+
 async function userValidater(req,res,next){
     const token = req.cookies[config.jwt.COOKIE]
     if(!token) return res.render('account', {user:false})
     next()
 }
+
 
 export default router

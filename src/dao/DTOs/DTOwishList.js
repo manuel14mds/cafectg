@@ -1,4 +1,4 @@
-export default class WhishList {
+export default class WishList {
     constructor (id, data) {
         this.id = id;
         this.products = data.products;
@@ -7,15 +7,18 @@ export default class WhishList {
         if (this.products.length == 0){
             this.products.push({product:pid})
         }else{
-            if(!this.products.some(item => item.product == pid)){
+            let result = this.products.some(item => item.product.toString() == pid)
+            if(!result){
                 this.products.push({product:pid})
             }
         }
     }
     delete(pid){
+        let result
         if(!this.products.length == 0){
-            if(this.products.some(item => item.product == pid)){
-                const newList = this.products.filter(item=> item.product != pid)
+            result = this.products.some(item => item.product.toString() == pid)
+            if(result){
+                const newList = this.products.filter(item=> item.product.toString() != pid)
                 this.products = newList
             }
         }

@@ -1,10 +1,11 @@
-import { userAdmin, logger } from '../app.js'
+import { logger } from '../app.js'
 import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
-import WhishListPopulateDTO from '../dao/DTOs/DTOwishListPopulate.js'
-import WhishList from '../dao/DTOs/DTOwhishList.js'
+import config from '../config/config.js'
+import WishListPopulateDTO from '../dao/DTOs/DTOwishListPopulate.js'
+import WishList from '../dao/DTOs/DTOwishList.js'
 
-const getWhishLists = async (req,res)=>{
+const getAllWLs = async (req,res)=>{
     let whishLists = await persistenceFactory.WishListService.getAll()
     res.send(whishLists)
 }
@@ -14,39 +15,29 @@ const createOne = async (req,res)=>{
     res.send({status:'success',message:'Wish list successfully created'})
 }
 
-const deleteById = async (req,res)=>{
-    /* if(!userAdmin){
-        return res.send({error:-1, descripction: "route '/carts/:cid' method 'DELETE' no authorized"})
-    }else{
-        try {
-            await persistenceFactory.CartService.deleteById(req.params.cid)
-            res.send({status:'success',message:'successfully deleted'})
-        } catch (error) {
-            logger.error(`cart couldn't been deleted | Method: ${req.method} | URL: ${req.originalUrl}`)
-            return res.status(500).send({status:'error', error:"cart couldn't been deleted"})
-        }
-    } */
-}
-
-const getWhole = async (req,res)=>{
+const getById = async (req,res)=>{
     try {
-        let whishList = new WhishListPopulateDTO(req.params.wishList.id, req.params.wishList)
-        res.send({message:'success', payload:whishList})
+        let wishList
+        if(config.app.PERSISTENCE != 'MONGODB'){
+            wishList = new WishListPopulateDTO(req.params.wishList.id,req.params.wishList)
+        }else{
+            wishList = await persistenceFactory.WishListService.getWhishList(req.params.wishList.id)
+        }
+        
+        res.send({status:'success', payload:wishList})
     } catch (error) {
-        logger.error(`Products couldn't be listed | Method: ${req.method} | URL: ${req.originalUrl}`)
-        return res.status(500).send({status:'error', error:"Wish list couldn't be listed"})
+        logger.error(`Couldn't get wish list | Method: ${req.method} | URL: ${req.originalUrl}`)
+        return res.status(500).send({status:'error', error:"it couldn't get wish list"})
     }
 }
 
-const addProducts = async (req,res)=>{
+const addProduct = async (req,res)=>{
     try {
-        const wishList = new WhishList(req.params.wid.id,req.params.wid)
-        const {pid} = req.body
-        let product = await persistenceFactory.ProductService.getById(pid)
-        if(!product){
-            return res.status(404).send({status:'error', error:'Product not found'})
-        }
+        const wishList = new WishList(req.params.wishList.id,req.params.wishList)
+        const pid = req.params.product.id
+        console.log('wish list ',wishList)
         wishList.add(pid)
+        
         let result = await persistenceFactory.WishListService.update(wishList.id, wishList)
         return res.send({status:'success',message:'successfully added into the wish list', result })
 
@@ -58,49 +49,38 @@ const addProducts = async (req,res)=>{
 
 const deleteProduct = async (req,res)=>{
     try {
-        const wishList = new WhishList(req.params.wid.id,req.params.wid)
-        const {pid} = req.body
-        let product = await persistenceFactory.ProductService.getById(pid)
-        if(!product){
-            return res.status(404).send({status:'error', error:'Product not found'})
-        }
+        const wishList = new WishList(req.params.wishList.id,req.params.wishList)
+        const pid = req.params.product.id
+
         wishList.delete(pid)
+
         let result = await persistenceFactory.WishListService.update(wishList.id, wishList)
         return res.send({status:'success',message:'successfully delete from the wish list', result })
 
     } catch (error) {
         logger.error(`Couldn't delete the product from the wish list | Method: ${req.method} | URL: ${req.originalUrl}`)
-        return res.status(500).send({status:'error', error:"it couldn't delete the product ftom the wish list"})
+        return res.status(500).send({status:'error', error:"it couldn't delete the product from the wish list"})
     }
 }
 const emptyWishList = async (req,res)=>{
     try {
-        const wishList = new WhishList(req.params.wid.id,req.params.wid)
+        const wishList = new WishList(req.params.wishList.id,req.params.wishList)
         wishList.empty()
         let result = await persistenceFactory.WishListService.update(wishList.id, wishList)
         return res.send({status:'success',message:'empty wish list successfully', result })
 
     } catch (error) {
-        logger.error(`Couldn't delete the product from the wish list | Method: ${req.method} | URL: ${req.originalUrl}`)
-        return res.status(500).send({status:'error', error:"it couldn't delete the product ftom the wish list"})
+        logger.error(`Couldn't empty wish list | Method: ${req.method} | URL: ${req.originalUrl}`)
+        return res.status(500).send({status:'error', error:"it couldn't empty the wish list"})
     }
 }
-const getById = async (req,res)=>{
-    try {
-        const wishList = new WhishListPopulateDTO(req.params.wid.id,req.params.wid)
-        res.send({status:'success', payload:wishList})
-    } catch (error) {
-        logger.error(`Couldn't get wish list | Method: ${req.method} | URL: ${req.originalUrl}`)
-        return res.status(500).send({status:'error', error:"it couldn't get wish list"})
-    }
-}
+
 
 
 export default {
-    getWhishLists,
+    getAllWLs,
     createOne,
-    getWhole,
-    addProducts,
+    addProduct,
     deleteProduct,
     emptyWishList,
     getById,

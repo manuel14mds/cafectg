@@ -9,6 +9,7 @@ const validatePid = async (req,res,next)=>{
     }
     next()
 }
+
 const validateCid = async (req,res,next)=>{
     try {
         req.params.cart = await persistenceFactory.CartService.getById(req.params.cid)
@@ -18,6 +19,7 @@ const validateCid = async (req,res,next)=>{
     }
     next()
 }
+
 const validateBid = async (req,res,next)=>{
     try {
         req.params.purchase = await persistenceFactory.PurchaseService.getById(req.params.bid)
@@ -27,11 +29,11 @@ const validateBid = async (req,res,next)=>{
     }
     next()
 }
+
 const validateWid = async (req,res,next)=>{
     try {
         req.params.wishList = await persistenceFactory.WishListService.getById(req.params.wid)
         if(!req.params.wishList) return res.status(404).send({status:'error', error:'Wish List not found'})
-        if(req.params.wishList._id) req.params.wishList.id = req.params.wishList._id 
     } catch (error) {
         return res.status(300).send({status:'error', error:'Wish List not found'})
     }

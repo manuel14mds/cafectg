@@ -1,5 +1,5 @@
 import persistenceFactory from "../Factory.js"
-export default class WhishListPopulateDTO {
+export default class WishListPopulateDTO {
     constructor (id, data) {
         this.id = id;
         this.products = data.products

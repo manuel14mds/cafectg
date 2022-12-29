@@ -27,9 +27,9 @@ router.post('/', productController.add)
 //delete product by id
 router.delete('/:pid', validatePid, productController.deleteOne)
 
-router.get('/*:params',(req,res)=>{
-    logger.warn(`route not implemented -> ${req.originalUrl}`)
-    res.send({ error : -2, descripcion: `route '/api/products/${req.params[0]}' method 'GET' no implemented`})
+router.all('/*:params',(req,res)=>{
+    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
+    res.send({ error : -2, descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
 })
 
 
