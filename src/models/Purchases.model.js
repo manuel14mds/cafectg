@@ -3,17 +3,17 @@ import mongoose from "mongoose";
 const collection = 'purchases'
 
 const purchasesSchema = mongoose.Schema({
-    products:[
+    products: [
         {
-            product:{
-                type:mongoose.SchemaTypes.ObjectId,
-                ref:'products'
+            product: {
+                type: mongoose.SchemaTypes.ObjectId,
+                ref: 'products'
             },
-            qty:Number
+            qty: Number
         }
     ],
-    total:Number
-},{timestamps:true})
+    total: Number
+}, { timestamps: true })
 
-const purchaseModelService = mongoose.model(collection,purchasesSchema)
+const purchaseModelService = mongoose.model(collection, purchasesSchema)
 export default purchaseModelService

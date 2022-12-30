@@ -1,8 +1,8 @@
 import __dirname from '../../utils.js'
 import FileSystemContainer from "./FileSystemContainer.js";
 
-export default class WishLists extends FileSystemContainer{
-    constructor(){
+export default class WishLists extends FileSystemContainer {
+    constructor() {
         super()
         this.path = __dirname + '/files/wishlists.json'
     }

@@ -1,6 +1,6 @@
 import FileSystemContainer from "./FileSystemContainer.js";
 import __dirname from '../../utils.js'
-import Cart from '../../model/cart.class.js';
+import CartDTO from '../DTOs/DTOcart.js'
 
 export default class Carts extends FileSystemContainer{
     constructor(){
@@ -25,23 +25,22 @@ export default class Carts extends FileSystemContainer{
 
     //add a product into cart
     addProductToCart = async (cid, prod, qty) => {
-        if(qty > prod.stock){// si la cantidad supera al stock del producto
+        if(qty > prod.stock){
             qty = prod.stock
         }
-        let result = await this.getById(cid)// traigo el cart
-        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
+        let result = await this.getById(cid)
+        const cart = new CartDTO(result.id, result)
 
-        if(cart.products.length===0){// no hay productos en el carrito
+        if(cart.products.length===0){
             cart.addProduct(prod.id, prod, qty)
-            await this.update(cart.id, cart)// pongo el producto y la cantidad en el carrito
+            await this.update(cart.id, cart)
             return cart
         }else{
-            //validate if the product is already in the cart
             let result = cart.products.some((item)=>{
                 return item.product === prod.id
             })
 
-            if(result){ // Sí está el producto en el carrito
+            if(result){
                 cart.addQty(prod.id, prod, qty)
             }else{
                 cart.addProduct(prod.id, prod, qty)
@@ -53,17 +52,16 @@ export default class Carts extends FileSystemContainer{
     // delete a product from a cart
     // require cartID and productID
     deleteProductFromCart = async (cid, prod, pid) => {
-        let result =  await this.getById(cid)// traigo el cart
-        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
+        let result =  await this.getById(cid)
+        const cart = new CartDTO(result.id, result)
         
-        if(cart.products.length===0){// no hay productos en el carrito
+        if(cart.products.length===0){
             return cart
-        }else{// sí hay productos en el carrito
-            //validate if the product is already in the cart
+        }else{
             let result = cart.products.some((item)=>{
                 return item.product == prod.id
             })
-            if(result){ // Sí está el producto en el carrito
+            if(result){
                 cart.removeProduct(pid, prod)
             }else{
                 return cart
@@ -75,7 +73,7 @@ export default class Carts extends FileSystemContainer{
 
     emptyCart = async (cid) => {
         let result = await this.getById(cid)
-        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
+        const cart = new CartDTO(result.id, result)
         cart.empty()
         await this.update(cart.id, cart)
         return cart
@@ -83,7 +81,7 @@ export default class Carts extends FileSystemContainer{
 
     getCart = async (cid)=>{
         const result = await this.getById(cid)
-        const cart = new Cart(result.id, result) // creo una instancia del la clase cart con el objeto cart
+        const cart = new CartDTO(result.id, result)
         return cart
     }
 

@@ -1,11 +1,11 @@
 import MemoryContainer from "./MemoryContainer.js";
 
-export default class WishLists extends MemoryContainer{
-    constructor(){
+export default class WishLists extends MemoryContainer {
+    constructor() {
         super()
     }
 
-    create =  () => {
+    create = () => {
         let data = this.getAll()
         let newWishList = {}
         if (data.length === 0) {

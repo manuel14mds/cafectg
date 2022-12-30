@@ -2,81 +2,111 @@ import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
 import { userAdmin, logger } from '../app.js'
 
-const getAll = async (req,res)=>{
-    let products = await persistenceFactory.ProductService.getAll()
-    res.send({products})
-}
-const getById = async(req,res)=>{
+// get all products
+const getAll = async (req, res) => {
     try {
-        let product = await persistenceFactory.ProductService.getById(req.params.pid)
-        res.send(product);
+        let products = await persistenceFactory.ProductService.getAll()
+        res.send({ status: 'success', payload: products })
     } catch (error) {
-        logger.error(`Couldn't get the product | Method: ${req.method} | URL: ${req.originalUrl}`)
-        return res.status(500).send({status:'error', error:"it couldn't get the product"})
+        logger.error(`Couldn't get all products -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: getAll`)
+        return res.status(500).send({ status: 'error', error: "Couldn't get all products" })
     }
 }
-const getByCategory = async (req,res) => {
-    let products = await persistenceFactory.ProductService.getAll()
-    let data =[]
-    products.forEach(element => {
-        data.push(element._doc)
-    });
-    res.render('category', {products})
+
+// get product by ID
+const getById = async (req, res) => {
+    try {
+        let product = await persistenceFactory.ProductService.getById(req.params.pid)
+        res.send({ status: 'success', payload: product })
+    } catch (error) {
+        logger.error(`Couldn't get the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: getById`)
+        return res.status(500).send({ status: 'error', error: "Couldn't get the product" })
+    }
 }
-const update = async (req,res) => {
-    if(!userAdmin){
-        return res.send({error:-1, descripction: "route '/products/:pid' method 'PUT' no authorized"})
-    }else{
-        if(!req.body){
-            return res.status(400).send({status:'error', error:"blank spaces are NOT allowed"})
-        }else{
+
+// get products filter by categories
+const getByCategory = async (req, res) => {
+    try {
+        const ctg = req.query.category
+        let products = []
+        if (ctg === 'all') {
+            products = await persistenceFactory.ProductService.getAll()
+        } else {
+            products = await persistenceFactory.ProductService.findByCategory(ctg)
+        }
+        return res.send({ status: 'success', payload: products })
+    } catch (error) {
+        logger.error(`Couldn't get product category list -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: getByCategory`)
+        return res.status(500).send({ status: 'error', error: "Couldn't get product category list" })
+    }
+}
+
+// update product by ID
+const update = async (req, res) => {
+    if (!userAdmin) {
+        return res.send({ error: -1, descripction: "route '/products/:pid' method 'PUT' no authorized" })
+    } else {
+        if (!req.body) {
+            return res.status(400).send({ status: 'error', error: "blank spaces are NOT allowed" })
+        } else {
             try {
                 let result = await persistenceFactory.ProductService.update(req.params.pid, req.body)
-                res.send({status:'success',message:'update successfully', product:result})
+                res.send({ status: 'success', message: 'update successfully', product: result })
             } catch (error) {
-                logger.error(`Couldn't update the product | Method: ${req.method} | URL: ${req.originalUrl}`)
-                return res.status(500).send({status:'error', error:"it couldn't update the product"})
+                logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+                    ${error}
+                    product.controller: update`)
+                return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
             }
         }
     }
 }
-const createBulk = async (req,res) => {
-    let products = req.body
+
+// create a product group
+const createBulk = async (req, res) => {
     try {
+        let products = req.body
         for (let item of products) {
             await persistenceFactory.ProductService.addProduct(item)
         }
         res.send('products added')
     } catch (error) {
-        res.status(500).send({error:error, message:'couldnt save products'})
+        logger.error(`Couldnt save products -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: createBulk`)
+        res.status(500).send({ status: 'error', error: 'couldnt save products' })
     }
 }
-const add = async (req,res) => {
-    if(!userAdmin){
-        return res.send({error:-1, descripction: "route '/products' method 'POST' no authorized"})
-    }else{
-        const {name, price, stock} = req.body
-        if(!name||!price||!stock||(typeof price != 'number')) return res.status(300).send({status:'error', error:"blank spaces are NOT allowed"})
-        try {
-            await persistenceFactory.ProductService.addProduct(req.body)
-        } catch (error) {
-            logger.error(`Couldn't save the product | Method: ${req.method} | URL: ${req.originalUrl}`)
-            return res.status(500).send({status:'error', error:"it couldn't save the product"})
-        }
-        res.send({status:'success',message:'successfully saved' })
+
+// create a new product
+const add = async (req, res) => {
+    try {
+        const product = await persistenceFactory.ProductService.addProduct(req.body)
+        res.send({ status: 'success', message: 'successfully saved', payload: product })
+    } catch (error) {
+        logger.error(`Couldn't save product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: add`)
+        return res.status(500).send({ status: 'error', error: "it couldn't save the product" })
     }
 }
-const deleteOne = async (req,res) => {
-    if(!userAdmin){
-        return res.send({error:-1, descripction: "route '/products/:pid' method 'DELETE' no authorized"})
-    }else{
-        try {
-            await persistenceFactory.ProductService.deleteById(req.params.pid)
-        } catch (error) {
-            logger.error(`Couldn't delete the product | Method: ${req.method} | URL: ${req.originalUrl}`)
-            return res.status(500).send({status:'error', error:"it couldn't delete the product"})
-        }
-        res.send({status:'success',message:'successfully deleted' })
+
+// delete a product by ID
+const deleteOne = async (req, res) => {
+    try {
+        await persistenceFactory.ProductService.deleteById(req.params.pid)
+        res.send({ status: 'success', message: 'successfully deleted' })
+    } catch (error) {
+        logger.error(`Couldn't delete the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: deleteOne`)
+        return res.status(500).send({ status: 'error', error: "Couldn't delete the product" })
     }
 }
 

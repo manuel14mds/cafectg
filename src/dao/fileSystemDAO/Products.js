@@ -1,8 +1,8 @@
 import __dirname from '../../utils.js'
 import FileSystemContainer from "./FileSystemContainer.js";
 import ProductDTO from '../DTOs/DTO.product.js';
-export default class Products extends FileSystemContainer{
-    constructor(){
+export default class Products extends FileSystemContainer {
+    constructor() {
         super()
         this.path = __dirname + '/files/products.json'
     }
@@ -35,33 +35,33 @@ export default class Products extends FileSystemContainer{
             await this.save(product)
             return product.id
         }
-        
+
     }
 
-    findByCategory = async (category)=>{
+    findByCategory = async (category) => {
         let data = await this.getAll()
         let result = []
         switch (category) {
             case 'co':
-                result = data.filter((e)=> e.country == 'Colombia')
+                result = data.filter((e) => e.country == 'Colombia')
                 break;
             case 'pa':
-                result = data.filter((e)=> e.country == 'Panamá')
+                result = data.filter((e) => e.country == 'Panamá')
                 break;
             case 'gt':
-                result = data.filter((e)=> e.country == 'Guatemala')
+                result = data.filter((e) => e.country == 'Guatemala')
                 break;
             case 'jv':
-                result = data.filter((e)=> e.brand == 'Juan Valdez')
+                result = data.filter((e) => e.brand == 'Juan Valdez')
                 break;
             case 'om':
-                result = data.filter((e)=> e.brand == 'Café oma')
+                result = data.filter((e) => e.brand == 'Café oma')
                 break;
             case 'du':
-                result = data.filter((e)=> e.brand == 'Café DURÁN')
+                result = data.filter((e) => e.brand == 'Café DURÁN')
                 break;
             case 'ev':
-                result = data.filter((e)=> e.brand == 'Café Entre Valles')
+                result = data.filter((e) => e.brand == 'Café Entre Valles')
                 break;
         }
         const products = result.map(product => new ProductDTO(product.id, product))
@@ -69,7 +69,7 @@ export default class Products extends FileSystemContainer{
     }
 
     // purchase: decrese product qty
-    purchaseSubst = async(cart)=>{
+    purchaseSubst = async (cart) => {
         try {
             let product = {}
             for (const item of cart.products) {

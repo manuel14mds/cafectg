@@ -3,60 +3,60 @@ import mongoose from 'mongoose'
 const collection = 'Users'
 
 const usersSchema = mongoose.Schema({
-    name:{
-        type:String,
-        required:true
+    name: {
+        type: String,
+        required: true
     },
-    last_name:{
-        type:String,
-        default:''
+    last_name: {
+        type: String,
+        default: ''
     },
-    role:{
-        type:String,
-        enum:['user','admin'],
-        default:'user'
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     },
-    age:{
-        type:Number,
-        default:-1
+    age: {
+        type: Number,
+        default: -1
     },
-    address:{
-        type:String,
-        default:''
+    address: {
+        type: String,
+        default: ''
     },
-    picture:String,
-    phone:{
-        type:String,
-        default:''
+    picture: String,
+    phone: {
+        type: String,
+        default: ''
     },
-    active:{
-        type:Boolean,
-        default:true
+    active: {
+        type: Boolean,
+        default: true
     },
-    email:{
-        type:String,
-        required:true
+    email: {
+        type: String,
+        required: true
     },
-    password:{
-        type:String,
-        require:true
+    password: {
+        type: String,
+        require: true
     },
-    cartId:String,
-    wishlistId:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:'wishLists'
+    cartId: String,
+    wishlistId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'wishLists'
     },
-    purchases:[
+    purchases: [
         {
-            purchase:{
-                type:mongoose.SchemaTypes.ObjectId,
-                ref:'purchases'
+            purchase: {
+                type: mongoose.SchemaTypes.ObjectId,
+                ref: 'purchases'
             }
         }
     ],
-    cards:['MSC','AEX','DIN','VIS'],
+    cards: ['MSC', 'AEX', 'DIN', 'VIS'],
 
-},{timestamps:true})
+}, { timestamps: true })
 
-const usersModelService = mongoose.model(collection,usersSchema)
+const usersModelService = mongoose.model(collection, usersSchema)
 export default usersModelService

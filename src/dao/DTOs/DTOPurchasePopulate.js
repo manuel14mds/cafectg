@@ -8,6 +8,7 @@ export default class PurchasePopulateDTO {
     }
     async populate(){
         const dataProducts = await persistenceFactory.ProductService.getAll();
+        console.log(dataProducts)
         let productList = []
         for(const item of this.products){
             productList.push({
@@ -15,6 +16,7 @@ export default class PurchasePopulateDTO {
                 qty:item.qty
             })
         }
+        console.table(productList)
         this.products = productList
     }
 }

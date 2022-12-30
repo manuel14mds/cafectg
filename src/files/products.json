@@ -2,7 +2,7 @@
 	{
 		"name": "Liofilizado Clásico Doypack",
 		"price": 100,
-		"stock": 99,
+		"stock": 98,
 		"brand": "Juan Valdez",
 		"country": "Colombia",
 		"description": "Juan Valdez Liofilizado Clásico Doypack Colombia",
@@ -14,7 +14,7 @@
 	{
 		"name": "Liofilizado Vanicanela",
 		"price": 103,
-		"stock": 110,
+		"stock": 109,
 		"brand": "Juan Valdez",
 		"country": "Colombia",
 		"description": "Juan Valdez Liofilizado Vanicanela Colombia",
@@ -74,7 +74,7 @@
 	{
 		"name": "Origen Comarca",
 		"price": 110,
-		"stock": 100,
+		"stock": 96,
 		"brand": "Café DURÁN",
 		"country": "Panamá",
 		"description": "Café DURÁN Origen Comarca Panamá",
@@ -86,7 +86,7 @@
 	{
 		"name": "Granos Tipo Exportación",
 		"price": 113,
-		"stock": 100,
+		"stock": 99,
 		"brand": "Café DURÁN",
 		"country": "Panamá",
 		"description": "Café DURÁN Granos Tipo Exportación Panamá",
@@ -98,7 +98,7 @@
 	{
 		"name": "Geisha",
 		"price": 75,
-		"stock": 100,
+		"stock": 98,
 		"brand": "Café DURÁN",
 		"country": "Panamá",
 		"description": "Café DURÁN Geisha Panamá",

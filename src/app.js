@@ -17,64 +17,62 @@ import sessionsRouter from './routes/sessions.router.js'
 import purchaseRouter from './routes/purchase.router.js'
 
 const streams = [
-    {level:'info', stream:process.stdout},
-    {level:'warn', stream:pino.destination(__dirname+'/logFiles/warn.log')},
-    {level:'error', stream:pino.destination(__dirname+'/logFiles/error.log')},
+    { level: 'info', stream: process.stdout },
+    { level: 'warn', stream: pino.destination(__dirname + '/logFiles/warn.log') },
+    { level: 'error', stream: pino.destination(__dirname + '/logFiles/error.log') },
 ]
-const logger = pino({},pino.multistream(streams))
+const logger = pino({}, pino.multistream(streams))
 const app = express()
 
 const hbs = handlebars.create({
-    extname:'handlebars',
-    defaultLayout:'main',
-    layoutsDir:__dirname+'/views/layouts',
-    partialsDir:__dirname+'/views/partials'
+    extname: 'handlebars',
+    defaultLayout: 'main',
+    layoutsDir: __dirname + '/views/layouts',
+    partialsDir: __dirname + '/views/partials'
 })
 app.engine('handlebars', hbs.engine)
-app.set('views', __dirname+'/views')
-app.set('partials',__dirname + '/views/partials')
+app.set('views', __dirname + '/views')
+app.set('partials', __dirname + '/views/partials')
 app.set('view engine', 'handlebars')
 
 app.use(express.json())
-app.use(express.static(__dirname+'/public'))
+app.use(express.static(__dirname + '/public'))
 app.use(cookieParser())
 
 initializePassport()
 app.use(passport.initialize())
 
-app.use('/',viewsRouter)
-app.use('/api/products',reqInfo,productRouter)
-app.use('/api/carts',reqInfo,cartRouter)
-app.use('/api/wishlist',reqInfo,wishListRouter)
-app.use('/api/purchases',reqInfo,purchaseRouter)
+app.use('/', viewsRouter)
+app.use('/api/products', reqInfo, productRouter)
+app.use('/api/carts', reqInfo, cartRouter)
+app.use('/api/wishlist', reqInfo, wishListRouter)
+app.use('/api/purchases', reqInfo, purchaseRouter)
 app.use('/api/sessions', sessionsRouter)
 
 
-/* app.get('/*:params',(req,res)=>{
-    res.send({ error : -2, descripcion: `route '/${req.params[0]}' method 'GET' no implemented`})
-}) */
-app.use(function(req, res, next) {
-    logger.warn(`route not implemented -> ${req.originalUrl} Method: ${req.method}` )
-    res.status(404).send({status:404,title:"Not Found", descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented`})
+
+app.use(function (req, res, next) {
+    logger.warn(`route not implemented -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 404`)
+    res.status(404).send({ status: 404, title: "Not Found", descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented` })
     next();
 });
 
-function reqInfo(req,res,next){
+function reqInfo(req, res, next) {
     logger.info(`Method: ${req.method} | URL: ${req.protocol + '://' + req.get('host') + req.originalUrl}`)
     next()
 }
 
 const PORT = process.env.PORT || 8080
-const server = app.listen(PORT, ()=> console.log(`listening on ${PORT} port`))
+const server = app.listen(PORT, () => console.log(`listening on ${PORT} port`))
 const MONGO_URL = `mongodb+srv://${config.mongo.USER}:${config.mongo.PSW}@clusterprueba.fp95ssd.mongodb.net/${config.mongo.DB}?retryWrites=true&w=majority`
 
-mongoose.connect(MONGO_URL, err=>{
-    err?console.log(MONGO_URL,err):console.log('connected to Atlas Mongo')
+mongoose.connect(MONGO_URL, err => {
+    err ? console.log(MONGO_URL, err) : console.log('connected to Atlas Mongo')
 })
 
 
 let userAdmin = true
 export {
-    userAdmin, 
+    userAdmin,
     logger,
 }

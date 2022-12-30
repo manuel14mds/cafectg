@@ -1,8 +1,8 @@
 import __dirname from '../../utils.js'
 import FileSystemContainer from "./FileSystemContainer.js";
 
-export default class Purchases extends FileSystemContainer{
-    constructor(){
+export default class Purchases extends FileSystemContainer {
+    constructor() {
         super()
         this.path = __dirname + '/files/purchases.json'
     }
@@ -19,7 +19,7 @@ export default class Purchases extends FileSystemContainer{
         }
         newPurchase.products = cart.products
         newPurchase.total = cart.total
-        const purchaseId =  await this.save(newPurchase)
+        const purchaseId = await this.save(newPurchase)
         return purchaseId
     }
 

@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const collection = 'wishLists'
 
 const whishListSchema = mongoose.Schema({
-    products:[
+    products: [
         {
-            product:{
-                type:mongoose.SchemaTypes.ObjectId,
-                ref:'products'
+            product: {
+                type: mongoose.SchemaTypes.ObjectId,
+                ref: 'products'
             }
         }
     ]
-},{timestamps:true})
+}, { timestamps: true })
 
-const whishListModelService = mongoose.model(collection,whishListSchema)
+const whishListModelService = mongoose.model(collection, whishListSchema)
 export default whishListModelService

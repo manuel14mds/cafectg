@@ -1,31 +1,31 @@
-export default class CartDTO {
-    constructor (id, cart) {
+export default class Cart {
+    constructor(id, cart) {
         this.id = id;
         this.products = cart.products;
         this.total = cart.total
     }
-    totalUpdate(prod, qty){
+    totalUpdate(prod, qty) {
         this.total += prod.price * qty
     }
     addProduct(pid, prod, qty) {
-        this.products.push({product:pid, qty})
+        this.products.push({ product: pid, qty })
         this.totalUpdate(prod, qty)
     }
     addQty(pid, prod, qty) {
         let auxProductId
         this.products.forEach(element => {
             auxProductId = element.product.toString()
-            if(auxProductId === pid){
+            if (element.product == pid) {
                 let value = element.qty + qty
-                if(value <= 0){
+                if (value <= 0) {
                     this.removeProduct(pid, prod)
                     return true
-                }else{
-                    if(prod.stock<value){
+                } else {
+                    if (prod.stock < value) {
                         element.qty = prod.stock
                         this.totalUpdate(prod, qty)
                         return true
-                    }else{
+                    } else {
                         element.qty += qty
                         this.totalUpdate(prod, qty)
                         return true
@@ -33,17 +33,16 @@ export default class CartDTO {
                 }
             }
         })
-        
     }
-    removeProduct(pid, prod){
-        this.products = this.products.filter((e)=> {
-            if(e.product == pid){
+    removeProduct(pid, prod) {
+        this.products = this.products.filter((e) => {
+            if (e.product == pid) {
                 this.total -= e.qty * prod.price
             }
             return e.product != pid
         })
     }
-    empty(){
+    empty() {
         this.products = []
         this.total = 0
     }

@@ -1,6 +1,6 @@
 import {  Router } from "express"
-import cartController from '../controllers/cart.controller.js'
 
+import cartController from '../controllers/cart.controller.js'
 import { loginValidater } from '../middelwares/authUser.js'
 import { validateCid, validatePid } from "../middelwares/IDsValidator.js"
 import { stockValidator } from '../middelwares/productStock.js'
