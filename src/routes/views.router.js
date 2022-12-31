@@ -105,12 +105,16 @@ router.get('/account', userValidater, loginValidater, async (req, res) => {
 router.get('/category', prodCategoryValidator, async (req, res) => {
     try {
         const ctg = req.query.category
+        let video = ctg
+        let logo = ctg
+        
         if (ctg === 'all') {
             let products = await persistenceFactory.ProductService.getAll()
-            res.render('category', { products })
+            res.render('category', { products, video, logo, category:'All Products'})
         } else {
-            let products = await persistenceFactory.ProductService.findByCategory(ctg)
-            res.render('category', { products })
+            let data = await persistenceFactory.ProductService.findByCategory(ctg)
+            if(['co','pa','gt'].includes(video)) video = 'all'
+            res.render('category', { products:data.products, video, logo, category:data.category })
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500:

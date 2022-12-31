@@ -36,31 +36,39 @@ export default class Products extends MongoContainer{
     //Filter products by categories
     findByCategory = async (category)=>{
         let result = []
+        let ctg = ''
         switch (category) {
             case 'co':
                 result = await this.modelService.find({country:'Colombia'}).lean()
+                ctg = 'Colombia'
                 break;
             case 'pa':
                 result = await this.modelService.find({country:'Panamá'}).lean()
+                ctg = 'Panamá'
                 break;
             case 'gt':
                 result = await this.modelService.find({country:'Guatemala'}).lean()
+                ctg = 'Guatemala'
                 break;
             case 'jv':
                 result = await this.modelService.find({brand:'Juan Valdez'}).lean()
+                ctg = 'Juan Valdéz'
                 break;
             case 'om':
                 result = await this.modelService.find({brand:'Café oma'}).lean()
+                ctg = 'Café oma'
                 break;
             case 'du':
                 result = await this.modelService.find({brand:'Café DURÁN'}).lean()
+                ctg = 'Café DURÁN'
                 break;
             case 'ev':
                 result = await this.modelService.find({brand:'Café Entre Valles'}).lean()
+                ctg = 'Café Entre Valles'
                 break;
         }
         const products = result.map(product => new ProductDTO(product._id, product))
-        return products
+        return {products, category:ctg}
     }
     // purchase: decrese product qty
     purchaseSubst = async(cart)=>{

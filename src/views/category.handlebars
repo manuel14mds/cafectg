@@ -3,10 +3,18 @@
 <main>
     <div class="category">
         <div class="categoryTitleContainer">
-            <div class="categoryLogo"></div>
-            <h1 class="categoryTitle">Juan Valdéz</h1>
+            <div class="categoryLogo" style="background-image: url(./images/logos/{{logo}}.jpg);"></div>
+            <h1 class="categoryTitle">{{category}}</h1>
         </div>
         <div class="listContainer">
+
+            <div class="card">
+                <video class="videoCartCategory" autoplay muted controls>
+                    <source src="./videos/{{video}}.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
             {{#each products}}
                 {{> card }}
             {{/each}}

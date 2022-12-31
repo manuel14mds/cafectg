@@ -41,31 +41,39 @@ export default class Products extends FileSystemContainer {
     findByCategory = async (category) => {
         let data = await this.getAll()
         let result = []
+        let ctg = ''
         switch (category) {
             case 'co':
                 result = data.filter((e) => e.country == 'Colombia')
+                ctg = 'Colombia'
                 break;
             case 'pa':
                 result = data.filter((e) => e.country == 'Panamá')
+                ctg = 'Panamá'
                 break;
             case 'gt':
                 result = data.filter((e) => e.country == 'Guatemala')
+                ctg = 'Guatemala'
                 break;
             case 'jv':
                 result = data.filter((e) => e.brand == 'Juan Valdez')
+                ctg = 'Juan Valdéz'
                 break;
             case 'om':
                 result = data.filter((e) => e.brand == 'Café oma')
+                ctg = 'Café oma'
                 break;
             case 'du':
                 result = data.filter((e) => e.brand == 'Café DURÁN')
+                ctg = 'Café DURÁN'
                 break;
             case 'ev':
                 result = data.filter((e) => e.brand == 'Café Entre Valles')
+                ctg = 'Café Entre Valles'
                 break;
         }
         const products = result.map(product => new ProductDTO(product.id, product))
-        return products
+        return {products, category:ctg}
     }
 
     // purchase: decrese product qty

@@ -18,3 +18,16 @@
 {"level":40,"time":1672437973543,"pid":87830,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/resume/purchase/style/style.css Method: GET || error 404"}
 {"level":40,"time":1672438019775,"pid":87830,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/productDetail/style/style.css Method: GET || error 404"}
 {"level":40,"time":1672438031462,"pid":87830,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/resume/purchase/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672453440144,"pid":93052,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/all.mp4 Method: GET || error 404"}
+{"level":40,"time":1672453442548,"pid":93052,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/all.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454669036,"pid":93650,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/co.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454680369,"pid":93650,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/pa.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454683372,"pid":93650,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/gt.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454778743,"pid":93717,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/co.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454809719,"pid":93756,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/co.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454845224,"pid":93797,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/co.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454847184,"pid":93797,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/co.mp4 Method: GET || error 404"}
+{"level":40,"time":1672454880186,"pid":93797,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/videos/co.mp4 Method: GET || error 404"}
+{"level":40,"time":1672456729146,"pid":94624,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/logos/gt.jpg Method: GET || error 404"}
+{"level":40,"time":1672456804991,"pid":94624,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/logos/ev.jpg Method: GET || error 404"}
+{"level":40,"time":1672457107642,"pid":94758,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/logos/all.jpg Method: GET || error 404"}
