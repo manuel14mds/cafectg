@@ -77,26 +77,30 @@ const initializePassport = () => {
         proxy: true,
         scope: ['user:email']
     },async(accessToken, refreshToken, profile, done) => {
-        const { name, location} = profile._json;
-        const email = profile.emails[0].value
-
-        let user = await persistenceFactory.UserService.getByEmail(email)
-
-        if (!user) {
-            let newCart = await persistenceFactory.CartService.create()
-            const newWishlist = await persistenceFactory.WishListService.create()
-            const newUser = {
-                email,
-                name,
-                address:location,
-                password: '',
-                cartId: newCart.id,
-                wishlistId: newWishlist.id,
+        try {
+            const { name, location} = profile._json;
+            const email = profile.emails[0].value
+    
+            let user = await persistenceFactory.UserService.getByEmail(email)
+    
+            if (!user) {
+                let newCart = await persistenceFactory.CartService.create()
+                const newWishlist = await persistenceFactory.WishListService.create()
+                const newUser = {
+                    email,
+                    name,
+                    address:location,
+                    password: '',
+                    cartId: newCart.id,
+                    wishlistId: newWishlist.id,
+                }
+                let result = await persistenceFactory.UserService.createUser(newUser)
+                return done(null, result);
+            } else {
+                return done(null, user);
             }
-            let result = await persistenceFactory.UserService.createUser(newUser)
-            return done(null, result);
-        } else {
-            return done(null, user);
+        } catch (error) {
+            return done(error)
         }
     }))
 
