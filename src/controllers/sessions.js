@@ -113,6 +113,18 @@ const googleCallback = async (req, res) => {
 
     }
 }
+const githubCallback = async(req,res)=>{
+    if(!req.user){
+        return res.status(500).send({error:'login error', message:'Couldnt login with github, please view permissions, set email and name on your github account'})
+    }
+    const loginUser = {
+        role: req.user.role,
+        name: req.user.name,
+        email: req.user.email
+    }
+    const token = jwt.sign(loginUser, config.jwt.SECRET, { expiresIn: 3000 });
+    res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+}
 export default {
     login,
     logout,
@@ -121,4 +133,5 @@ export default {
     userImage,
     register,
     googleCallback,
+    githubCallback,
 }

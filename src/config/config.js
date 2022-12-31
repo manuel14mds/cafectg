@@ -16,4 +16,8 @@ export default{
         CLIENT_ID:process.env.GOOGLE_CID,
         CLIENT_SECRET:process.env.GOOGLE_CSECRET
     },
+    github:{
+        CLIENT_ID:process.env.GITHUB_CID,
+        CLIENT_SECRET:process.env.GITHUB_CSECRET
+    },
 }

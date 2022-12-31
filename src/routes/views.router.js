@@ -105,20 +105,15 @@ router.get('/account', userValidater, loginValidater, async (req, res) => {
 router.get('/category', prodCategoryValidator, async (req, res) => {
     try {
         const ctg = req.query.category
-        let video = ctg
-        let logo = ctg
-        
         if (ctg === 'all') {
             let products = await persistenceFactory.ProductService.getAll()
-            res.render('category', { products, video, logo, category:'All Products'})
+            res.render('category', { products, ctg, category:'All Products'})
         } else {
             let data = await persistenceFactory.ProductService.findByCategory(ctg)
-            if(['co','pa','gt'].includes(video)) video = 'all'
-            res.render('category', { products:data.products, video, logo, category:data.category })
+            res.render('category', { products:data.products, ctg, category:data.category })
         }
     } catch (error) {
-        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:
-        ${error}`)
+        logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
         res.status(500).send('internal error')
     }
 })

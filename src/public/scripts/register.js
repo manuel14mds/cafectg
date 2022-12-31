@@ -10,5 +10,5 @@ form.addEventListener('submit',(evt)=>{
         headers:{
             "Content-Type":"application/json"
         }
-    }).then(()=>window.location.href = "/")
+    }).then(()=>window.location.href = "/login")
 })
