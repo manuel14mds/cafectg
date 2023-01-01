@@ -22,12 +22,11 @@ router.get('/', (req, res) => {
     try {
         const token = req.cookies[config.jwt.COOKIE]
         if (!token) return res.render('index', { user: false })
-
         const user = jwt.verify(token, config.jwt.SECRET)
         res.render('index', { user })
     } catch (error) {
-        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:
-        ${error}`)
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || Home`});
     }
 })
 
@@ -54,9 +53,8 @@ router.get('/cart', userValidater, loginValidater, async (req, res) => {
 
         res.render('cart', { cart })
     } catch (error) {
-        logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :
-        ${error}`)
-        res.status(500).send('internal error')
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || CART`});
     }
 })
 
@@ -66,9 +64,8 @@ router.get('/productDetail/:pid', async (req, res) => {
         let product = await persistenceFactory.ProductService.getById(req.params.pid)
         res.render('detail', { product })
     } catch (error) {
-        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:
-        ${error}`)
-        res.status(500).send('internal error')
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PRODUCT DETAIL`});
     }
 })
 
@@ -83,9 +80,8 @@ router.get('/resume/purchase/:bid', validateBid, async (req, res) => {
         }
         res.render('purchase', { purchase })
     } catch (error) {
-        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:
-        ${error}`)
-        res.status(500).send('internal error')
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PURCHASE RESUME`});
     }
 })
 
@@ -95,9 +91,8 @@ router.get('/account', userValidater, loginValidater, async (req, res) => {
         const user = new UserDTO(req.body.user.id, req.body.user)
         res.render('account', { user })
     } catch (error) {
-        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:
-        ${error}`)
-        res.status(500).send('internal error')
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || USER ACCOUNT`});
     }
 })
 
@@ -105,6 +100,7 @@ router.get('/account', userValidater, loginValidater, async (req, res) => {
 router.get('/category', prodCategoryValidator, async (req, res) => {
     try {
         const ctg = req.query.category
+
         if (ctg === 'all') {
             let products = await persistenceFactory.ProductService.getAll()
             res.render('category', { products, ctg, category:'All Products'})
@@ -114,7 +110,7 @@ router.get('/category', prodCategoryValidator, async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.status(500).send('internal error')
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PRODUCT CATEGORY LIST`});
     }
 })
 

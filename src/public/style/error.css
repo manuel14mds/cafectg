@@ -1,0 +1,58 @@
+.errorContainer{
+    display: grid;
+    place-items: center;
+    height: 80vh;
+}
+.error{
+    max-width: 350px;
+    background-color: var(--color-one);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 20px 20px 50px grey;
+}
+.error_title{
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+}
+.error_title .error_titleSpam{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgb(195, 2, 2);
+}
+.container_errorMessage{
+    display: flex;
+    gap: 5px;
+}
+.error_pTree{
+    font-size: 0.7rem;
+    max-height: 130px;
+    overflow-y: scroll;
+}
+@media (min-width: 600px) {
+    .error{
+    max-width: 450px;
+    }
+}
+@media (min-width: 1000px) {
+    .error{
+    max-width: 550px;
+    }
+    .error_title{
+        font-size: 2rem;
+    }
+    .error_pOne{
+        font-size: 1.3rem;
+    }
+    .error_pTwo{
+        font-size: 1.3rem;
+    }
+    .error_pTree{
+        font-size: 1rem;
+    }
+    .error_pFour{
+        font-size: 1.3rem;
+    }
+}

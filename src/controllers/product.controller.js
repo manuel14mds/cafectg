@@ -32,13 +32,14 @@ const getById = async (req, res) => {
 const getByCategory = async (req, res) => {
     try {
         const ctg = req.query.category
-        let products = []
+
         if (ctg === 'all') {
-            products = await persistenceFactory.ProductService.getAll()
+            let products = await persistenceFactory.ProductService.getAll()
+            return res.send({ status: 'success', payload: { products, ctg, category:'All Products'} })
         } else {
-            products = await persistenceFactory.ProductService.findByCategory(ctg)
+            let data = await persistenceFactory.ProductService.findByCategory(ctg)
+            return res.send({ status: 'success', payload: { products:data.products, ctg, category:data.category } })
         }
-        return res.send({ status: 'success', payload: products })
     } catch (error) {
         logger.error(`Couldn't get product category list -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
             ${error}

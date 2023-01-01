@@ -43,3 +43,4 @@
 {"level":40,"time":1672511159915,"pid":3266,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/favicon.ico Method: GET || error 404"}
 {"level":40,"time":1672515062446,"pid":4887,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/favicon.ico Method: GET || error 404"}
 {"level":40,"time":1672516174551,"pid":5383,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/favicon.ico Method: GET || error 404"}
+{"level":50,"time":1672533543259,"pid":10979,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: / error 500:Error: error de pruebita"}
