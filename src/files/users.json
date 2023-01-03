@@ -1,2 +1,25 @@
 [
+	{
+		"name": "Adriana",
+		"email": "a@mail.com",
+		"password": "$2b$10$AZSeZ.PkaIPVPebq0nUpI.gnlmzNYUE0OKox1iLhSTVUplze2TfEi",
+		"cartId": 1,
+		"wishlistId": 1,
+		"id": 1,
+		"time_stamp": "1.672.762.639.909",
+		"last_name": "",
+		"role": "user",
+		"age": -1,
+		"address": "",
+		"picture": "",
+		"phone": "",
+		"active": true,
+		"purchases": [],
+		"cards": [
+			"MSC",
+			"AEX",
+			"DIN",
+			"VIS"
+		]
+	}
 ]

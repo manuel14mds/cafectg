@@ -27,58 +27,116 @@
 </head>
 
 <body>
+    
     <header>
-        <div class="navBarContainer">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container">
-                    <a class="navbar-brand" href="/">CaféC</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid d-lg-flex">
+                <a class="navbar-brand" href="/">CaféCTG</a>
+                <div class="d-inline-flex justify-content-evenly align-items-center gap-2">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {{#if user}}
+                        <div class="d-lg-none d-xl-blockd-flex d-flex gap-2 justify-content me-3">
+                            <a href="/account">account</a>
+                            <a href="#"><i class="fa-solid fa-heart"></i></a>
+                            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                        </div>
+                    {{else}}
+                        <div class="d-lg-none d-xl-blockd-flex d-flex gap-2 justify-content me-3">
+                            <a href="#"><i class="fa-solid fa-heart"></i></a>
+                            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" id="dropdownLogin" data-bs-toggle="dropdown"aria-expanded="false">login</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLogin">
+                                    <li><a class="dropdown-item" href="/login">User Login</a></li>
+                                    <li><a class="dropdown-item" href="#">Admin Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {{/if}}
+
+                </div>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Café Cartagena</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <!-- admin menu -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="offcanvasNavbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="true">
+                                    ADMIN
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Products</a></li>
+                                    <li><a class="dropdown-item" href="#">Carts</a></li>
+                                    <li><a class="dropdown-item" href="#">WishLists</a></li>
+                                    <li><a class="dropdown-item" href="#">Purchases</a></li>
+                                    <li><a class="dropdown-item" href="#">Users</a></li>
+                                </ul>
+                            </li>
+
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/category?category=co">Colombia</a>
+                                <a class="nav-link" href="/category?category=jv">Juan Valdéz</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/category?category=pa">Panamá</a>
+                                <a class="nav-link" href="/category?category=du">Café Duran</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/category?category=gt">Guatemala</a>
+                                <a class="nav-link" href="/category?category=om">Café Oma</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/category?category=ev">Entre Valles</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Main Brands
+                                <a class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="true">
+                                    Countries
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/category?category=jv">Juan Valdéz</a></li>
-                                    <li><a class="dropdown-item" href="/category?category=om">Café oma</a></li>
-                                    <li><a class="dropdown-item" href="/category?category=du">Café Durán</a></li>
-                                    <li><a class="dropdown-item" href="/category?category=ev">Café Entre Valles</a></li>
+                                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                    <li><a class="dropdown-item" href="/category?category=co">Colombia</a></li>
+                                    <li><a class="dropdown-item" href="/category?category=pa">Panamá</a></li>
+                                    <li><a class="dropdown-item" href="/category?category=gt">Guatemala</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="/category?category=all">See All</a></li>
+                                    <li><a class="dropdown-item" href="/category?category=all">See All products</a></li>
                                 </ul>
                             </li>
                         </ul>
+                        
+                        <!-- wishlist, cart and login icons -->
+                        {{#if user}}
+                            <div class="navIcons-desktop d-flex gap-2 align-items-center mx-3 d-none">
+                                <a href="/account">account</a>
+                                <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                            </div>
+                        {{else}}
+                            <div class="navIcons-desktop d-flex gap-2 align-items-center mx-3 d-none">
+                                <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" role="button" id="dropdownLogin" data-bs-toggle="dropdown"aria-expanded="false">login</a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLogin">
+                                        <li><a class="dropdown-item" href="/login">User Login</a></li>
+                                        <li><a class="dropdown-item" href="#">Admin Login</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
-            </nav>
-
-            <div class="navBar_btns">
-                <a href=""><i class="fa-solid fa-heart"></i></a>
-                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                <div class="userBtn">
-                    <a href="/account"><i class="fa-solid fa-user"></i></a>
-                    <a href="/login" class="userTag">login</a>
-                </div>
             </div>
-        </div>
+        </nav>
     </header>
+
 
     {{{body}}}
 
