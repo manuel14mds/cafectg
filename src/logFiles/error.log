@@ -1,1 +1,11 @@
 {"level":50,"time":1672533543259,"pid":10979,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: / error 500:Error: error de pruebita"}
+{"level":50,"time":1672775050196,"pid":59591,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /account error 500:ReferenceError: user is not defined"}
+{"level":50,"time":1672775060686,"pid":59591,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /account error 500:ReferenceError: user is not defined"}
+{"level":50,"time":1672775123756,"pid":59640,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /account error 500:ReferenceError: user is not defined"}
+{"level":50,"time":1672777585890,"pid":60663,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672777679596,"pid":60663,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672777995046,"pid":60880,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672779439557,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart/1 error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672779442717,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart/1 error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672779490944,"pid":61563,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart/1 error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672779920048,"pid":61832,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /category?category=du || error 500:ReferenceError: user is not defined"}

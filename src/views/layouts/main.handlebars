@@ -27,7 +27,11 @@
 </head>
 
 <body>
-    
+                {{#if user.admin}}
+                    <!-- dont show -->
+                {{else}}
+                    {{!-- show --}}
+                {{/if}}
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid d-lg-flex">
@@ -40,18 +44,23 @@
                     {{#if user}}
                         <div class="d-lg-none d-xl-blockd-flex d-flex gap-2 justify-content me-3">
                             <a href="/account">account</a>
-                            <a href="#"><i class="fa-solid fa-heart"></i></a>
-                            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                            {{#if user.admin}}
+                                <!-- dont show cart and wishlist -->
+                            {{else}}
+                                <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                <a href="/cart/{{user.cartId}}"><i class="fa-solid fa-cart-shopping"></i></a>
+                            {{/if}}
+
                         </div>
                     {{else}}
                         <div class="d-lg-none d-xl-blockd-flex d-flex gap-2 justify-content me-3">
                             <a href="#"><i class="fa-solid fa-heart"></i></a>
-                            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a href="/cart/{{user.cartId}}"><i class="fa-solid fa-cart-shopping"></i></a>
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" role="button" id="dropdownLogin" data-bs-toggle="dropdown"aria-expanded="false">login</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLogin">
                                     <li><a class="dropdown-item" href="/login">User Login</a></li>
-                                    <li><a class="dropdown-item" href="#">Admin Login</a></li>
+                                    <li><a class="dropdown-item" href="/loginadmin">Admin Login</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -67,20 +76,22 @@
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <!-- admin menu -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" id="offcanvasNavbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="true">
-                                    ADMIN
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Products</a></li>
-                                    <li><a class="dropdown-item" href="#">Carts</a></li>
-                                    <li><a class="dropdown-item" href="#">WishLists</a></li>
-                                    <li><a class="dropdown-item" href="#">Purchases</a></li>
-                                    <li><a class="dropdown-item" href="#">Users</a></li>
-                                </ul>
-                            </li>
+                            {{#if user.admin}}
+                                <!-- admin menu -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle active" href="#" id="offcanvasNavbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="true">
+                                        ADMIN
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                        <li><a class="dropdown-item" href="#">Products</a></li>
+                                        <li><a class="dropdown-item" href="#">Carts</a></li>
+                                        <li><a class="dropdown-item" href="#">WishLists</a></li>
+                                        <li><a class="dropdown-item" href="#">Purchases</a></li>
+                                        <li><a class="dropdown-item" href="#">Users</a></li>
+                                    </ul>
+                                </li>
+                            {{/if}}
 
                             <li class="nav-item">
                                 <a class="nav-link" href="/category?category=jv">Juan Valdéz</a>
@@ -115,18 +126,24 @@
                         {{#if user}}
                             <div class="navIcons-desktop d-flex gap-2 align-items-center mx-3 d-none">
                                 <a href="/account">account</a>
-                                <a href="#"><i class="fa-solid fa-heart"></i></a>
-                                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+
+                                {{#if user.admin}}
+                                    <!-- dont show cart and wishlist -->
+                                {{else}}
+                                    <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                    <a href="/cart/{{user.cartId}}"><i class="fa-solid fa-cart-shopping"></i></a>
+                                {{/if}}
+
                             </div>
                         {{else}}
                             <div class="navIcons-desktop d-flex gap-2 align-items-center mx-3 d-none">
                                 <a href="#"><i class="fa-solid fa-heart"></i></a>
-                                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/cart/{{user.cartId}}"><i class="fa-solid fa-cart-shopping"></i></a>
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" role="button" id="dropdownLogin" data-bs-toggle="dropdown"aria-expanded="false">login</a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLogin">
                                         <li><a class="dropdown-item" href="/login">User Login</a></li>
-                                        <li><a class="dropdown-item" href="#">Admin Login</a></li>
+                                        <li><a class="dropdown-item" href="/loginadmin">Admin Login</a></li>
                                     </ul>
                                 </div>
                             </div>

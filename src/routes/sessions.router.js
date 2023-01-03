@@ -7,8 +7,11 @@ import sessions from '../controllers/sessions.js'
 
 const router = Router()
 
-// login
+// login user
 router.post('/login', passport.authenticate('login', { session: false }), sessions.login)
+
+// login admin
+router.post('/loginadmin', sessions.adminLogin)
 
 // logout
 router.get('/logout', sessions.logout)

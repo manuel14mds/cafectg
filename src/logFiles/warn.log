@@ -44,3 +44,45 @@
 {"level":40,"time":1672515062446,"pid":4887,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/favicon.ico Method: GET || error 404"}
 {"level":40,"time":1672516174551,"pid":5383,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/favicon.ico Method: GET || error 404"}
 {"level":50,"time":1672533543259,"pid":10979,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: / error 500:Error: error de pruebita"}
+{"level":40,"time":1672772376429,"pid":58463,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/account Method: GET || error 404"}
+{"level":40,"time":1672772397258,"pid":58463,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/account Method: GET || error 404"}
+{"level":40,"time":1672772427830,"pid":58463,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/account/12 Method: GET || error 404"}
+{"level":40,"time":1672772592634,"pid":58556,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/account Method: GET || error 404"}
+{"level":50,"time":1672775050196,"pid":59591,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /account error 500:ReferenceError: user is not defined"}
+{"level":50,"time":1672775060686,"pid":59591,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /account error 500:ReferenceError: user is not defined"}
+{"level":50,"time":1672775123756,"pid":59640,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /account error 500:ReferenceError: user is not defined"}
+{"level":40,"time":1672775279758,"pid":59701,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/loginadmin Method: GET || error 404"}
+{"level":50,"time":1672777585890,"pid":60663,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672777679596,"pid":60663,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":50,"time":1672777995046,"pid":60880,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":40,"time":1672778667591,"pid":61149,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart Method: GET || error 404"}
+{"level":40,"time":1672778676666,"pid":61149,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/ Method: GET || error 404"}
+{"level":40,"time":1672778816113,"pid":61149,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/ Method: GET || error 404"}
+{"level":40,"time":1672779357352,"pid":61438,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/1 Method: GET || error 404"}
+{"level":50,"time":1672779439557,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart/1 error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":40,"time":1672779439727,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672779439735,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/error.css Method: GET || error 404"}
+{"level":50,"time":1672779442717,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart/1 error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":40,"time":1672779442804,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672779442806,"pid":61509,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/error.css Method: GET || error 404"}
+{"level":50,"time":1672779490944,"pid":61563,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /cart/1 error 500 :TypeError: Cannot read properties of undefined (reading 'id')"}
+{"level":40,"time":1672779491050,"pid":61563,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672779491056,"pid":61563,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/error.css Method: GET || error 404"}
+{"level":40,"time":1672779518157,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672779518162,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/scripts/cart.js Method: GET || error 404"}
+{"level":40,"time":1672779518163,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/cart.css Method: GET || error 404"}
+{"level":40,"time":1672779530169,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/ Method: GET || error 404"}
+{"level":40,"time":1672779548589,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672779548590,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/cart.css Method: GET || error 404"}
+{"level":40,"time":1672779548592,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/scripts/cart.js Method: GET || error 404"}
+{"level":40,"time":1672779645596,"pid":61602,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":50,"time":1672779920048,"pid":61832,"hostname":"MacBook-Pro-de-Manuel.local","msg":"couldn't get view URL: /category?category=du || error 500:ReferenceError: user is not defined"}
+{"level":40,"time":1672780549445,"pid":62192,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672780553325,"pid":62192,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart Method: GET || error 404"}
+{"level":40,"time":1672780568516,"pid":62192,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672780999242,"pid":62427,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart Method: GET || error 404"}
+{"level":40,"time":1672781004521,"pid":62427,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672781006487,"pid":62427,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672781022415,"pid":62427,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672781062063,"pid":62427,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/cart/style/style.css Method: GET || error 404"}
+{"level":40,"time":1672781069088,"pid":62427,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/resume/purchase/style/style.css Method: GET || error 404"}

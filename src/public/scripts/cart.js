@@ -1,13 +1,11 @@
 let btnDeleteAll = document.getElementById('deleteAllProducts')
 btnDeleteAll.addEventListener('click',(event)=>{
     event.preventDefault()
-    console.log(btnDeleteAll.value)
     fetch(`/api/carts/emptyCart/${btnDeleteAll.value}`,{
         method:'DELETE'
     }).then((result)=>{
         if(result.status==200){
-            console.log('la respuesta es de un 200 ok')
-            window.location.href = "/cart"
+            window.location.href = `/cart/${btnDeleteAll.value}`
         }else {
             Toastify({
                 text: "It couldn't delete",
@@ -25,6 +23,7 @@ btnDeleteAll.addEventListener('click',(event)=>{
         }
     })
 })
+
 let btnShop = document.getElementById('shopBtn')
 btnShop.addEventListener('click',(event)=>{
     event.preventDefault

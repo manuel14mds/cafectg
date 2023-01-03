@@ -5,17 +5,38 @@ import persistenceFactory from '../dao/Factory.js'
 // user login
 const login = async (req, res) => {
     try {
-        const loginUser = {
-            role: req.user.role,
-            name: req.user.name,
-            last_name: req.user.last_name,
-            email: req.user.email,
-            address: req.user.address,
-            phone: req.user.phone,
-            age: req.user.age,
-        }
+        
+        let loginUser = req.user
+        delete loginUser.password
+
         const token = jwt.sign(loginUser, config.jwt.SECRET, { expiresIn: 3000 })
         res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+    } catch (error) {
+        logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            sessions.controller: login`)
+    }
+}
+const adminLogin = async (req, res) => {
+    try {
+        const admins = [
+            {name:'UserAdmin1', email:'admin@mail.com', id:'a1', password:'Admin123', admin:true},
+        ]
+        const {email, password} = req.body
+        if(!email || !password){
+            logger.warm(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: sessions.controller: adminLogin`)
+            return res.status(400).send({ status: "Bad Request", error: "blank fields" })
+        }else{
+            let admin = admins.find((e) => e.email == email)
+            if(!admin || admin.password!= password){
+                logger.warm(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: sessions.controller: adminLogin`)
+                return res.status(400).send({ status: "Bad Request", error: "invalid credentials" })
+            }else{
+                delete admin.password
+                const token = jwt.sign(admin, config.jwt.SECRET, { expiresIn: 3000 })
+                res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+            }
+        }
     } catch (error) {
         logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
             ${error}
@@ -134,4 +155,5 @@ export default {
     register,
     googleCallback,
     githubCallback,
+    adminLogin,
 }
