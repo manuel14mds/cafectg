@@ -80,13 +80,15 @@ const current = async (req, res) => {
 
 // update user
 const userUpdate = async (req, res) => {
-    const token = req.cookies[config.jwt.COOKIE]
-    if (!token) return res.redirect('/')
-    const user = jwt.verify(token, config.jwt.SECRET)
+    console.log('entraaaaaaa user update')
     try {
-        const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        const result = await persistenceFactory.UserService.update(wholeUser.id, req.body)
-        return res.send({ status: 'success', message: 'user updated successfully', payload: result })
+        if (Object.keys(req.body).length>=1) {
+            let user = req.params.user
+            const result = await persistenceFactory.UserService.update(user.id, req.body)
+            return res.send({ status: 'success', message: 'user updated successfully', payload: result })
+        } else {
+            return res.status(400).send({ status: 'bad request', error: "blank spaces are NOT allowed" })
+        }
     } catch (error) {
         logger.error(`Couldn't update user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
             ${error}
@@ -97,22 +99,17 @@ const userUpdate = async (req, res) => {
 
 // update user image
 const userImage = async (req, res) => {
-    const token = req.cookies[config.jwt.COOKIE]
-    if (!token) return res.redirect('/')
-    const user = jwt.verify(token, config.jwt.SECRET)
     try {
-        const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        req.body.id = wholeUser.id
-        req.body.picture = req.file.filename
-        const result = await persistenceFactory.UserService.update(wholeUser.id, req.body)
+        let user = req.params.user
+        user.picture = req.file.filename
+        const result = await persistenceFactory.UserService.update(user.id, user)
         return res.send({ status: 'success', message: 'user updated successfully', payload: result })
     } catch (error) {
-        logger.error(`Couldn't update user image -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: userImage`)
+        logger.error(`Couldn't update user image -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} sessions.controller: userImage`)
         res.status(500).send({ error: "Server error", message: "Couldn't update user image" })
     }
 }
+
 const register = async (req, res) => {
     res.status(200).send('User Registered')
 }

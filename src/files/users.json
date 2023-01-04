@@ -7,11 +7,11 @@
 		"wishlistId": 1,
 		"id": 1,
 		"time_stamp": "1.672.762.639.909",
-		"last_name": "",
+		"last_name": "Matos",
 		"role": "user",
 		"age": -1,
-		"address": "",
-		"picture": "",
+		"address": "Col,Cartagena de Indias",
+		"picture": "1672859663289-Ffy0-4CUAAA0cvc.jpg",
 		"phone": "",
 		"active": true,
 		"purchases": [
@@ -22,6 +22,13 @@
 			"AEX",
 			"DIN",
 			"VIS"
-		]
+		],
+		"price": "18",
+		"user": {
+			"name": "UserAdmin1",
+			"email": "admin@mail.com",
+			"id": "a1",
+			"admin": true
+		}
 	}
 ]

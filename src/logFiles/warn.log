@@ -137,3 +137,44 @@
 {"level":40,"time":1672851643454,"pid":78455,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
 {"level":40,"time":1672851650452,"pid":78455,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
 {"level":40,"time":1672851665905,"pid":78455,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672854305349,"pid":79565,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672854406814,"pid":79565,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672854411570,"pid":79565,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672854985954,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672855023261,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672855026509,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672855265755,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672855267340,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672855297230,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672855299192,"pid":80046,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672855373961,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672855375438,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672855914433,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672855915695,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672855927030,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/api/sessions/user/1/image Method: PUT || error 404"}
+{"level":40,"time":1672855960529,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/api/sessions/user/1/image Method: PUT || error 404"}
+{"level":40,"time":1672856010426,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856011501,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672856013415,"pid":80253,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/api/sessions/user/1/image Method: PUT || error 404"}
+{"level":40,"time":1672856081556,"pid":80562,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856083183,"pid":80562,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672856155406,"pid":80627,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856157059,"pid":80627,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672856229323,"pid":80674,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856231012,"pid":80674,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672856453674,"pid":80783,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856455389,"pid":80783,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672856675043,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856676445,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/ Method: GET || error 404"}
+{"level":40,"time":1672856678177,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672856688247,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/users/ Method: GET || error 404"}
+{"level":40,"time":1672856787340,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/1672856677782-Ffy1tg1WYAEP79r.jpg Method: GET || error 404"}
+{"level":40,"time":1672856802259,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/1672856677782-Ffy1tg1WYAEP79r.jpg Method: GET || error 404"}
+{"level":40,"time":1672856823388,"pid":80909,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/user/1672856677782-Ffy1tg1WYAEP79r.jpg); Method: GET || error 404"}
+{"level":40,"time":1672857385154,"pid":81290,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672857396662,"pid":81290,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672857401483,"pid":81290,"hostname":"MacBook-Pro-de-Manuel.local","msg":"unauthorized user -> http://localhost:8080/api/products/13/image Method: PUT || error 401"}
+{"level":40,"time":1672858060910,"pid":81659,"hostname":"MacBook-Pro-de-Manuel.local","msg":"unauthorized user -> http://localhost:8080/api/sessions/userUpdate/1 Method: PUT || error 401"}
+{"level":40,"time":1672858492113,"pid":81861,"hostname":"MacBook-Pro-de-Manuel.local","msg":"unauthorized user -> http://localhost:8080/wishlists Method: GET || error 401"}
+{"level":40,"time":1672858749815,"pid":81924,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/api/sessions/user/image Method: POST || error 404"}
+{"level":40,"time":1672859344278,"pid":82240,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/api/sessions/user/image Method: POST || error 404"}

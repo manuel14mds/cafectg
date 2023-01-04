@@ -49,9 +49,22 @@ const validateWid = async (req, res, next) => {
     next()
 }
 
+// validate wishList ID
+const validateUid = async (req, res, next) => {
+    try {
+        req.params.user = await persistenceFactory.UserService.getById(req.params.uid)
+        if (!req.params.user) return res.status(404).send({ status: 'error', error: 'User not found' })
+    } catch (error) {
+        logger.warn(`User not found' -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 404`)
+        return res.status(404).send({ status: 'error', error: 'User not found' })
+    }
+    next()
+}
+
 export {
     validateCid,
     validatePid,
     validateBid,
     validateWid,
+    validateUid,
 }

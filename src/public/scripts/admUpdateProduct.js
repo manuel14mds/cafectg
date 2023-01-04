@@ -2,6 +2,11 @@
 const formImg = document.getElementById('PimageForm')
 formImg.addEventListener('submit',(evt)=>{
     evt.preventDefault()
+    if(document.getElementById('formFileSm').value==''){
+        console.log('no hay nada')
+    }else{
+        console.log('hay algo')
+    }
     const btnSubmit = document.getElementById('btnUpdateImage')
     let form_data = new FormData(formImg)
     fetch(`/api/products/${btnSubmit.value}/image`,{

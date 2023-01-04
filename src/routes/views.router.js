@@ -9,7 +9,7 @@ import PurchaseDTO from '../dao/DTOs/DTOPurchasePopulate.js'
 import CartPopulateDTO from '../dao/DTOs/DTOcartPopulate.js'
 import UserDTO from '../dao/DTOs/DTOuser.js'
 
-import { loginValidater } from '../middelwares/authUser.js'
+import { loginValidater, onlyAdmin } from '../middelwares/authUser.js'
 import { validateBid } from '../middelwares/IDsValidator.js'
 import { prodCategoryValidator } from '../middelwares/productCategory.js'
 
@@ -140,7 +140,7 @@ router.get('/category', prodCategoryValidator, userHelper ,async (req, res) => {
 
 /*           +++++++++++++++++++               admin views routes         +++++++++++++++++++                      */
 // get all products
-router.get('/products', userHelper ,async (req, res) => {
+router.get('/products', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let products = await persistenceFactory.ProductService.getAll()
@@ -161,7 +161,7 @@ router.get('/products', userHelper ,async (req, res) => {
 })
 
 // get all users
-router.get('/users', userHelper ,async (req, res) => {
+router.get('/users', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let users = await persistenceFactory.UserService.getAll()
@@ -181,7 +181,7 @@ router.get('/users', userHelper ,async (req, res) => {
 })
 
 // get all carts
-router.get('/carts', userHelper ,async (req, res) => {
+router.get('/carts', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let carts = await persistenceFactory.CartService.getAll()
@@ -200,7 +200,7 @@ router.get('/carts', userHelper ,async (req, res) => {
 })
 
 // get all purchases
-router.get('/purchases', userHelper ,async (req, res) => {
+router.get('/purchases', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let purchases = await persistenceFactory.PurchaseService.getAll()
@@ -218,7 +218,7 @@ router.get('/purchases', userHelper ,async (req, res) => {
 })
 
 // get all wishlists
-router.get('/wishlists', userHelper ,async (req, res) => {
+router.get('/wishlists', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let wishlists = await persistenceFactory.WishListService.getAll()

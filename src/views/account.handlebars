@@ -54,7 +54,7 @@
                     <!-- dont show edit button-->
                 {{else}}
                     <button class="btn btnEdit" type="button" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">edit</button>
+                        data-bs-target="#staticBackdrop" value="{{user.id}}" id="btnUpdateImage">edit</button>
                 {{/if}}
 
                 {{else}}
@@ -133,7 +133,7 @@
                         <li class="list-group-item">
                             <ul class="list-group list-group-horizontal-md ">
                                 <li class="list-group-item flex-fill">
-                                    Id: {{this}}
+                                    Code : {{this}}
                                 </li>
                                 <li class="list-group-item">
                                     <a href="/resume/purchase/{{this}}" type="button" class="btn btn-outline-dark">show</a>
