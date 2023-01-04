@@ -155,7 +155,8 @@ router.get('/products', userHelper ,async (req, res) => {
         res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PRODUCTS`});
     }
 })
-// get all products
+
+// get all users
 router.get('/users', userHelper ,async (req, res) => {
     try {
         const user = req.body.user
@@ -175,9 +176,61 @@ router.get('/users', userHelper ,async (req, res) => {
     }
 })
 
+// get all carts
+router.get('/carts', userHelper ,async (req, res) => {
+    try {
+        const user = req.body.user
+        let carts = await persistenceFactory.CartService.getAll()
 
+        if (carts.length == 0) {
+            carts = false
+            res.render('admCarts', { carts, user})
+        } else {
+            carts = carts.reverse()
+            res.render('admCarts', { carts, user})
+        }
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL CARTS`});
+    }
+})
 
+// get all purchases
+router.get('/purchases', userHelper ,async (req, res) => {
+    try {
+        const user = req.body.user
+        let purchases = await persistenceFactory.PurchaseService.getAll()
+        if (purchases.length == 0) {
+            purchases = false
+            res.render('admPurchases', { purchases, user})
+        } else {
+            purchases = purchases.reverse()
+            res.render('admPurchases', { purchases, user})
+        }
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PURCHASES`});
+    }
+})
 
+// get all wishlists
+router.get('/wishlists', userHelper ,async (req, res) => {
+    try {
+        const user = req.body.user
+        let wishlists = await persistenceFactory.WishListService.getAll()
+
+        if (wishlists.length == 0) {
+            wishlists = false
+            res.render('admWishlists', { wishlists, user})
+        } else {
+            wishlists = wishlists.reverse()
+            res.render('admWishlists', { wishlists, user})
+        }
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL WISHLISTS`});
+    }
+})
 
 
 

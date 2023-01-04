@@ -1,0 +1,10 @@
+.prodList-content{
+    display: flex;
+}
+.adm-item-id{
+    background-color: rgb(223, 223, 223);
+    min-width: 130px;
+    overflow-x: scroll;
+    padding-left: 2px;
+    border-radius: 3px;
+}

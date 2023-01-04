@@ -1,0 +1,28 @@
+
+<link rel="stylesheet" href="../style/admItemList.css">
+
+    <div class="adm_item_list">
+        <ul class="list-container container">
+            {{#if purchases}}
+                {{#each carts}}
+                    <!-- Item List Cart -->
+                    <li class="list-group-item adm_item_list">
+                        <div>
+                            <ul class="list-group list-group-horizontal-md adm_item_container">
+                                <li class="list-group-item prodList-content adm-item-id-container flex-fill">
+                                    <div class="col-md-3">Cart ID:</div>
+                                    <div class="col-md-9 adm-item-id">{{this.id}}</div>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <button type="button" class="btn btn-secondary">show</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {{/each}}
+            {{else}}
+                <h2>No Carts yet ...</h2>
+            {{/if}}
+
+        </ul>
+    </div>
