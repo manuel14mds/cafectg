@@ -30,6 +30,7 @@
     max-width: 900px;
     border-radius: 10px;
     margin-top: 5px;
+    box-shadow: 20px 20px 50px grey;
 
     display: flex;
     flex-wrap: wrap;

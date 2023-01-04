@@ -15,7 +15,8 @@
 		"phone": "",
 		"active": true,
 		"purchases": [
-			1
+			1,
+			2
 		],
 		"cards": [
 			"MSC",

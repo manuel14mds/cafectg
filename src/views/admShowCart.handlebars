@@ -1,0 +1,25 @@
+    <div class="div container" style="padding: 5px; margin-to:5px;">
+        <div class="row">
+            <div class="col-md-9" style="background-color: rgb(234, 234, 234); padding: 8px; height: 300px; overflow-y: scroll;">
+                {{#if cart.products}}
+                    {{#each cart.products}}
+                        <ul class="list-group list-group-horizontal-lg" style="font-size: 0.8rem;">
+                            <li class="list-group-item"> <strong>ID: </strong>{{product.id}}</li>
+                            <li class="list-group-item flex-fill"> <strong>Name: </strong>{{product.name}}</li>
+                            <li class="list-group-item"><strong>Price: </strong> {{product.price}}</li>
+                            <li class="list-group-item"><strong>Quantity: </strong>{{qty}}</li>
+                        </ul><br>
+                    {{/each}}
+
+                {{else}}
+                <h4>Empty cart...</h4>
+                {{/if}}
+            </div>
+            <div class="col-md-3">
+                <h4>cart Id: </h4>
+                <p>{{cart.id}}</p><br>
+                <h5>total: </h5>
+                <p>{{cart.total}}</p>
+            </div>
+        </div>
+    </div>

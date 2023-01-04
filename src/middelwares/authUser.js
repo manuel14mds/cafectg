@@ -30,7 +30,6 @@ const loginValidater = async (req, res, next) => {
 }
 //validate if is an admin
 const onlyAdmin = async (req, res, next) => {
-    console.log(req.body.user)
     if (!req.body.user.admin) {
         logger.warn(`unauthorized user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 401`)
         return res.status(401).send({ message: 'unauthorized' })

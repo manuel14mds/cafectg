@@ -141,19 +141,33 @@
 		"id": 12,
 		"code": "reytz",
 		"time_stamp": "1.670.367.361.313",
-		"enable": true
+		"enable": true,
+		"thumbnail": "p-1672875054671-ciclos.png"
 	},
 	{
 		"name": "Selecta",
 		"description": "Selecta es el resultado de una cuidadosa selección de granos de calidad que brindan un delicioso sabor clásico de notas dulces y ácidas, la experiencia perfecta para los que disfrutan la compañía del buen café.",
 		"price": 150,
-		"stock": "90",
+		"stock": 1,
 		"brand": "Café oma",
 		"country": "Colombia",
-		"thumbnail": "p-1672849437824-Copia de cafe.png",
+		"thumbnail": "p-1672875180011-11.25.05 .png",
 		"id": 13,
 		"code": "pv3haj",
 		"time_stamp": "1.672.807.345.390",
+		"enable": true
+	},
+	{
+		"name": "Crema Instantánea",
+		"description": "El acompañamiento perfecto para los que buscan  combinar su café con opciones saludables libre de lactosa y colesterol.",
+		"price": 150,
+		"stock": "26",
+		"brand": "Café oma",
+		"country": "Colombia",
+		"thumbnail": "p-1672872234238-Captura de pantalla 2023-01-04 a la(s) 5.43.05 p.m..png",
+		"id": 14,
+		"code": "h3e10f",
+		"time_stamp": "1.672.872.234.248",
 		"enable": true
 	}
 ]

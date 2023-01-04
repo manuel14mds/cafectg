@@ -12,6 +12,7 @@ import UserDTO from '../dao/DTOs/DTOuser.js'
 import { loginValidater, onlyAdmin } from '../middelwares/authUser.js'
 import { validateBid } from '../middelwares/IDsValidator.js'
 import { prodCategoryValidator } from '../middelwares/productCategory.js'
+import { validateCid, validatePid } from '../middelwares/IDsValidator.js'
 
 import { logger } from '../app.js'
 
@@ -236,6 +237,35 @@ router.get('/wishlists', loginValidater, onlyAdmin, async (req, res) => {
     }
 })
 
+
+// render the cart user page
+router.get('/cart/admin/:cid',validateCid, loginValidater, onlyAdmin, async (req, res) => {
+    try {
+        const user = req.body.user
+        let cart = req.params.cart
+        if (config.app.PERSISTENCE != 'MONGODB') {
+            const cartPopulated = new CartPopulateDTO(cart.id, cart)
+            cartPopulated.populate()
+            cart = cartPopulated
+        }
+        res.render('admShowCart', { cart, user })
+        
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER CART`});
+    }
+})
+// render the product edit page
+router.get('/productEdit/:pid',validatePid, loginValidater, onlyAdmin, async (req, res) => {
+    try {
+        const user = req.body.user
+        const product = req.params.product
+        res.render('admEditProduct', { product, user })
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER CART`});
+    }
+})
 
 
 async function userValidater(req, res, next) {

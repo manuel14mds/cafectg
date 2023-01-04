@@ -61,10 +61,7 @@
     display: grid;
     place-items: center;
 }
-.admin_modelUpdate{
-    max-height: 70vh;
-    overflow-y: scroll;
-}
+
 
 .adm_product-edit-form .adm_image-form{
     border: 2px solid gray;

@@ -12,6 +12,7 @@ export default class Cart {
         this.totalUpdate(prod, qty)
     }
     addQty(pid, prod, qty) {
+
         let auxProductId
         this.products.forEach(element => {
             auxProductId = element.product.toString()
@@ -21,7 +22,9 @@ export default class Cart {
                     this.removeProduct(pid, prod)
                     return true
                 } else {
-                    if (prod.stock < value) {
+                    if (element.qty == prod.stock){
+                        return true
+                    }else if (prod.stock < value) {
                         element.qty = prod.stock
                         this.totalUpdate(prod, qty)
                         return true
