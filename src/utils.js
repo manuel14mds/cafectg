@@ -29,7 +29,7 @@ const storageProducts = multer.diskStorage({
     }
 })
 export const uploader = multer({ storage: storage })
-export const uploaderprod = multer({ storage: storage })
+export const uploaderprod = multer({ storage: storageProducts })
 
 export const emailTransport = nodemailer.createTransport({
     service: 'gmail',

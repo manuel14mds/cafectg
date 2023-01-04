@@ -5,7 +5,7 @@ import persistenceFactory from "../dao/Factory.js"
 
 import { logger } from '../app.js'
 
-export const loginValidater = async (req, res, next) => {
+const loginValidater = async (req, res, next) => {
     const admins = [
         {name:'UserAdmin1', email:'admin@mail.com', id:'a1', password:'Admin123', admin:true},
     ]
@@ -27,4 +27,19 @@ export const loginValidater = async (req, res, next) => {
     req.body.user = wholeUser
     }
     next()
+}
+//validate if is an admin
+const onlyAdmin = async (req, res, next) => {
+    if (!req.user.admin) {
+        logger.warn(`unauthorized user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 401`)
+        return res.status(401).send({ message: 'unauthorized' })
+    }
+    next()
+}
+
+
+export {
+    loginValidater,
+    onlyAdmin,
+
 }

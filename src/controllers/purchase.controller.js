@@ -9,7 +9,6 @@ import { logger } from "../app.js"
 const get = async (req, res) => {
     try {
         const data = await persistenceFactory.PurchaseService.getAll()
-        console.log(data)
         res.send({ message: 'success', payload: data })
     } catch (error) {
         logger.error(`Couldn't get all purchases -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:

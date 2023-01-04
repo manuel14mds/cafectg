@@ -89,3 +89,5 @@
 {"level":40,"time":1672782858315,"pid":63434,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/style/admProducts.css Method: GET || error 404"}
 {"level":40,"time":1672782873464,"pid":63434,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/style/admProducts.css Method: GET || error 404"}
 {"level":40,"time":1672784989402,"pid":64100,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/users Method: GET || error 404"}
+{"level":40,"time":1672807879735,"pid":71773,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}
+{"level":40,"time":1672808377072,"pid":71773,"hostname":"MacBook-Pro-de-Manuel.local","msg":"route not implemented -> http://localhost:8080/images/products/ Method: GET || error 404"}

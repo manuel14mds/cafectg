@@ -97,6 +97,20 @@ const add = async (req, res) => {
         return res.status(500).send({ status: 'error', error: "it couldn't save the product" })
     }
 }
+// create a new product with image
+const addProduct = async (req, res) => {
+    try {
+        
+        req.body.thumbnail = req.file.filename
+        const product = await persistenceFactory.ProductService.addProduct(req.body)
+        res.send({ status: 'success', message: 'successfully saved', payload: product })
+    } catch (error) {
+        logger.error(`Couldn't save product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: add`)
+        return res.status(500).send({ status: 'error', error: "it couldn't save the product" })
+    }
+}
 
 // delete a product by ID
 const deleteOne = async (req, res) => {
@@ -119,4 +133,5 @@ export default {
     createBulk,
     add,
     deleteOne,
+    addProduct,
 }

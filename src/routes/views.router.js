@@ -23,7 +23,6 @@ router.get('/', (req, res) => {
         const token = req.cookies[config.jwt.COOKIE]
         if (!token) return res.render('index', { user: false })
         const user = jwt.verify(token, config.jwt.SECRET)
-        console.log(user)
         res.render('index', { user })
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
@@ -43,6 +42,12 @@ router.get('/loginadmin', (req, res) => {
 // redirect to the register page
 router.get('/register', (req, res) => {
     res.render('register')
+})
+
+// redirect to the addProduct page
+router.get('/addProduct', userHelper, async(req, res) => {
+    const user = req.body.user
+    res.render('addProduct', {user})
 })
 
 // render the cart user page
@@ -147,7 +152,6 @@ router.get('/products', userHelper ,async (req, res) => {
         } else {
             let products = await persistenceFactory.ProductService.getAll()
             products = products.reverse()
-            console.log(products)
             res.render('admProducts', { products, user})
         }
     } catch (error) {

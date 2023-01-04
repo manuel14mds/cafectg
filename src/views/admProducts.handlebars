@@ -9,7 +9,7 @@
                         <li class="list-group-item ">
                             <ul class="list-group list-group-horizontal-md">
                                 <li class="list-group-item prodList-content flex-fill">
-                                    <div class="item-prodList-image" style="background-image: var('./images/products/{{this.thumbnail}}');"></div>
+                                    <div class="item-prodList-image" style="background-image: url('../images/products/{{this.thumbnail}}');"></div>
                                     <div class="item-prodList-info row">
                                         <div>
                                             <div class="row">
@@ -30,13 +30,13 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item prodList-btn">
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#prodCode">edit</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#code{{this.id}}">edit</button>
                                 </li>
                             </ul>
                         </li>
 
                         <!-- modal editar del item-->
-                        <div class="modal fade" id="prodCode" data-bs-backdrop="static" data-bs-keyboard="false"
+                        <div class="modal fade" id="code{{this.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -49,7 +49,7 @@
                                         <!--    form img     -->
                                         <form class="adm_image-form">
                                             <div class="adm_prod-image-container">
-                                                <div class="adm_prod-image" style="background-image: var('./images/products/{{this.thumbnail}}');"></div>
+                                                <div class="adm_prod-image" style="background-image: url('../images/products/{{this.thumbnail}}');"></div>
                                             </div><br>
                                             <div class="mb-3">
                                                 <input class="form-control form-control-sm" id="formFileSm" type="file">
