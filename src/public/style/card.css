@@ -9,6 +9,9 @@
 .card .card_imageContainer{
     height: 150px;
     background-color: aqua;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .card .card_infoContainer{
     height: 120px;

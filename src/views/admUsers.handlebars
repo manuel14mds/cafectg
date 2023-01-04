@@ -30,16 +30,16 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item prodList-btn">
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalid">purchases</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#pcode{{id}}">purchases</button>
                                 </li>
                                 <li class="list-group-item prodList-btn">
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#prodCode">edit</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#eCode{{id}}">edit</button>
                                 </li>
                             </ul>
                         </li>
 
-                        <!-- modal editar del item-->
-                        <div class="modal fade" id="prodCode" data-bs-backdrop="static" data-bs-keyboard="false"
+                        <!-- Item modal Edit User -->
+                        <div class="modal fade" id="eCode{{id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -123,6 +123,44 @@
                                             <button type="submit" class="btn btn-primary btn-sm d-block">update data</button>
                                         </form>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Item modal Show Purchases-->
+                        <div class="modal fade" id="pcode{{id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">user Purchases</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body admin_modelUpdate">
+                                        <div class="userPurchases container" 
+                                        style="background-color: rgb(233, 233, 233); height: 200px; overflow-y: scroll; border-radius: 5px; margin-top: 5px;">
+                                            <h4>Purchase List</h4>
+                                            <ul class="list-group">
+                                                <!-- purchase item -->
+                                                {{#each purchases}}
+                                                    <li class="list-group-item">
+                                                        <ul class="list-group list-group-horizontal-md ">
+                                                            <li class="list-group-item flex-fill">
+                                                                Id: {{this}}
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <a href="/resume/purchase/{{this}}" type="button" class="btn btn-outline-dark">show</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>

@@ -124,9 +124,24 @@
         {{#if user.admin}}
             <!-- dont show purchase list-->
         {{else}}
-            <div class="container" style="background-color: #DCD7C9; padding:5px;border-radius:10px;margin:10px 0px; max-width: 500px;">
-                <h3> Purchases:</h3>
-                {{!-- aqui va la lista de compras --}}
+            <div class="userPurchases container" 
+            style="background-color: rgb(233, 233, 233); height: 200px; overflow-y: scroll; border-radius: 5px; margin-top: 5px;">
+                <h4>Purchase List</h4>
+                <ul class="list-group">
+                    <!-- purchase item -->
+                    {{#each user.purchases}}
+                        <li class="list-group-item">
+                            <ul class="list-group list-group-horizontal-md ">
+                                <li class="list-group-item flex-fill">
+                                    Id: {{this}}
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/resume/purchase/{{this}}" type="button" class="btn btn-outline-dark">show</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {{/each}}
+                </ul>
             </div>
         {{/if}}
 

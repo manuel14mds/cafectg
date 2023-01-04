@@ -14,7 +14,9 @@
 		"picture": "",
 		"phone": "",
 		"active": true,
-		"purchases": [],
+		"purchases": [
+			1
+		],
 		"cards": [
 			"MSC",
 			"AEX",
