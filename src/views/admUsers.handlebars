@@ -1,0 +1,137 @@
+    <link rel="stylesheet" href="./style/admProduct.css">
+    <body>
+        <div class="adminProducts">
+            <h1>User List</h1>
+            <div class="adm_prodList-container container">
+                <ul class="list-group list-group-flush">
+                    {{#each users}}
+                        <!-- item en lista de productos/usuarios -->
+                        <li class="list-group-item ">
+                            <ul class="list-group list-group-horizontal-md">
+                                <li class="list-group-item prodList-content flex-fill">
+                                    <div class="item-userList-image" style="background-image: var('./images/products/{{this.thumbnail}}');"></div>
+                                    <div class="item-prodList-info row">
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">ID:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{id}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">Name:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{this.name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalid">purchases</button>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#prodCode">edit</button>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- modal editar del item-->
+                        <div class="modal fade" id="prodCode" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body admin_modelUpdate">
+                                        <!--    form img     -->
+                                        <form class="adm_image-form">
+                                            <div class="adm_prod-image-container">
+                                                <div class="adm_user-image" style="background-image: var('./images/user/{{this.picture}}');"></div>
+                                            </div><br>
+                                            <div class="mb-3">
+                                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-sm">update image</button>
+                                        </form>
+                                        <hr>
+                                        <!--    form info   -->
+                                        <form class="adm_data-form">
+                                            <div class="mb-3 row">
+                                                <label for="imputName" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="imputName" name="name" placeholder="{{this.name}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="imputName" class="col-sm-2 col-form-label">Last Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="imputName" name="name" placeholder="{{this.last_name}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="imputName" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="imputName" name="name" placeholder="{{this.email}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="imputName" class="col-sm-2 col-form-label">Address</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="imputName" name="name" placeholder="{{this.address}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="imputName" class="col-sm-2 col-form-label">Phone</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="imputName" name="name" placeholder="{{this.phone}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="price" class="col-sm-3 col-form-label">age</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" name="price" class="form-control" id="price" placeholder="{{this.age}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="price" class="col-sm-3 col-form-label">active</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" disabled>
+                                                        <option value="" selected>True</option>
+                                                        <option value="">False</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="brand" class="col-sm-2 col-form-label">Cart Id</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="brand" class="form-control" id="brand" placeholder="{{this.cartId}}" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="brand" class="col-sm-2 col-form-label">Wishlist Id</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="brand" class="form-control" id="brand" placeholder="{{this.wishlistId}}" disabled>
+                                                </div>
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-primary btn-sm d-block">update data</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        
+    </body>

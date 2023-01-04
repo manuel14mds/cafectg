@@ -133,6 +133,53 @@ router.get('/category', prodCategoryValidator, userHelper ,async (req, res) => {
     }
 })
 
+/*           +++++++++++++++++++               admin views routes         +++++++++++++++++++                      */
+// get all products
+router.get('/products', userHelper ,async (req, res) => {
+    try {
+        const user = req.body.user
+        let products = await persistenceFactory.ProductService.getAll()
+
+        if (products.length == 0) {
+            products = false
+            let products = await persistenceFactory.ProductService.getAll()
+            res.render('admProducts', { products, user})
+        } else {
+            let products = await persistenceFactory.ProductService.getAll()
+            products = products.reverse()
+            console.log(products)
+            res.render('admProducts', { products, user})
+        }
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PRODUCTS`});
+    }
+})
+// get all products
+router.get('/users', userHelper ,async (req, res) => {
+    try {
+        const user = req.body.user
+        let users = await persistenceFactory.UserService.getAll()
+        users = users.map(item=>item=new UserDTO(item.id, item))
+
+        if (users.length == 0) {
+            users = false
+            res.render('admUsers', { users, user})
+        } else {
+            users = users.reverse()
+            res.render('admUsers', { users, user})
+        }
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL USERS`});
+    }
+})
+
+
+
+
+
+
 
 async function userValidater(req, res, next) {
     const token = req.cookies[config.jwt.COOKIE]

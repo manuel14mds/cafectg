@@ -1,0 +1,123 @@
+    <link rel="stylesheet" href="./style/admProduct.css">
+    <body>
+        <div class="adminProducts">
+            <h1>Product List</h1>
+            <div class="adm_prodList-container container">
+                <ul class="list-group list-group-flush">
+                    {{#each products}}
+                        <!-- item en lista de productos/usuarios -->
+                        <li class="list-group-item ">
+                            <ul class="list-group list-group-horizontal-md">
+                                <li class="list-group-item prodList-content flex-fill">
+                                    <div class="item-prodList-image" style="background-image: var('./images/products/{{this.thumbnail}}');"></div>
+                                    <div class="item-prodList-info row">
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">ID:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{this.id}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">Name:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{this.name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#prodCode">edit</button>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- modal editar del item-->
+                        <div class="modal fade" id="prodCode" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">Product</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body admin_modelUpdate">
+                                        <!--    form img     -->
+                                        <form class="adm_image-form">
+                                            <div class="adm_prod-image-container">
+                                                <div class="adm_prod-image" style="background-image: var('./images/products/{{this.thumbnail}}');"></div>
+                                            </div><br>
+                                            <div class="mb-3">
+                                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-sm">update image</button>
+                                        </form>
+                                        <hr>
+                                        <!--    form info   -->
+                                        <form class="adm_data-form">
+                                            <div class="mb-3 row">
+                                                <label for="imputName" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="imputName" name="name" placeholder="{{this.name}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="description" class="col-sm-3 col-form-label">Description</label>
+                                                <div class="col-sm-9">
+                                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="{{this.description}}"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="price" class="col-sm-3 col-form-label">Price USD</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" name="price" class="form-control" id="price" placeholder="{{this.price}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="stock" class="col-sm-2 col-form-label">Stock</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" name="stock" class="form-control" id="stock" placeholder="{{this.stock}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="brand" class="col-sm-2 col-form-label">Brand</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="brand" class="form-control" id="brand" placeholder="{{this.brand}}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="Country" class="col-sm-2 col-form-label">Country</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-select" name="country" id="validationCustom04">
+                                                        <option selected value="">select country...</option>
+                                                        <option value="Colombia">Colombia</option>
+                                                        <option value="Colombia">Panamá</option>
+                                                        <option value="Colombia">Guatemala</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a valid country.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-sm d-block">update data</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        
+    </body>
+
+
+    {{!-- <script src="./scripts/loginadmin.js"></script> --}}

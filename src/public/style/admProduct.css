@@ -1,0 +1,106 @@
+.adminProducts .adm_prodList-container{
+    background-color: rgb(180, 178, 178);
+    padding: 10px;
+    max-width: 720px;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.adminProducts .adm_prodList-container .prodList-content{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.adminProducts .adm_prodList-container .prodList-content .item-prodList-image{
+    background-color: aliceblue;
+    background-image: url(../images/products/p-noimage.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-width: 70px;
+    min-height: 70px;
+    border: 1px solid black;
+}
+.adminProducts .adm_prodList-container .prodList-content .item-userList-image{
+    background-color: aliceblue;
+    background-image: url(../images/users/default.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-width: 70px;
+    min-height: 70px;
+    border: 1px solid black;
+}
+.adminProducts .adm_prodList-container .prodList-content .item-prodList-info{
+    
+    min-width: 200px;
+    height: 70px;
+
+    font-size: 0.7rem;
+}
+.adminProducts .adm_prodList-container .prodList-content .item-prodList-info .item-prodList-info-p{
+    min-width: 170px;
+    max-height: 34px;
+
+    overflow-x: scroll;
+    margin: 0;
+}
+.list-group-item{
+    padding: 0.4rem;
+}
+.prodList-info-id{
+    padding: 0px 2px;
+}
+.prodList-info-name{
+    padding: 0px 2px;
+}
+.adminProducts .adm_prodList-container .list-group-item {
+    margin-bottom: 7px;
+}
+.adminProducts .adm_prodList-container .list-group-item .prodList-btn{
+    display: grid;
+    place-items: center;
+}
+.admin_modelUpdate{
+    max-height: 70vh;
+    overflow-y: scroll;
+}
+
+.adm_product-edit-form .adm_image-form{
+    border: 2px solid gray;
+}
+.adm_prod-image-container{
+    display: flex;
+    justify-content: center;
+}
+.adm_prod-image{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    background-image: url(../images/products/p-noimage.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.adm_user-image{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    background-image: url(../images/users/default.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+@media (min-width: 600px) {
+    .adminProducts .adm_prodList-container .prodList-content .item-prodList-image{
+        min-width: 85px;
+        min-height: 85px;
+    }
+    .adminProducts .adm_prodList-container .prodList-content .item-prodList-info{
+        height: 85px;
+        font-size: 1rem;
+    }
+
+}
