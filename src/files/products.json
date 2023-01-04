@@ -144,13 +144,13 @@
 		"enable": true
 	},
 	{
-		"name": "Café Oma Selecta",
+		"name": "Selecta",
 		"description": "Selecta es el resultado de una cuidadosa selección de granos de calidad que brindan un delicioso sabor clásico de notas dulces y ácidas, la experiencia perfecta para los que disfrutan la compañía del buen café.",
 		"price": 150,
-		"stock": 80,
+		"stock": "90",
 		"brand": "Café oma",
 		"country": "Colombia",
-		"thumbnail": "p-1672807345376-Captura11.png",
+		"thumbnail": "p-1672849437824-Copia de cafe.png",
 		"id": 13,
 		"code": "pv3haj",
 		"time_stamp": "1.672.807.345.390",

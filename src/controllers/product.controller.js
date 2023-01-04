@@ -50,22 +50,31 @@ const getByCategory = async (req, res) => {
 
 // update product by ID
 const update = async (req, res) => {
-    if (!userAdmin) {
-        return res.send({ error: -1, descripction: "route '/products/:pid' method 'PUT' no authorized" })
-    } else {
-        if (!req.body) {
-            return res.status(400).send({ status: 'error', error: "blank spaces are NOT allowed" })
+    try {
+        if (Object.keys(req.body).length>=1) {
+            let result = await persistenceFactory.ProductService.update(req.params.pid, req.body)
+            res.send({ status: 'success', message: 'update successfully', product: result })
         } else {
-            try {
-                let result = await persistenceFactory.ProductService.update(req.params.pid, req.body)
-                res.send({ status: 'success', message: 'update successfully', product: result })
-            } catch (error) {
-                logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-                    ${error}
-                    product.controller: update`)
-                return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
-            }
+            return res.status(400).send({ status: 'error', error: "blank spaces are NOT allowed" })
         }
+    } catch (error) {
+        logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: update`)
+        return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
+    }
+}
+// update product image by ID
+const productImage = async (req, res) => {
+    try {
+        req.params.product.thumbnail = req.file.filename
+        let result = await persistenceFactory.ProductService.update(req.params.product.id, req.params.product)
+        res.send({ status: 'success', message: 'update successfully', product: result })
+    } catch (error) {
+        logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: update`)
+        return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
     }
 }
 
@@ -134,4 +143,5 @@ export default {
     add,
     deleteOne,
     addProduct,
+    productImage,
 }

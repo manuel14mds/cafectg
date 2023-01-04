@@ -22,6 +22,9 @@ router.get('/:pid', prodCategoryValidator, validatePid, productController.getByI
 // update product
 router.put('/:pid', validatePid, productController.update)
 
+// update product image
+router.put('/:pid/image', loginValidater, onlyAdmin, validatePid, uploaderprod.single('file'), productController.productImage)
+
 // insert a list of products
 router.post('/bulk', productController.createBulk)
 

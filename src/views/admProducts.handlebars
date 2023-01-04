@@ -47,18 +47,18 @@
                                     </div>
                                     <div class="modal-body admin_modelUpdate">
                                         <!--    form img     -->
-                                        <form class="adm_image-form">
+                                        <form class="adm_image-form" id="PimageForm">
                                             <div class="adm_prod-image-container">
                                                 <div class="adm_prod-image" style="background-image: url('../images/products/{{this.thumbnail}}');"></div>
                                             </div><br>
                                             <div class="mb-3">
-                                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                                <input class="form-control form-control-sm" id="formFileSm"  name="file" type="file">
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-sm">update image</button>
+                                            <button id="btnUpdateImage" type="submit" class="btn btn-primary btn-sm" value="{{this.id}}">update image</button>
                                         </form>
                                         <hr>
                                         <!--    form info   -->
-                                        <form class="adm_data-form">
+                                        <form class="adm_data-form" id="PdataForm">
                                             <div class="mb-3 row">
                                                 <label for="imputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
@@ -103,7 +103,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-sm d-block">update data</button>
+                                            <button type="submit" class="btn btn-primary btn-sm d-block" value="{{this.id}}">update data</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
@@ -120,4 +120,4 @@
     </body>
 
 
-    {{!-- <script src="./scripts/loginadmin.js"></script> --}}
+    <script src="./scripts/admUpdateproduct.js"></script>
