@@ -113,6 +113,16 @@ router.get('/account', userValidater, loginValidater, async (req, res) => {
         let user = req.body.user
         if(!req.body.user.admin){
             user = new UserDTO(req.body.user.id, req.body.user)
+            if (config.app.PERSISTENCE == 'MONGODB') {
+                user.purchases = user.purchases.map(element => {
+                    return element = {id:element._id}
+                });
+
+            }else{
+                user.purchases = user.purchases.map(element => {
+                    return element = {id:element}
+                });
+            }
         }
         res.render('account', { user })
     } catch (error) {
