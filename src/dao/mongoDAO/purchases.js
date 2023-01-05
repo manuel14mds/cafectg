@@ -1,7 +1,6 @@
 import purchaseModelService from '../../models/Purchases.model.js'
 import MongoContainer from "./MongoContainer.js";
 import ProductDTO from '../DTOs/DTO.product.js'
-import PurchaseDTO from '../DTOs/DTOPurchasePopulate.js'
 export default class Purchases extends MongoContainer{
     constructor(){
         super()
@@ -9,7 +8,9 @@ export default class Purchases extends MongoContainer{
     }
     getAll = async () => {
         let data =  await this.modelService.find().lean()
-        data = data.map(purchase=>purchase=new PurchaseDTO(purchase._id, purchase))
+        for (const purchase of data) {
+            purchase.id = purchase._id
+        }
         return data
     }
     create = async (cart) => {

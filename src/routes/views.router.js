@@ -12,7 +12,7 @@ import UserDTO from '../dao/DTOs/DTOuser.js'
 import { loginValidater, onlyAdmin } from '../middelwares/authUser.js'
 import { validateBid } from '../middelwares/IDsValidator.js'
 import { prodCategoryValidator } from '../middelwares/productCategory.js'
-import { validateCid, validatePid } from '../middelwares/IDsValidator.js'
+import { validateCid, validatePid, validateUid } from '../middelwares/IDsValidator.js'
 
 import { logger } from '../app.js'
 
@@ -139,7 +139,7 @@ router.get('/category', prodCategoryValidator, userHelper ,async (req, res) => {
     }
 })
 
-/*           +++++++++++++++++++               admin views routes         +++++++++++++++++++                      */
+//           +++++++++++++++++++               admin views routes         +++++++++++++++++++                      /
 // get all products
 router.get('/products', loginValidater, onlyAdmin, async (req, res) => {
     try {
@@ -166,7 +166,22 @@ router.get('/users', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let users = await persistenceFactory.UserService.getAll()
+        
         users = users.map(item=>item=new UserDTO(item.id, item))
+
+        if (config.app.PERSISTENCE == 'MONGODB') {
+            for (const user of users) {
+                user.purchases = user.purchases.map(element => {
+                    return element = {id:element._id}
+                });
+            }
+        }else{
+            for (const user of users) {
+                user.purchases = user.purchases.map(element => {
+                    return element = {id:element}
+                });
+            }
+        }
 
         if (users.length == 0) {
             users = false
@@ -205,6 +220,7 @@ router.get('/purchases', loginValidater, onlyAdmin, async (req, res) => {
     try {
         const user = req.body.user
         let purchases = await persistenceFactory.PurchaseService.getAll()
+        console.log(user)
         if (purchases.length == 0) {
             purchases = false
             res.render('admPurchases', { purchases, user})
@@ -237,7 +253,6 @@ router.get('/wishlists', loginValidater, onlyAdmin, async (req, res) => {
     }
 })
 
-
 // render the cart user page
 router.get('/cart/admin/:cid',validateCid, loginValidater, onlyAdmin, async (req, res) => {
     try {
@@ -255,6 +270,7 @@ router.get('/cart/admin/:cid',validateCid, loginValidater, onlyAdmin, async (req
         res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER CART`});
     }
 })
+
 // render the product edit page
 router.get('/productEdit/:pid',validatePid, loginValidater, onlyAdmin, async (req, res) => {
     try {
@@ -263,7 +279,19 @@ router.get('/productEdit/:pid',validatePid, loginValidater, onlyAdmin, async (re
         res.render('admEditProduct', { product, user })
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER CART`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER PRODUCT EDIT`});
+    }
+})
+
+// render the user edit page
+router.get('/userEdit/:uid',validateUid, loginValidater, onlyAdmin, async (req, res) => {
+    try {
+        const user = req.body.user
+        const data = req.params.user
+        res.render('admEditUser', { data, user })
+    } catch (error) {
+        logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER USER EDIT`});
     }
 })
 

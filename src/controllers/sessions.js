@@ -80,7 +80,6 @@ const current = async (req, res) => {
 
 // update user
 const userUpdate = async (req, res) => {
-    console.log('entraaaaaaa user update')
     try {
         if (Object.keys(req.body).length>=1) {
             let user = req.params.user

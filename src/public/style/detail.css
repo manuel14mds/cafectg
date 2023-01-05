@@ -4,8 +4,9 @@
     width: 100vw
 }
 .detailContainer .detailProduct{
-    background-color: var(--color-two);
+    background-color: var(--color-five);
     width: 100%;
+    box-shadow: 20px 20px 50px grey;
 }
 .detailContainer .detailProduct .productTitleContainer{
     background-color: var(--color-three);

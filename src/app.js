@@ -43,10 +43,10 @@ initializePassport()
 app.use(passport.initialize())
 
 app.use('/', viewsRouter)
-app.use('/api/products', reqInfo, productRouter)
-app.use('/api/carts', reqInfo, cartRouter)
-app.use('/api/wishlist', reqInfo, wishListRouter)
-app.use('/api/purchases', reqInfo, purchaseRouter)
+app.use('/api/products', productRouter)
+app.use('/api/carts', cartRouter)
+app.use('/api/wishlist', wishListRouter)
+app.use('/api/purchases', purchaseRouter)
 app.use('/api/sessions', sessionsRouter)
 
 
@@ -56,11 +56,6 @@ app.use(function (req, res, next) {
     res.status(404).send({ status: 404, title: "Not Found", descripcion: `route ${req.originalUrl}' Method: ${req.method} no implemented` })
     next();
 });
-
-function reqInfo(req, res, next) {
-    logger.info(`Method: ${req.method} | URL: ${req.protocol + '://' + req.get('host') + req.originalUrl}`)
-    next()
-}
 
 const PORT = process.env.PORT || 8080
 const server = app.listen(PORT, () => console.log(`listening on ${PORT} port`))

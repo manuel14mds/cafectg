@@ -28,7 +28,12 @@
                     <p><samp>Country:</samp> {{product.country}}</p>
                     <div>
                         {{#if product.stock}}
-                            <button id="addToCard" value="{{product.id}}" type="button" class="btn btn-primary">add to car</button>
+                            {{#if user.admin}}
+                                <button id="" type="button" class="btn btn-primary" disabled>add to car</button>
+                            {{else}}
+                                <button id="addToCard" value="{{product.id}}" type="button" class="btn btn-primary">add to car</button>
+                            {{/if}}
+
                         {{/if}}
                     </div>
                     <div class='overView'>

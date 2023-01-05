@@ -1,6 +1,6 @@
 import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
-import { userAdmin, logger } from '../app.js'
+import { logger } from '../app.js'
 
 // get all products
 const getAll = async (req, res) => {
