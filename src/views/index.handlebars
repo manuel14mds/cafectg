@@ -1,3 +1,14 @@
-{{#if user}}
-    <h1 style="text-transform: capitalize;">{{user.name}}, Welcome to Café Cartagena</h1>
-{{/if}}
+<div class="container">
+    <div class="jumbotron">
+        {{#if user}}
+            <h1 class="display-4 jumbo_tittle">Hello {{user.name}}, Welcome to Café Cartagena!</h1>
+        {{else}}
+            <h1 class="display-4 jumbo_tittle">Welcome to Café Cartagena!</h1>
+        {{/if}}
+        <p >I have developed this website as my final project for <strong>Backend NodeJs</strong> course. I create it specifically for educational purposes. Product images that are used in this website not are under my property. I only use them to create this academic project and do not benefit from it.</p>
+        <hr class="my-4">
+        <p>Let's see all products. We have the main brands from Colombia, Panamá and Guatemala</p>
+        <a class="btn btn-primary btn-lg" href="/category?category=all" role="button">See All Products</a>
+    </div>
+</div>
+

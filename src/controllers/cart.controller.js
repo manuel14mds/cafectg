@@ -1,4 +1,4 @@
-import { userAdmin, logger } from '../app.js'
+import { logger } from '../app.js'
 import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
 
@@ -30,18 +30,14 @@ const createOne = async (req, res) => {
 
 // delete cart by ID
 const deleteById = async (req, res) => {
-    if (!userAdmin) {
-        return res.send({ error: -1, descripction: "route '/carts/:cid' method 'DELETE' no authorized" })
-    } else {
-        try {
-            await persistenceFactory.CartService.deleteById(req.params.cid)
-            res.send({ status: 'success', message: 'successfully deleted' })
-        } catch (error) {
-            logger.error(`cart couldn't been deleted' -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            cart.controller: deleteById`)
-            return res.status(500).send({ status: 'error', error: "cart couldn't been deleted" })
-        }
+    try {
+        await persistenceFactory.CartService.deleteById(req.params.cid)
+        res.send({ status: 'success', message: 'successfully deleted' })
+    } catch (error) {
+        logger.error(`cart couldn't been deleted' -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+        ${error}
+        cart.controller: deleteById`)
+        return res.status(500).send({ status: 'error', error: "cart couldn't been deleted" })
     }
 }
 

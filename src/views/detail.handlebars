@@ -9,7 +9,7 @@
         </div>
         <div class="imageInfoContainer">
             <div class="productImageConatiner">
-                <div class="productImage"></div>
+                <div class="productImage" style="background-image: url('../images/products/{{product.thumbnail}}');"></div>
             </div>
             <div class="productInfoContainer">
                 <div class="info">
@@ -24,11 +24,16 @@
                         out stock
                     {{/if}}
                     </p>
-                    <p><samp>Brand:</samp>{{product.brand}}</p>
+                    <p><samp>Brand: </samp>{{product.brand}}</p>
                     <p><samp>Country:</samp> {{product.country}}</p>
                     <div>
                         {{#if product.stock}}
-                            <button id="addToCard" value="{{product.id}}" type="button" class="btn btn-primary">add to car</button>
+                            {{#if user.admin}}
+                                <button id="" type="button" class="btn btn-primary" disabled>add to car</button>
+                            {{else}}
+                                <button id="addToCard" value="{{product.id}}" type="button" class="btn btn-primary">add to car</button>
+                            {{/if}}
+
                         {{/if}}
                     </div>
                     <div class='overView'>

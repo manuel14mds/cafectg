@@ -5,17 +5,38 @@ import persistenceFactory from '../dao/Factory.js'
 // user login
 const login = async (req, res) => {
     try {
-        const loginUser = {
-            role: req.user.role,
-            name: req.user.name,
-            last_name: req.user.last_name,
-            email: req.user.email,
-            address: req.user.address,
-            phone: req.user.phone,
-            age: req.user.age,
-        }
+        
+        let loginUser = req.user
+        delete loginUser.password
+
         const token = jwt.sign(loginUser, config.jwt.SECRET, { expiresIn: 3000 })
         res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+    } catch (error) {
+        logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            sessions.controller: login`)
+    }
+}
+const adminLogin = async (req, res) => {
+    try {
+        const admins = [
+            {name:'UserAdmin1', email:'admin@mail.com', id:'a1', password:'Admin123', admin:true},
+        ]
+        const {email, password} = req.body
+        if(!email || !password){
+            logger.warm(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: sessions.controller: adminLogin`)
+            return res.status(400).send({ status: "Bad Request", error: "blank fields" })
+        }else{
+            let admin = admins.find((e) => e.email == email)
+            if(!admin || admin.password!= password){
+                logger.warm(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: sessions.controller: adminLogin`)
+                return res.status(400).send({ status: "Bad Request", error: "invalid credentials" })
+            }else{
+                delete admin.password
+                const token = jwt.sign(admin, config.jwt.SECRET, { expiresIn: 3000 })
+                res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+            }
+        }
     } catch (error) {
         logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
             ${error}
@@ -59,13 +80,14 @@ const current = async (req, res) => {
 
 // update user
 const userUpdate = async (req, res) => {
-    const token = req.cookies[config.jwt.COOKIE]
-    if (!token) return res.redirect('/')
-    const user = jwt.verify(token, config.jwt.SECRET)
     try {
-        const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        const result = await persistenceFactory.UserService.update(wholeUser.id, req.body)
-        return res.send({ status: 'success', message: 'user updated successfully', payload: result })
+        if (Object.keys(req.body).length>=1) {
+            let user = req.params.user
+            const result = await persistenceFactory.UserService.update(user.id, req.body)
+            return res.send({ status: 'success', message: 'user updated successfully', payload: result })
+        } else {
+            return res.status(400).send({ status: 'bad request', error: "blank spaces are NOT allowed" })
+        }
     } catch (error) {
         logger.error(`Couldn't update user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
             ${error}
@@ -76,22 +98,17 @@ const userUpdate = async (req, res) => {
 
 // update user image
 const userImage = async (req, res) => {
-    const token = req.cookies[config.jwt.COOKIE]
-    if (!token) return res.redirect('/')
-    const user = jwt.verify(token, config.jwt.SECRET)
     try {
-        const wholeUser = await persistenceFactory.UserService.getByEmail(user.email)
-        req.body.id = wholeUser.id
-        req.body.picture = req.file.filename
-        const result = await persistenceFactory.UserService.update(wholeUser.id, req.body)
+        let user = req.params.user
+        user.picture = req.file.filename
+        const result = await persistenceFactory.UserService.update(user.id, user)
         return res.send({ status: 'success', message: 'user updated successfully', payload: result })
     } catch (error) {
-        logger.error(`Couldn't update user image -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: userImage`)
+        logger.error(`Couldn't update user image -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} sessions.controller: userImage`)
         res.status(500).send({ error: "Server error", message: "Couldn't update user image" })
     }
 }
+
 const register = async (req, res) => {
     res.status(200).send('User Registered')
 }
@@ -134,4 +151,5 @@ export default {
     register,
     googleCallback,
     githubCallback,
+    adminLogin,
 }

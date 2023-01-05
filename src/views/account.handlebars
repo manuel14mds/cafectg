@@ -12,7 +12,11 @@
                 <div class="accImage" style="background-image: url(./images/users/default.png);"></div>
             {{/if}}
             {{#if user}}
-                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#static"> edit </button>
+                {{#if user.admin}}
+                    <!-- dont show edit button-->
+                {{else}}
+                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#static"> edit </button>
+                {{/if}}
             {{/if}}
             <!-- Modal update avatar-->
             <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -46,8 +50,12 @@
                 <p><samp>Address:</samp> {{user.address}}</p>
                 <p><samp>Phone:</samp> {{user.phone}}</p>
                 <p><samp>Email:</samp> {{user.email}}</p>
-                <button class="btn btnEdit" type="button" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop">edit</button>
+                {{#if user.admin}}
+                    <!-- dont show edit button-->
+                {{else}}
+                    <button class="btn btnEdit" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop" value="{{user.id}}" id="btnUpdateImage">edit</button>
+                {{/if}}
 
                 {{else}}
                 <h1>false</h1>
@@ -100,54 +108,43 @@
                     </div>
                 </div>
             </div>
+
             {{#if user}}
-            <a href="/api/sessions/logout" class="btnLogout btn">logout <i
-                    class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <a href="/api/sessions/logout" class="btnLogout btn">logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             {{else}}
-            <a href="/login" class="btnLogout btn">login <i class="fa-solid fa-user"></i></a>
-                <a href="/register" class="btnLogout btn">register <i
-                        class="fa-solid fa-user-plus"></i></a>
-                    {{/if}}
+                <a href="/login" class="btnLogout btn">login <i class="fa-solid fa-user"></i></a>
+                <a href="/register" class="btnLogout btn">register <i class="fa-solid fa-user-plus"></i></a>
+            {{/if}}
+
         </div>
     </div>
 
     {{#if user}}
-        <div class="container" style="background-color: #DCD7C9; padding:5px;border-radius:10px;margin:10px 0px; max-width: 500px;">
-            <h3> Purchases:</h3>
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                {{#if user.purchases}}
-                    <div class="accordion-item">
-                        {{#each user.purchases}}
-                            <h2 class="accordion-header" id="flush-heading{{code}}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#{{code}}" aria-expanded="false" aria-controls="flush-collapse{{code}}">
-                                    <samp style="font-size: 0.7rem;">{{code}}</samp>
-                                </button>
-                            </h2>
-                            <div id="{{code}}" class="accordion-collapse collapse" aria-labelledby="{{code}}"
-                                data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    Order Code: <samp style="font-size: 0.7rem;">{{code}}</samp>
-                                    <ul>
-                                        {{#each products}}
-                                        <li>
-                                            <p style="padding-bottom: 0;">
-                                                <code>Name: </code>{{product.name}} <br>
-                                                <code>Price: </code>{{product.price}} <br>
-                                                <code>Quantity: </code>{{qty}}<br>
-                                            </p>
-                                        </li>
-                                        <hr>
-                                        {{/each}}
-                                    </ul>
-                                    Total: <code>{{totalQty}}</code>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                {{/if}}
+
+        {{#if user.admin}}
+            <!-- dont show purchase list-->
+        {{else}}
+            <div class="userPurchases container" 
+            style="background-color: rgb(233, 233, 233); height: 200px; overflow-y: scroll; border-radius: 5px; margin-top: 5px;">
+                <h4>Purchase List</h4>
+                <ul class="list-group">
+                    <!-- purchase item -->
+                    {{#each user.purchases}}
+                        <li class="list-group-item">
+                            <ul class="list-group list-group-horizontal-md ">
+                                <li class="list-group-item flex-fill">
+                                    Code : {{this}}
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/resume/purchase/{{this}}" type="button" class="btn btn-outline-dark">show</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {{/each}}
+                </ul>
             </div>
-        </div>
+        {{/if}}
+
     {{/if}}
 </main>
 <script src="./scripts/account.js"></script>

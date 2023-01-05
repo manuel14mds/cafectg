@@ -1,0 +1,84 @@
+    <link rel="stylesheet" href="./style/admProduct.css">
+    <body>
+        <div class="adminProducts">
+            <h1>User List</h1>
+            <div class="adm_prodList-container container">
+                <ul class="list-group list-group-flush">
+                    {{#each users}}
+                        <!-- item en lista de productos/usuarios -->
+                        <li class="list-group-item ">
+                            <ul class="list-group list-group-horizontal-md">
+                                <li class="list-group-item prodList-content flex-fill">
+                                    <div class="item-userList-image" style="background-image: url('./images/users/{{this.picture}}');"></div>
+                                    <div class="item-prodList-info row">
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">ID:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{id}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">Name:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{this.name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#pcode{{id}}">purchases</button>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <a href="/userEdit/{{this.id}}" type="button" class="btn btn-secondary" >edit</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Item modal Show Purchases-->
+                        <div class="modal fade" id="pcode{{id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="">user Purchases</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body admin_modelUpdate">
+                                        <div class="userPurchases container" 
+                                        style="background-color: rgb(233, 233, 233); height: 200px; overflow-y: scroll; border-radius: 5px; margin-top: 5px;">
+                                            <h4>Purchase List</h4>
+                                            <ul class="list-group">
+                                                <!-- purchase item -->
+                                                {{#each purchases}}
+                                                    <li class="list-group-item">
+                                                        <ul class="list-group list-group-horizontal-md ">
+                                                            <li class="list-group-item flex-fill">
+                                                                Id: {{id}}
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <a href="/resume/purchase/{{id}}" type="button" class="btn btn-outline-dark">show</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
+    <script src="./scripts/admUpdateUser.js"></script>
+    </body>

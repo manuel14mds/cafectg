@@ -8,6 +8,9 @@ export default class Purchases extends MongoContainer{
     }
     getAll = async () => {
         let data =  await this.modelService.find().lean()
+        for (const purchase of data) {
+            purchase.id = purchase._id
+        }
         return data
     }
     create = async (cart) => {

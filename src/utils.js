@@ -20,7 +20,16 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + "-" + file.originalname)
     }
 })
+const storageProducts = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __dirname + "/public/images/products")
+    },
+    filename: function (req, file, cb) {
+        cb(null, "p-"+ Date.now() + "-" + file.originalname)
+    }
+})
 export const uploader = multer({ storage: storage })
+export const uploaderprod = multer({ storage: storageProducts })
 
 export const emailTransport = nodemailer.createTransport({
     service: 'gmail',

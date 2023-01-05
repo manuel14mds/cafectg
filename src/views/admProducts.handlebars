@@ -1,0 +1,43 @@
+    <link rel="stylesheet" href="./style/admProduct.css">
+    <body>
+        <div class="adminProducts">
+            <h1>Product List</h1>
+            <div class="adm_prodList-container container">
+                <ul class="list-group list-group-flush">
+                    {{#each products}}
+                        <!-- item en lista de productos/usuarios -->
+                        <li class="list-group-item ">
+                            <ul class="list-group list-group-horizontal-md">
+                                <li class="list-group-item prodList-content flex-fill">
+                                    <div class="item-prodList-image" style="background-image: url('../images/products/{{this.thumbnail}}');"></div>
+                                    <div class="item-prodList-info row">
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">ID:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{this.id}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="row">
+                                                <p class="col-2">Name:</p>
+                                                <p class="col-9 item-prodList-info-p">
+                                                    {{this.name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item prodList-btn">
+                                    <a  href="/productEdit/{{this.id}}" type="button" class="btn btn-secondary">edit</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        
+    </body>

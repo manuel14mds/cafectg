@@ -1,4 +1,5 @@
 export default class UserDTO {
+
     constructor(id, user) {
         this.id = id
         this.name = user.name

@@ -1,6 +1,6 @@
 import persistenceFactory from '../dao/Factory.js'
 import __dirname from "../utils.js"
-import { userAdmin, logger } from '../app.js'
+import { logger } from '../app.js'
 
 // get all products
 const getAll = async (req, res) => {
@@ -50,22 +50,31 @@ const getByCategory = async (req, res) => {
 
 // update product by ID
 const update = async (req, res) => {
-    if (!userAdmin) {
-        return res.send({ error: -1, descripction: "route '/products/:pid' method 'PUT' no authorized" })
-    } else {
-        if (!req.body) {
-            return res.status(400).send({ status: 'error', error: "blank spaces are NOT allowed" })
+    try {
+        if (Object.keys(req.body).length>=1) {
+            let result = await persistenceFactory.ProductService.update(req.params.pid, req.body)
+            res.send({ status: 'success', message: 'update successfully', product: result })
         } else {
-            try {
-                let result = await persistenceFactory.ProductService.update(req.params.pid, req.body)
-                res.send({ status: 'success', message: 'update successfully', product: result })
-            } catch (error) {
-                logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-                    ${error}
-                    product.controller: update`)
-                return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
-            }
+            return res.status(400).send({ status: 'error', error: "blank spaces are NOT allowed" })
         }
+    } catch (error) {
+        logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: update`)
+        return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
+    }
+}
+// update product image by ID
+const productImage = async (req, res) => {
+    try {
+        req.params.product.thumbnail = req.file.filename
+        let result = await persistenceFactory.ProductService.update(req.params.product.id, req.params.product)
+        res.send({ status: 'success', message: 'update successfully', product: result })
+    } catch (error) {
+        logger.error(`Couldn't update the product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: update`)
+        return res.status(500).send({ status: 'error', error: "Couldn't update the product" })
     }
 }
 
@@ -97,6 +106,20 @@ const add = async (req, res) => {
         return res.status(500).send({ status: 'error', error: "it couldn't save the product" })
     }
 }
+// create a new product with image
+const addProduct = async (req, res) => {
+    try {
+        
+        req.body.thumbnail = req.file.filename
+        const product = await persistenceFactory.ProductService.addProduct(req.body)
+        res.send({ status: 'success', message: 'successfully saved', payload: product })
+    } catch (error) {
+        logger.error(`Couldn't save product -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
+            ${error}
+            product.controller: add`)
+        return res.status(500).send({ status: 'error', error: "it couldn't save the product" })
+    }
+}
 
 // delete a product by ID
 const deleteOne = async (req, res) => {
@@ -119,4 +142,6 @@ export default {
     createBulk,
     add,
     deleteOne,
+    addProduct,
+    productImage,
 }

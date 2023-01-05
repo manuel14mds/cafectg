@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/admProduct.css">
+
+<div class="container admin_modelUpdate" style="max-width: 696px;">
+    <!--    form img     -->
+    <form class="adm_image-form PimageForm" id="PimageForm">
+        <div class="adm_prod-image-container">
+            <div class="adm_prod-image" style="background-image: url('../images/products/{{product.thumbnail}}');"></div>
+        </div><br>
+        <div class="mb-3">
+            <input class="form-control form-control-sm" id="formFileSm" name="file" type="file">
+        </div>
+        <button id="btnUpdateImage" type="submit" class="btn btn-primary btn-sm" value="{{product.id}}">update
+            image</button>
+    </form>
+    <hr>
+    <!--    form info   -->
+    <form class="adm_data-form" id="PdataForm">
+        <div class="mb-3 row">
+            <label for="imputName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="{{product.name}}" class="form-control" id="imputName" name="name" >
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="description" class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" name="description" id="description" rows="3"
+                    placeholder="{{product.description}}"></textarea>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-3 col-form-label">Price USD</label>
+            <div class="col-sm-9">
+                <input type="number" name="price" class="form-control" id="price" placeholder="{{product.price}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="stock" class="col-sm-2 col-form-label">Stock</label>
+            <div class="col-sm-10">
+                <input type="number" name="stock" class="form-control" id="stock" placeholder="{{product.stock}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="brand" class="col-sm-2 col-form-label">Brand</label>
+            <div class="col-sm-10">
+                <input type="text" name="brand" class="form-control" id="brand" placeholder="{{product.brand}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="Country" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="country" id="validationCustom04">
+                    <option selected value="">select country...</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Colombia">Panamá</option>
+                    <option value="Colombia">Guatemala</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid country.
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm d-block" value="{{product.id}}">update data</button>
+    </form>
+</div>
+
+<script src="../scripts/admUpdateproduct.js"></script>

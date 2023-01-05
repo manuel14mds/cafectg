@@ -15,54 +15,41 @@
     /* thin-100, regular-400, medium-600, bold-800 */
     --font: 'Noto Sans Mono', monospace;
 }
+
 /* +++++++++++++ HEADER inicio +++++++++++++*/
-.navBarContainer{
-    display: flex;
-    flex-wrap: nowrap;
-    background-color: #F8F9FA;
+.navbar-brand{
+    font-size: 1.2rem;
 }
-.navBarContainer .navbar{
-    width: 75vw;
-}
-.dropdown-item{
-    text-align: center;
-}
-.navBarContainer .navbar .container .collapse .navbar-nav .dropdown .dropdown-menu .li .a{
-    text-align: center;
-}
-.navBarContainer .navBar_btns{
-    width: 25vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-right: 10px;
-    position: fixed;
-    right: 0px;
-    top: 15px;
-}
-.navBarContainer .navBar_btns .userBtn{
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-}
-.navBarContainer .navBar_btns .userBtn .userTag{
-    margin-left: 5px;
-    margin-bottom: 0px;
+.navIcons-desktop{
     display: none;
 }
+
 /* +++++++++++++ HEADER final +++++++++++++*/
 body{
     font-family: var(--font);
     font-weight: 100;
 }
+.jumbotron{
+    background-color: var(--color-five);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 20px 20px 50px grey;
+}
 
-@media (min-width: 600px) {
-    /* +++++++++++++ HEADER inicio +++++++++++++*/
-    .navBarContainer .navBar_btns .userBtn .userTag{
-        display: unset;
+@media (min-width: 500px) {
+    .navbar-brand{
+        font-size: 1.4rem;
+        margin-left: 18px;
     }
-    /* +++++++++++++ HEADER final +++++++++++++*/
+}
+
+@media (min-width: 992px) {
+    .navIcons-desktop{
+        display: initial !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        margin: 0rem 1.8rem 0rem 0.9rem !important;
+    }
     
 }

@@ -4,6 +4,8 @@ import productController from "../controllers/product.controller.js"
 import { validatePid } from "../middelwares/IDsValidator.js"
 import { prodBodyValidator } from '../middelwares/productBody.js'
 import { prodCategoryValidator } from '../middelwares/productCategory.js'
+import { loginValidater, onlyAdmin } from '../middelwares/authUser.js'
+import { uploaderprod } from "../utils.js"
 
 
 const router = Router()
@@ -20,11 +22,17 @@ router.get('/:pid', prodCategoryValidator, validatePid, productController.getByI
 // update product
 router.put('/:pid', validatePid, productController.update)
 
+// update product image
+router.put('/:pid/image', loginValidater, onlyAdmin, validatePid, uploaderprod.single('file'), productController.productImage)
+
 // insert a list of products
 router.post('/bulk', productController.createBulk)
 
-// add product
+// add product 
 router.post('/', prodBodyValidator, productController.add)
+
+// add product with image
+router.post('/add',loginValidater , onlyAdmin, uploaderprod.single('file'), prodBodyValidator, productController.addProduct)
 
 //delete product by id
 router.delete('/:pid', validatePid, productController.deleteOne)

@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/admProduct.css">
+
+<div class="container admin_modelUpdate admin_modelUpdateView" style="max-width: 696px;">
+    <!--    form img     -->
+    <form class="adm_image-form" id="UimageForm">
+        <div class="adm_prod-image-container">
+            <div class="adm_user-image" style="background-image: url('../images/users/{{data.picture}}');"></div>
+        </div><br>
+        <div class="mb-3">
+            <input class="form-control form-control-sm" id="formFileSm" type="file" name="file">
+        </div>
+        <button type="submit" id="btnUpdateImage" class="btn btn-primary btn-sm" value="{{data.id}}">update
+            image</button>
+    </form>
+    <hr>
+
+    <!--    form info   -->
+    <form class="adm_data-form" id="UdataForm">
+        <div class="mb-3 row">
+            <label for="imputName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="imputName" name="name" placeholder="{{data.name}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="imputName" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="imputName" name="last_name"
+                    placeholder="{{data.last_name}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="imputName" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="imputName" name="email" placeholder="{{data.email}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="imputName" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="imputName" name="address" placeholder="{{data.address}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="imputName" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="imputName" name="phone" placeholder="{{data.phone}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-3 col-form-label">age</label>
+            <div class="col-sm-9">
+                <input type="number" name="age" class="form-control" placeholder="{{data.age}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-3 col-form-label">active</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" disabled>
+                    <option value="" selected>True</option>
+                    <option value="">False</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="brand" class="col-sm-2 col-form-label">Cart Id</label>
+            <div class="col-sm-10">
+                <input type="text" name="brand" class="form-control" id="brand" placeholder="{{data.cartId}}" disabled>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="brand" class="col-sm-2 col-form-label">Wishlist Id</label>
+            <div class="col-sm-10">
+                <input type="text" name="brand" class="form-control" id="brand" placeholder="{{data.wishlistId}}"
+                    disabled>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm d-block">update data</button>
+    </form>
+</div>
+
+<script src="../scripts/admUpdateUser.js"></script>
