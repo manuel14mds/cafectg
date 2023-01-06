@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import config from '../config/config.js'
 import persistenceFactory from '../dao/Factory.js'
+import { logger } from '../app.js'
 
 // user login
 const login = async (req, res) => {
@@ -10,11 +11,10 @@ const login = async (req, res) => {
         delete loginUser.password
 
         const token = jwt.sign(loginUser, config.jwt.SECRET, { expiresIn: 3000 })
-        res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+        res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true, sameSite:"strict" }).redirect('/')
     } catch (error) {
-        logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: login`)
+        logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} ||sessions.controller: login`)
+        return res.status(500).send({ status: "error", error: "Couldn't login" })
     }
 }
 const adminLogin = async (req, res) => {
@@ -24,23 +24,22 @@ const adminLogin = async (req, res) => {
         ]
         const {email, password} = req.body
         if(!email || !password){
-            logger.warm(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: sessions.controller: adminLogin`)
+            logger.warn(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: blank fields ||sessions.controller: adminLogin`)
             return res.status(400).send({ status: "Bad Request", error: "blank fields" })
         }else{
             let admin = admins.find((e) => e.email == email)
             if(!admin || admin.password!= password){
-                logger.warm(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: sessions.controller: adminLogin`)
+                logger.warn(`Bad request -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 400: invalid credentials ||sessions.controller: adminLogin`)
                 return res.status(400).send({ status: "Bad Request", error: "invalid credentials" })
             }else{
                 delete admin.password
                 const token = jwt.sign(admin, config.jwt.SECRET, { expiresIn: 3000 })
-                res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+                res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true, sameSite:"strict" }).redirect('/')
             }
         }
     } catch (error) {
-        logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: login`)
+        logger.error(`Couldn't login -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} ||sessions.controller: login`)
+        return res.status(500).send({ status: "error", error: "Couldn't login" })
     }
 }
 
@@ -50,9 +49,8 @@ const logout = async (req, res) => {
         const token = req.cookies[config.jwt.COOKIE]
         res.cookie(config.jwt.COOKIE, token, { maxAge: 1, httpOnly: true }).redirect('/')
     } catch (error) {
-        logger.error(`Couldn't logout -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: logout`)
+        logger.error(`Couldn't logout -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} ||sessions.controller: logout`)
+        return res.status(500).send({ status: "error", error: "Couldn't logout" })
     }
 }
 
@@ -65,14 +63,12 @@ const current = async (req, res) => {
         res.send({ status: "success", info: user })
     } catch (error) {
         if (error.expiredAt) {
-            logger.warm(`Token expired -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 300:
+            logger.warn(`Token expired -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 300:
             ${error}
             sessions.controller: current`)
             return res.status(300).send({ status: "error", error: "token expired" })
         } else {
-            logger.error(`Couldn't get current user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: current`)
+            logger.error(`Couldn't get current user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} ||sessions.controller: current`)
             return res.status(500).send({ status: "error", error: "Couldn't get current user" })
         }
     }
@@ -89,9 +85,7 @@ const userUpdate = async (req, res) => {
             return res.status(400).send({ status: 'bad request', error: "blank spaces are NOT allowed" })
         }
     } catch (error) {
-        logger.error(`Couldn't update user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: userUpdate`)
+        logger.error(`Couldn't update user -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} ||sessions.controller: userUpdate`)
         res.status(500).send({ error: "Server error", message: "Couldn't update User" })
     }
 }
@@ -122,11 +116,9 @@ const googleCallback = async (req, res) => {
             email: req.user.email
         }
         const token = jwt.sign(loginUser, config.jwt.SECRET, { expiresIn: 3000 });
-        res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+        res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true, sameSite:"strict" }).redirect('/')
     } catch (error) {
-        logger.error(`googleCallback error -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500:
-            ${error}
-            sessions.controller: googleCallback`)
+        logger.error(`googleCallback error -> ${req.protocol + '://' + req.get('host') + req.originalUrl} Method: ${req.method} || error 500: ${error} ||sessions.controller: googleCallback`)
 
     }
 }
@@ -140,7 +132,7 @@ const githubCallback = async(req,res)=>{
         email: req.user.email
     }
     const token = jwt.sign(loginUser, config.jwt.SECRET, { expiresIn: 3000 });
-    res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true }).redirect('/')
+    res.cookie(config.jwt.COOKIE, token, { maxAge: 3000000, httpOnly: true, sameSite:"strict" }).redirect('/')
 }
 export default {
     login,

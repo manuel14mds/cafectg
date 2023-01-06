@@ -42,26 +42,32 @@ I have developed this website as my final project for Backend NodeJs course. I c
 ## Project Dependencies
 | MODULE  | VERSION |
 | ------ | ------ |
-| bcrypt | ^5.1.0  |
-| cookie-parser | ^1.4.6 |
-| express | ^4.18.1 |
-| express-handlebars | ^6.0.6 |
-| jsonwebtoken | ^9.0.0 |
-| mongoose | ^6.5.4 |
+| bcrypt | 5.1.0  |
+| cookie-parser | 1.4.6 |
+| express | 4.18.1 |
+| express-handlebars | 6.0.6 |
+| jsonwebtoken | 9.0.0 |
+| mongoose | 6.5.4 |
 | multer | 1.4.5-lts.1 |
-| nodemailer | ^6.8.0 |
-| passport | 0.6.0" |
+| nodemailer | 6.8.0 |
+| passport | 0.6.0 |
 | passport-github2| 0.1.12 |
 | passport-google-oauth20 | 2.0.0  |
 | passport-local | 1.0.0  |
 | pino | 8.6.1  |
 
+## Admin User
+You will be able to: upload, list and edit all Products ; list and edit all users; list Purchases, Wishlists and Carts.
+- Email: admin@mail.com
+- Password: Admin123
+
 ## License
 **Free Software, Hell Yeah!**
+
 ## contact
-Email: manuel14mds@gmail.com
-Linkedin: 
-Whatsapp: +573006517596
+- Email: manuel14mds@gmail.com
+- Linkedin: https://www.linkedin.com/in/manuel14mds/
+- Whatsapp: +573006517596
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 

@@ -8,7 +8,7 @@
             <div class="adm_prod-image" style="background-image: url('../images/products/{{product.thumbnail}}');"></div>
         </div><br>
         <div class="mb-3">
-            <input class="form-control form-control-sm" id="formFileSm" name="file" type="file">
+            <input class="form-control form-control-sm" id="formFileSm" name="file" type="file" accept="image/*">
         </div>
         <button id="btnUpdateImage" type="submit" class="btn btn-primary btn-sm" value="{{product.id}}">update
             image</button>
@@ -53,8 +53,8 @@
                 <select class="form-select" name="country" id="validationCustom04">
                     <option selected value="">select country...</option>
                     <option value="Colombia">Colombia</option>
-                    <option value="Colombia">Panamá</option>
-                    <option value="Colombia">Guatemala</option>
+                    <option value="Panamá">Panamá</option>
+                    <option value="Guatemala">Guatemala</option>
                 </select>
                 <div class="invalid-feedback">
                     Please select a valid country.
@@ -65,4 +65,4 @@
     </form>
 </div>
 
-<script src="../scripts/admUpdateproduct.js"></script>
+<script src="../scripts/admUpdateProduct.js"></script>
