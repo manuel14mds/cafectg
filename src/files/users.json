@@ -1,29 +1,2 @@
 [
-	{
-		"email": "manuel14mds@gmail.com",
-		"name": "Manuel",
-		"last_name": "Florez",
-		"password": "",
-		"cartId": 1,
-		"wishlistId": 1,
-		"id": 1,
-		"time_stamp": "1.672.881.779.719",
-		"role": "user",
-		"age": -1,
-		"address": "",
-		"picture": "1672888113749-IMG.jpg",
-		"phone": "",
-		"active": true,
-		"purchases": [
-			1,
-			2,
-			3
-		],
-		"cards": [
-			"MSC",
-			"AEX",
-			"DIN",
-			"VIS"
-		]
-	}
 ]

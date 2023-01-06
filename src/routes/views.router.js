@@ -74,7 +74,7 @@ router.get('/cart/:cid', userValidater, loginValidater, async (req, res) => {
 
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || CART`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || CART`, user});
     }
 })
 
@@ -86,7 +86,7 @@ router.get('/productDetail/:pid', userHelper,async (req, res) => {
         res.render('detail', { product, user })
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PRODUCT DETAIL`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PRODUCT DETAIL`, user});
     }
 })
 
@@ -103,7 +103,7 @@ router.get('/resume/purchase/:bid', validateBid, userHelper,async (req, res) => 
         res.render('purchase', { purchase, user})
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PURCHASE RESUME`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PURCHASE RESUME`, user});
     }
 })
 
@@ -127,7 +127,7 @@ router.get('/account', userValidater, loginValidater, async (req, res) => {
         res.render('account', { user })
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || USER ACCOUNT`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || USER ACCOUNT`, user});
     }
 })
 
@@ -145,7 +145,7 @@ router.get('/category', prodCategoryValidator, userHelper ,async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PRODUCT CATEGORY LIST`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || PRODUCT CATEGORY LIST`, user});
     }
 })
 
@@ -167,7 +167,7 @@ router.get('/products', loginValidater, onlyAdmin, async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PRODUCTS`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PRODUCTS`, user});
     }
 })
 
@@ -202,7 +202,7 @@ router.get('/users', loginValidater, onlyAdmin, async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL USERS`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL USERS`, user});
     }
 })
 
@@ -221,7 +221,7 @@ router.get('/carts', loginValidater, onlyAdmin, async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL CARTS`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL CARTS`, user});
     }
 })
 
@@ -240,7 +240,7 @@ router.get('/purchases', loginValidater, onlyAdmin, async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PURCHASES`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL PURCHASES`, user});
     }
 })
 
@@ -259,7 +259,7 @@ router.get('/wishlists', loginValidater, onlyAdmin, async (req, res) => {
         }
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} || error 500:${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL WISHLISTS`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN GET ALL WISHLISTS`, user});
     }
 })
 
@@ -277,7 +277,7 @@ router.get('/cart/admin/:cid',validateCid, loginValidater, onlyAdmin, async (req
         
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER CART`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER CART`, user});
     }
 })
 
@@ -289,7 +289,7 @@ router.get('/productEdit/:pid',validatePid, loginValidater, onlyAdmin, async (re
         res.render('admEditProduct', { product, user })
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER PRODUCT EDIT`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER PRODUCT EDIT`, user});
     }
 })
 
@@ -301,7 +301,7 @@ router.get('/userEdit/:uid',validateUid, loginValidater, onlyAdmin, async (req, 
         res.render('admEditUser', { data, user })
     } catch (error) {
         logger.error(`couldn't get view URL: ${req.originalUrl} error 500 :${error}`)
-        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER USER EDIT`});
+        res.render('error',{message:`couldn't get view URL: ${req.originalUrl} || ADMIN RENDER USER EDIT`, user});
     }
 })
 

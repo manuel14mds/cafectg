@@ -1,15 +1,2 @@
 [
-	{
-		"name": "Crema Instantánea",
-		"description": "El acompañamiento perfecto para los que buscan  combinar su café con opciones saludables libre de lactosa y colesterol.",
-		"price": 100,
-		"stock": 11,
-		"brand": "Café oma",
-		"country": "Colombia",
-		"thumbnail": "p-1672881242248-Captura de pantalla 2023-01-04 a la(s) 5.43.05 p.m..png",
-		"id": 1,
-		"code": "nuo8kj",
-		"enable": true,
-		"time_stamp": "1.672.881.242.254"
-	}
 ]
